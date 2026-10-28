@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>金钢科技 KingKong.tech · 企业介绍</title>
+<meta name="description" content="北京金钢科技有限公司：机器人磁性编码器、触觉舵机、小型机器人。国内人形机器人编码器市占率 80%+，2026 年 3 月完成近亿元 A 轮。">
+<meta property="og:title" content="金钢科技 · 给机器人一副神经系统">
+<meta property="og:description" content="从一颗编码器长到整机：国内人形机器人编码器市占率 80%+，2000+ 全球客户，2026 年规划产能 200 万套。">
+<meta property="og:image" content="assets/hero-crab.jpg">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0D0C'/%3E%3Cpath d='M9 10v12M9 16l7-6M9 16l7 6M23 10v12' stroke='%2321FD41' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#0B0D0C;
+    --ink-2:#232824;
+    --mute:#5C6469;
+    --mute-2:#666E67;
+    --line:#E3E6E1;
+    --line-2:#EDEFEA;
+    --paper:#F7F8F5;
+    --card:#FFFFFF;
+    --green:#0A7A3A;        /* 浅底可读的绿，4.9:1 */
+    --green-bright:#21FD41; /* 深底信号绿，只在暗面用 */
+    --red:#D8261C;
+    --red-ink:#A81A12;
+    --radius:14px;
+    --maxw:1040px;
+    --pad:clamp(20px,5vw,56px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","HarmonyOS Sans SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+    font-size:16px;line-height:1.72;-webkit-font-smoothing:antialiased;
+    font-feature-settings:"tnum" 1;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit}
+
+  /* ── 顶部条 ───────────────────────────────────────────── */
+  .bar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,13,12,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.09);
+    color:#fff;height:52px;display:flex;align-items:center;
+    padding:0 var(--pad);gap:14px;
+  }
+  .bar .bd{font-size:13.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  .bar .bd i{
+    font-style:normal;color:var(--green-bright);margin-right:7px;font-size:11px;
+    letter-spacing:.14em;vertical-align:1px;
+  }
+  .bar .sp{flex:1}
+  .bar a{
+    font-size:12.5px;color:#C9D2CC;text-decoration:none;white-space:nowrap;
+    border-bottom:1px solid transparent;transition:.2s;
+  }
+  .bar a:hover{color:#fff;border-color:var(--green-bright)}
+  .bar .hire{color:#0B0D0C;background:var(--green-bright);padding:5px 11px;border-radius:999px;font-weight:700;border:0}
+  .bar .hire:hover{filter:brightness(.92);color:#0B0D0C}
+
+  /* ── 首屏 ─────────────────────────────────────────────── */
+  .hero{position:relative;background:#070908;color:#fff;overflow:hidden}
+  .hero__bg{
+    position:absolute;inset:0;
+    background:url("assets/hero-crab.jpg") 68% 46%/cover no-repeat;
+  }
+  .hero__bg::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(100deg,rgba(7,9,8,.97) 0%,rgba(7,9,8,.92) 34%,rgba(7,9,8,.55) 58%,rgba(7,9,8,.18) 78%,rgba(7,9,8,.35) 100%),
+      linear-gradient(to top,rgba(7,9,8,.96) 0%,rgba(7,9,8,0) 42%);
+  }
+  .hero__in{
+    position:relative;max-width:var(--maxw);margin:0 auto;
+    padding:clamp(56px,9vw,104px) var(--pad) 0;
+  }
+  .eyebrow{
+    font-size:11.5px;letter-spacing:.22em;color:var(--green-bright);
+    font-weight:700;text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(34px,6.6vw,64px);line-height:1.12;font-weight:800;
+    letter-spacing:-.01em;margin:18px 0 0;
+  }
+  .hero h1 em{font-style:normal;color:var(--green-bright)}
+  .hero__sub{
+    margin:20px 0 0;font-size:clamp(14.5px,1.9vw,17px);line-height:1.75;
+    color:#C7D0CA;max-width:36em;
+  }
+  .hero__meta{
+    display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;
+  }
+  .chip{
+    font-size:12px;color:#D6DED8;border:1px solid rgba(255,255,255,.2);
+    padding:5px 11px;border-radius:999px;letter-spacing:.02em;
+  }
+  .chip b{color:#fff;font-weight:700}
+  .hero__nums{
+    position:relative;max-width:var(--maxw);margin:clamp(40px,7vw,72px) auto 0;
+    display:grid;grid-template-columns:repeat(2,1fr);
+    border-top:1px solid rgba(255,255,255,.14);
+    border-left:1px solid rgba(255,255,255,.14);
+  }
+  .hn{
+    padding:18px 16px 20px;border-right:1px solid rgba(255,255,255,.14);
+    border-bottom:1px solid rgba(255,255,255,.14);
+  }
+  .hn .v{
+    display:block;font-size:clamp(24px,4.4vw,36px);font-weight:800;line-height:1;
+    letter-spacing:-.015em;color:#fff;
+  }
+  .hn .v i{font-style:normal;font-size:.52em;font-weight:700;margin-left:2px;color:var(--green-bright)}
+  .hn .k{display:block;margin-top:9px;font-size:11.5px;color:#9FA9A2;letter-spacing:.03em;line-height:1.5}
+
+  /* ── 正文骨架 ─────────────────────────────────────────── */
+  main{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  .lead{
+    background:#0F1311;color:#E6EDE7;border-radius:var(--radius);
+    padding:clamp(22px,3.6vw,34px);
+    margin:clamp(28px,4.5vw,44px) 0 clamp(36px,5vw,56px);
+    border:1px solid #1E2621;
+    position:relative;overflow:hidden;
+  }
+  .lead::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green-bright);
+  }
+  .lead p{font-size:clamp(15.5px,2.1vw,18.5px);line-height:1.82;color:#DDE5DF}
+  .lead p b{color:#fff;font-weight:700}
+  .lead .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .lead .tags span{
+    font-size:11.5px;letter-spacing:.05em;color:var(--green-bright);
+    border:1px solid rgba(33,253,65,.32);padding:4px 10px;border-radius:4px;
+  }
+
+  section{padding:clamp(34px,5vw,56px) 0}
+  .sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+  .sec-h .no{
+    font-size:11.5px;letter-spacing:.18em;color:var(--green);font-weight:800;
+    font-variant-numeric:tabular-nums;
+  }
+  .sec-h h2{
+    font-size:clamp(21px,3.4vw,29px);font-weight:800;letter-spacing:-.01em;line-height:1.3;
+  }
+  .sec-sub{color:var(--mute);font-size:14px;margin-bottom:22px}
+
+  p.body{font-size:15.5px;color:#333A35;line-height:1.85}
+  p.body + p.body{margin-top:12px}
+  .note{
+    font-size:13.5px;color:var(--mute);line-height:1.75;
+    border-left:2px solid var(--line);padding-left:14px;margin-top:16px;
+  }
+  .note b{color:var(--ink-2)}
+
+  /* 关键判断 —— 融在段落里的"意味着什么" */
+  .take{
+    display:flex;gap:12px;margin-top:20px;
+    background:#F0F4EF;border:1px solid #DDE7DC;border-radius:10px;
+    padding:14px 16px;
+  }
+  .take .ic{
+    flex:0 0 auto;width:20px;height:20px;border-radius:50%;
+    background:var(--green);color:#fff;font-size:12px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;
+  }
+  .take p{font-size:14px;color:#2E3B32;line-height:1.78}
+  .take p b{color:#0A7A3A}
+
+  /* ── 公司底座 ─────────────────────────────────────────── */
+  .band{
+    margin:16px 0 0;border-radius:var(--radius);overflow:hidden;position:relative;
+    background:#080A09;
+  }
+  .band img{width:100%;height:clamp(170px,30vw,300px);object-fit:cover;opacity:.72}
+  .band .cap{
+    position:absolute;left:18px;bottom:14px;right:18px;
+    font-size:11px;color:#B9C3BB;letter-spacing:.04em;
+  }
+  .facts{
+    display:grid;grid-template-columns:1fr;gap:0;margin-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .facts .row{
+    display:grid;grid-template-columns:96px 1fr;gap:14px;
+    padding:13px 0;border-bottom:1px solid var(--line);
+  }
+  .facts dt{font-size:12.5px;color:var(--mute-2);letter-spacing:.04em}
+  .facts dd{font-size:14.5px;color:var(--ink);line-height:1.7}
+  .facts dd b{font-weight:700}
+
+  /* ── 技术 / 双图 ──────────────────────────────────────── */
+  .duo{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px}
+  .fig{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .fig .im{
+    background:linear-gradient(160deg,#F2F5F0,#E9EEE8);
+    display:flex;align-items:center;justify-content:center;
+    padding:clamp(18px,3vw,32px);
+  }
+  .fig .im img{max-height:260px;width:auto}
+  .fig figcaption{
+    padding:12px 16px;font-size:12px;color:var(--mute);line-height:1.65;
+    border-top:1px solid var(--line-2);
+  }
+  .fig figcaption b{color:var(--ink-2);font-weight:700}
+  .fig--paper .im{background:#fff;padding:clamp(12px,2vw,20px)}
+  .fig--paper .im img{max-height:330px;box-shadow:0 6px 22px rgba(20,23,20,.12)}
+
+  .spec{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:24px;
+  }
+  .spec div{background:var(--card);padding:15px 16px}
+  .spec .k{font-size:11.5px;color:var(--mute-2);letter-spacing:.04em}
+  .spec .v{font-size:17px;font-weight:800;margin-top:5px;color:var(--ink)}
+  .spec .v small{font-size:11.5px;font-weight:600;color:var(--mute);margin-left:3px}
+
+  /* ── 业务线卡片 ───────────────────────────────────────── */
+  .lines{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
+  .line{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;
+  }
+  .line .pic{
+    height:190px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,#0E1210,#1A2119);
+    position:relative;
+  }
+  .line .pic img{max-height:150px;max-width:82%;width:auto;object-fit:contain}
+  .line .pic--light{background:linear-gradient(150deg,#F1F4EF,#E6ECE5)}
+  .line .tagline{
+    position:absolute;left:14px;top:12px;font-size:10.5px;letter-spacing:.16em;
+    color:var(--green-bright);font-weight:800;
+  }
+  .line .pic--light .tagline{color:var(--green)}
+  .line .txt{padding:18px 18px 22px}
+  .line h3{font-size:17.5px;font-weight:800;margin-bottom:6px}
+  .line h3 span{color:var(--mute-2);font-size:12.5px;font-weight:600;margin-left:8px}
+  .line p{font-size:14px;color:#3A423C;line-height:1.78}
+  .line ul{margin:10px 0 0;padding-left:0;list-style:none}
+  .line li{
+    font-size:13px;color:var(--mute);line-height:1.7;padding-left:13px;position:relative;
+  }
+  .line li::before{
+    content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--green);
+  }
+  .path{
+    margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-size:12.5px;color:var(--mute);
+  }
+  .path b{color:var(--ink);font-weight:700}
+  .path .ar{color:var(--green);font-weight:800}
+
+  /* ── 产能 ─────────────────────────────────────────────── */
+  .prod{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .pcard .hd{font-size:11.5px;letter-spacing:.12em;color:var(--mute-2);font-weight:700}
+  .pcard .big{font-size:34px;font-weight:800;line-height:1;margin:10px 0 4px;letter-spacing:-.02em}
+  .pcard .big i{font-style:normal;font-size:.42em;color:var(--green);margin-left:3px;font-weight:800}
+  .pcard .d{font-size:13px;color:var(--mute);line-height:1.7}
+  .steps{display:grid;gap:9px;margin-top:18px}
+  .srow{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:10px}
+  .srow .sy{font-size:11px;color:var(--mute-2);font-variant-numeric:tabular-nums}
+  .srow .st{height:9px;background:#EEF1EC;border-radius:2px;overflow:hidden}
+  .srow .st i{display:block;height:100%;background:#BCC9B9;border-radius:2px;min-width:5px}
+  .srow.hi .st i{background:linear-gradient(90deg,#0A7A3A,#22B557)}
+  .srow .sv{font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .srow .sv span{font-size:10px;color:var(--mute);font-weight:600;margin-left:3px}
+
+  /* ── 资本 ─────────────────────────────────────────────── */
+  .rounds{margin-top:24px;border-top:1px solid var(--line)}
+  .rd{
+    display:grid;grid-template-columns:74px 1fr;gap:14px;
+    padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  .rd .t{font-size:12px;color:var(--mute-2);letter-spacing:.03em;font-variant-numeric:tabular-nums}
+  .rd .t b{display:block;font-size:13px;color:var(--ink);font-weight:800;margin-bottom:2px}
+  .rd .c b{font-size:14.5px;font-weight:700}
+  .rd .c span{display:block;font-size:13px;color:var(--mute);margin-top:2px;line-height:1.65}
+  .rd.is-a .c b{color:var(--red-ink)}
+
+  /* ── 时间线 ───────────────────────────────────────────── */
+  .tl{margin-top:24px}
+  .tl .it{
+    position:relative;padding:0 0 20px 18px;border-left:1px solid var(--line);
+  }
+  .tl .it::before{
+    content:"";position:absolute;left:-6px;top:6px;width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--green);
+  }
+  .tl .it.hot::before{background:var(--green);box-shadow:0 0 0 3px rgba(10,122,58,.14)}
+  .tl .yr{font-size:12px;color:var(--green);font-weight:800;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+  .tl .ev{font-size:14.5px;line-height:1.72;margin-top:2px;color:#2F3630}
+  .tl .ev b{font-weight:700}
+
+  /* ── 招聘 ─────────────────────────────────────────────── */
+  .jobs{display:grid;grid-template-columns:1fr;gap:10px;margin-top:20px}
+  .job{
+    display:flex;align-items:baseline;gap:12px;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:13px 16px;
+  }
+  .job .n{
+    flex:0 0 auto;font-size:11px;color:var(--mute-2);font-variant-numeric:tabular-nums;
+    letter-spacing:.06em;
+  }
+  .job .nm{font-size:14.5px;font-weight:700;line-height:1.5}
+  .job .lb{font-size:11.5px;color:var(--mute);margin-left:auto;white-space:nowrap}
+  .job-hd{
+    display:flex;align-items:center;gap:14px;margin-top:22px;
+    padding:14px 16px;background:#0F1311;border-radius:10px;color:#E4ECE6;
+  }
+  .job-hd .n{font-size:26px;font-weight:800;color:var(--green-bright);line-height:1}
+  .job-hd .t{font-size:13px;line-height:1.5;color:#AEB8B0}
+  .job-hd .t b{display:block;color:#fff;font-size:14.5px}
+
+  /* ── 引语带 ───────────────────────────────────────────── */
+  .quote{
+    position:relative;margin:clamp(30px,5vw,52px) 0;border-radius:var(--radius);overflow:hidden;
+    background:#080A09;
+  }
+  .quote img{width:100%;height:clamp(220px,38vw,340px);object-fit:cover;opacity:.55}
+  .quote .in{
+    position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:clamp(20px,4vw,34px);
+    background:linear-gradient(to top,rgba(6,8,7,.94),rgba(6,8,7,.15) 70%);
+  }
+  .quote .q{font-size:clamp(19px,3.2vw,27px);font-weight:800;color:#fff;line-height:1.45}
+  .quote .q em{font-style:normal;color:var(--green-bright)}
+  .quote .a{font-size:12px;color:#A7B1A9;margin-top:8px;letter-spacing:.03em}
+
+  /* ── 联系 ─────────────────────────────────────────────── */
+  .contact{background:#0F1311;color:#E4ECE6;border-radius:var(--radius);padding:clamp(24px,4vw,38px)}
+  .contact h2{font-size:clamp(21px,3.2vw,27px);font-weight:800;color:#fff;line-height:1.35}
+  .contact p{font-size:14px;color:#A7B1A9;margin-top:10px;line-height:1.75}
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:14px;font-weight:700;padding:11px 18px;border-radius:999px;
+    text-decoration:none;border:0;cursor:pointer;font-family:inherit;
+    transition:.18s;
+  }
+  .btn--p{background:var(--green-bright);color:#08120A}
+  .btn--p:hover{filter:brightness(.93)}
+  .btn--g{background:transparent;color:#E4ECE6;border:1px solid rgba(255,255,255,.26)}
+  .btn--g:hover{border-color:var(--green-bright);color:#fff}
+  .btn small{font-size:11.5px;opacity:.7;font-weight:600}
+
+  /* ── 页脚 ─────────────────────────────────────────────── */
+  footer{
+    max-width:var(--maxw);margin:0 auto;padding:clamp(26px,4vw,40px) var(--pad) 54px;
+    border-top:1px solid var(--line);
+  }
+  footer p{font-size:11.5px;color:var(--mute);line-height:1.85}
+  footer p + p{margin-top:8px}
+  footer b{color:var(--ink-2);font-weight:700}
+  .src{margin-top:14px;font-size:11px;color:var(--mute-2);line-height:1.85}
+
+  /* ── 宽屏 ─────────────────────────────────────────────── */
+  @media (min-width:760px){
+    .hero__nums{grid-template-columns:repeat(4,1fr)}
+    .facts .row{grid-template-columns:120px 1fr}
+    .duo{grid-template-columns:1.25fr .75fr;align-items:start}
+    .spec{grid-template-columns:repeat(4,1fr)}
+    .lines{grid-template-columns:repeat(3,1fr)}
+    .prod{grid-template-columns:1.15fr .85fr}
+    .jobs{grid-template-columns:1fr 1fr}
+    .line .pic{height:200px}
+  }
+  /* 顶栏在窄屏要收：390px 下会顶出视口，造成横向滚动 */
+  @media (max-width:540px){
+    .bar{gap:10px;padding:0 16px}
+    .bar .bd{font-size:12.5px}
+    .bar .bd i{display:none}
+    .bar a:not(.hire){display:none}
+    .bar .hire{padding:5px 12px;font-size:12px}
+  }
+  /* 窄屏首屏：图退成暗纹，字必须干净地压在近黑底上 */
+  @media (max-width:759px){
+    .hero__bg{background-position:72% 66%;opacity:.9}
+    .hero__bg::after{
+      background:
+        linear-gradient(to bottom,rgba(7,9,8,.97) 0%,rgba(7,9,8,.96) 34%,rgba(7,9,8,.80) 58%,rgba(7,9,8,.93) 82%,rgba(7,9,8,.99) 100%);
+    }
+    .hero__in{padding-top:clamp(40px,9vw,64px)}
+  }
+  @media (min-width:980px){
+    .facts{display:grid;grid-template-columns:1fr 1fr;column-gap:48px}
+    .facts .row:nth-last-child(1){border-bottom:1px solid var(--line)}
+    /* 时间线在两栏里按列流，阅读顺序仍是自上而下 */
+    .tl{columns:2;column-gap:56px}
+    .tl .it{break-inside:avoid}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bd"><i>KINGKONG</i>金钢科技 · 企业介绍</div>
+  <div class="sp"></div>
+  <a href="#jobs">在招 42 个职位</a>
+  <a class="hire" href="#contact">聊一聊</a>
+</div>
+
+<header class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__in">
+    <div class="eyebrow">北京金钢科技有限公司 · KINGKONG.TECH</div>
+    <h1>给机器人<br>一副<em>神经系统</em></h1>
+    <p class="hero__sub">
+      不造人形整机，造人形整机离不开的那颗件。编码器、触觉舵机、小型机器人，一条从最底层元器件往上长到整机的路。
+    </p>
+    <div class="hero__meta">
+      <span class="chip">成立 <b>2017</b></span>
+      <span class="chip">总部 <b>北京 · 昌平</b></span>
+      <span class="chip">国家级<b>高新技术企业</b></span>
+      <span class="chip">A 轮 <b>近亿元</b></span>
+    </div>
+  </div>
+
+  <div class="hero__nums">
+    <div class="hn"><span class="v">80<i>%+</i></span><span class="k">国内人形机器人编码器份额</span></div>
+    <div class="hn"><span class="v">2000<i>+</i></span><span class="k">全球合作客户</span></div>
+    <div class="hn"><span class="v">5000<i>套/天</i></span><span class="k">编码器交付能力（2025.12）</span></div>
+    <div class="hn"><span class="v">200<i>万套</i></span><span class="k">2026 年规划年产能</span></div>
+  </div>
+</header>
+
+<main>
+
+  <div class="lead">
+    <p>关节要动得准，先得知道自己<b>在哪、多快、使了多大劲</b>。编码器就是机器人的本体感觉。金钢把这颗件做到了国内人形机器人八成以上的份额，然后顺着它往上，做出了舵机，做出了整机。</p>
+    <div class="tags">
+      <span>B 端 · 感知编码器</span>
+      <span>B+C 端 · 触觉舵机</span>
+      <span>C 端 · 小机器人</span>
+    </div>
+  </div>
+
+  <!-- 01 公司底座 -->
+  <section id="company">
+    <div class="sec-h"><span class="no">01</span><h2>公司底座</h2></div>
+    <p class="sec-sub">一家把十年压在「一颗件」上的公司</p>
+
+    <p class="body">金钢科技 2017 年 4 月成立于北京昌平，创始人、CEO 是 90 后的梁正。公司最早想做机器人整机，很快发现市面上买不到满足要求的编码器，于是掉头扎进了这条更窄、也更底层的赛道。</p>
+    <p class="body">近十年只做一件事：把磁性编码器做得更小、更准、更抗造。如今它是国内最早专注机器人领域的编码器企业之一，也是国内外多数头部机器人本体与关节厂商的核心供应商。</p>
+
+    <div class="band">
+      <img src="assets/building.jpg" alt="金钢科技办公与研发楼体的线稿风格渲染" loading="lazy">
+      <div class="cap">图片来源：金钢科技官方</div>
+    </div>
+
+    <dl class="facts">
+      <div class="row"><dt>公司全称</dt><dd>北京金钢科技有限公司</dd></div>
+      <div class="row"><dt>成立时间</dt><dd>2017 年 4 月 14 日</dd></div>
+      <div class="row"><dt>总部</dt><dd>北京市昌平区科技园区</dd></div>
+      <div class="row"><dt>创始人 / CEO</dt><dd><b>梁正</b>（90 后）</dd></div>
+      <div class="row"><dt>注册资本</dt><dd>807.72 万元人民币</dd></div>
+      <div class="row"><dt>资质</dt><dd>国家级高新技术企业</dd></div>
+      <div class="row"><dt>知识产权</dt><dd>累计申请专利 4 件，其中发明专利 2 件<sup>1</sup></dd></div>
+      <div class="row"><dt>核心客户</dt><dd>国内外多数头部机器人本体与关节厂商</dd></div>
+    </dl>
+    <p class="note"><sup>1</sup> 官网口径（2026-10）。第三方工商数据库显示发明专利申请 7 件、有效发明专利 2 件，与官网数字存在口径差异，此处以公司官方披露为准。</p>
+  </section>
+
+  <!-- 02 技术 -->
+  <section id="tech">
+    <div class="sec-h"><span class="no">02</span><h2>一颗编码器，磨了十年</h2></div>
+    <p class="sec-sub">真正难的从来不是「做出来」，是「做小还做准」</p>
+
+    <p class="body">编码器是电机的眼睛。光编码器精度高，但怕灰、怕油、体积大、贵；磁编码器皮实便宜，传统方案精度又上不去。行业长期卡在一句话上：<b>小型化和高精度不可兼得</b>。</p>
+    <p class="body">金钢的解法绕开了堆料，改从「码型」本身下手，用图案式的磁编码方案，把编码器做到 24 位分辨率、角秒级精度，体积比国外同类产品小 90%，同时保留大中空、抗干扰、低功耗。这项技术的发明专利在 2019 年 1 月申请，2023 年 1 月授权。</p>
+
+    <div class="duo">
+      <figure class="fig">
+        <div class="im"><img src="assets/encoder-rings.webp" alt="金钢机器人磁性编码器产品：多圈金属环与带电路板的环形编码器" loading="lazy"></div>
+        <figcaption><b>机器人磁性编码器</b> · 大中空、超薄、抗干扰。产品谱系覆盖 DPB / MPP / MPT / TPB 等系列。</figcaption>
+      </figure>
+      <figure class="fig fig--paper">
+        <div class="im"><img src="assets/patent.jpg" alt="发明专利证书：基于码型的分离式磁编码器，专利权人北京金钢科技有限公司" loading="lazy"></div>
+        <figcaption><b>发明专利</b>「基于码型的分离式磁编码器」<br>ZL 2019 1 0047346.X · 发明人 梁正 · 2023-01-24 授权</figcaption>
+      </figure>
+    </div>
+
+    <div class="spec">
+      <div><div class="k">分辨率</div><div class="v">24 <small>bit</small></div></div>
+      <div><div class="k">精度</div><div class="v">角秒级</div></div>
+      <div><div class="k">体积</div><div class="v">-90<small>%</small></div></div>
+      <div><div class="k">结构</div><div class="v">大中空</div></div>
+    </div>
+
+    <p class="body" style="margin-top:24px">再往上一步是「双编码器」。传统方案只在电机端装一颗，只能知道电机转了几圈，不知道关节真正到了哪个角度。金钢在电机输出端和关节端各放一颗，做成全闭环：位置和力同时可测。</p>
+
+    <div class="take">
+      <div class="ic">!</div>
+      <p>多这一颗，机器人才能感觉到「顶住了」「踩空了」「夹稳了」。<b>力控、柔顺控制、真机强化学习，全都建立在这个信号上。</b>所以它不是一个可有可无的升级项，而是小型机器人从「能动」走到「能干活」的分水岭。</p>
+    </div>
+
+    <p class="body" style="margin-top:24px">2026 年 6 月，三编码器方案发布，关节同时具备位置与扭矩感知；9 月，DPB 系列编码器面向新一代高爆发关节发布。</p>
+  </section>
+
+  <!-- 03 三条业务线 -->
+  <section id="lines">
+    <div class="sec-h"><span class="no">03</span><h2>三条业务线</h2></div>
+    <p class="sec-sub">基础元器件 → 核心模组 → 终端产品</p>
+
+    <div class="lines">
+      <article class="line">
+        <div class="pic"><span class="tagline">B 端</span><img src="assets/encoder-blue.jpg" alt="机器人编码器产品，环形电路板与磁环" loading="lazy"></div>
+        <div class="txt">
+          <h3>感知编码器<span>神经系统</span></h3>
+          <p>公司的现金牛，也是所有叙事的起点。机器人本体、关节模组、数控、汽车、医疗、低空装备都在用。</p>
+          <ul>
+            <li>24 位分辨率、角秒级精度</li>
+            <li>体积较国外同类缩小 90%</li>
+            <li>双编码器全闭环 / 三编码器位置+扭矩</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="line">
+        <div class="pic"><span class="tagline">B + C 端</span><img src="assets/servo-green.jpg" alt="金钢触觉舵机 TS20 产品图，黑红配色圆柱形舵机" loading="lazy"></div>
+        <div class="txt">
+          <h3>触觉舵机<span>机械肌肉</span></h3>
+          <p>把「感知」和「驱动」压进同一颗拇指大小的空间。2026 年 9 月 11 日发布 TS20，主打小体积下的高爆发与力感知。</p>
+          <ul>
+            <li>舵机内集成双编码器</li>
+            <li>小体积、高扭矩、带力觉反馈</li>
+            <li>面向小型机器人、灵巧手、桌面设备</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="line">
+        <div class="pic pic--light"><span class="tagline">C 端</span><img src="assets/crab-clean.webp" alt="跳跳六足螃蟹机器人，红色机身，六条腿，带两只螯" loading="lazy"></div>
+        <div class="txt">
+          <h3>跳跳<span>六足螃蟹机器人</span></h3>
+          <p>2026 年 7 月 WAIC 首发，靠跳舞和「萌」出圈。全开源，22 颗自研触觉舵机、44 枚编码器，整机约 500 克。</p>
+          <ul>
+            <li>全开源，面向开发者与教学</li>
+            <li>定价锚定千元级</li>
+            <li>后续规划四足、双足小型机器人</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="path">
+      <b>基础元器件</b><span class="ar">→</span><b>核心模组</b><span class="ar">→</span><b>终端产品</b>
+      <span style="color:var(--mute-2)">｜三段打通的公司不多，这是它最不好复制的地方</span>
+    </div>
+  </section>
+
+  <!-- 04 市场与产能 -->
+  <section id="scale">
+    <div class="sec-h"><span class="no">04</span><h2>市场与产能</h2></div>
+    <p class="sec-sub">份额是结果，产能才是 2026 年的考题</p>
+
+    <div class="prod">
+      <div class="pcard">
+        <div class="hd">年产能 · 万套</div>
+        <div class="big">200<i>万套</i></div>
+        <div class="d">2026 年规划。2024 年实际年产 4 万套，2025 年 30 万套，一年 7.5 倍。</div>
+        <div class="steps" aria-label="年产能：2024 年 4 万套，2025 年 30 万套，2026 年规划 200 万套">
+          <div class="srow"><span class="sy">2024</span><span class="st"><i style="width:2%"></i></span><span class="sv">4 万套</span></div>
+          <div class="srow"><span class="sy">2025</span><span class="st"><i style="width:15%"></i></span><span class="sv">30 万套</span></div>
+          <div class="srow hi"><span class="sy">2026</span><span class="st"><i style="width:100%"></i></span><span class="sv">200 万套<span>规划</span></span></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="hd">交付与覆盖</div>
+        <div class="big">5000<i>套/天</i></div>
+        <div class="d">2025 年 12 月交付能力突破。全年支持下游<b>超万台</b>人形机器人量产出货。</div>
+        <div class="d" style="margin-top:12px">海外覆盖美国、英国、法国、德国、韩国、俄罗斯、以色列等市场。</div>
+        <div class="d" style="margin-top:12px">能力外溢到汽车轮毂轮边电机、光电吊舱与导引头、手术机器人、半导体装备、低空经济。</div>
+      </div>
+    </div>
+
+    <div class="take">
+      <div class="ic">!</div>
+      <p>从 4 万套到 200 万套，中间隔的不是一条产线，是<b>订单、良率、交付三件事同时成立</b>。任何一环掉链子，80% 的份额会先在仓库里变成库存，再在报价里变成价格战。这是这家公司 2026 年真正要过的关。</p>
+    </div>
+  </section>
+
+  <!-- 05 资本 -->
+  <section id="capital">
+    <div class="sec-h"><span class="no">05</span><h2>资本</h2></div>
+    <p class="sec-sub">2024 年天使轮起，两年走到 A 轮</p>
+
+    <div class="rounds">
+      <div class="rd"><div class="t"><b>2024.01</b>天使轮</div><div class="c"><b>方富创投</b><span>早期起步</span></div></div>
+      <div class="rd"><div class="t"><b>2025.01</b>Pre-A</div><div class="c"><b>中科创星</b><span>硬科技基金入场</span></div></div>
+      <div class="rd"><div class="t"><b>2025.04</b>Pre-A+</div><div class="c"><b>顺融资本、润森义信投资、江阴人才基金</b><span>数千万元</span></div></div>
+      <div class="rd"><div class="t"><b>2025.10</b>Pre-A++</div><div class="c"><b>盈富泰克</b><span>数千万元</span></div></div>
+      <div class="rd is-a"><div class="t"><b>2026.03</b>A 轮</div><div class="c"><b>近亿元 · 远翼投资领投，中科光荣、海欣资本跟投</b><span>用于新一代产品研发、产能扩张与海内外市场</span></div></div>
+    </div>
+
+    <div class="take">
+      <div class="ic">!</div>
+      <p>股东名单里几乎没有纯粹的财务玩家，多是看硬科技与供应链的钱。<b>这类钱更耐心，也更懂产能</b>，对一个正在把年产从 30 万套拉到 200 万套的公司来说，比高估值有用。</p>
+    </div>
+  </section>
+
+  <!-- 06 近况 -->
+  <section id="now">
+    <div class="sec-h"><span class="no">06</span><h2>近况</h2></div>
+    <p class="sec-sub">2025 年至 2026 年 10 月，按时间倒序</p>
+
+    <div class="tl">
+      <div class="it hot"><div class="yr">2026.11（预告）</div><div class="ev">「跳跳」入选世界互联网大会乌镇峰会「人工智能嘉年华」十大展品，11 月 2 日至 5 日展出。<span style="color:var(--mute-2)">（据读嘉新闻）</span></div></div>
+      <div class="it hot"><div class="yr">2026.09.11</div><div class="ev"><b>触觉舵机 TS20 发布</b>，主打拇指大小体积下的高扭矩与力感知。</div></div>
+      <div class="it"><div class="yr">2026.09.01</div><div class="ev"><b>机器人编码器 DPB 系列发布</b>，面向新一代高爆发关节。</div></div>
+      <div class="it"><div class="yr">2026.08.19–23</div><div class="ev">WRC 2026 北京。「跳跳」成为展馆里的「显眼包」，央视探展、何同学现场体验并一起跳舞。</div></div>
+      <div class="it"><div class="yr">2026.08.14</div><div class="ev">获第十五届中国创新创业大赛北京赛区新一代信息技术行业赛<b>一等奖</b>。</div></div>
+      <div class="it"><div class="yr">2026.07.17–20</div><div class="ev"><b>WAIC 2026 上海</b>，「跳跳」首发亮相，话题「被 WAIC 的螃蟹机器人萌到了」出圈。</div></div>
+      <div class="it"><div class="yr">2026.06.18</div><div class="ev">三编码器方案发布，机器人关节实现<b>位置 + 扭矩</b>双感知。</div></div>
+      <div class="it"><div class="yr">2026.06.17</div><div class="ev">主办首届机器人智能感知峰会。</div></div>
+      <div class="it"><div class="yr">2026.05.25</div><div class="ev">与美芯晟达成战略合作，共建机器人智能感知生态。</div></div>
+      <div class="it"><div class="yr">2026.04.29</div><div class="ev">获 LeadeRobot 2026 年度具身智能传感融合创新奖。</div></div>
+      <div class="it"><div class="yr">2026.04.20</div><div class="ev">CCTV-2 财经频道专题报道，讲人形机器人「走稳跑快」背后的编码器。</div></div>
+      <div class="it"><div class="yr">2026.03</div><div class="ev"><b>完成近亿元 A 轮融资</b>。</div></div>
+      <div class="it"><div class="yr">2025.12.24</div><div class="ev">机器人编码器交付突破 <b>5000 套/天</b>。</div></div>
+      <div class="it"><div class="yr">2025.06.24</div><div class="ev">双编码器亮相德国慕尼黑。</div></div>
+      <div class="it"><div class="yr">2025.04.15</div><div class="ev">获 LeadeRobot 2025 年度人形机器人杰出供应商奖。</div></div>
+    </div>
+  </section>
+
+  <div class="quote">
+    <img src="assets/crab-grass.jpg" alt="跳跳在草地上追逐足球" loading="lazy">
+    <div class="in">
+      <div class="q">会跑，会跳，<em>全开源</em>。</div>
+      <div class="a">金钢科技官网 · 跳跳产品页</div>
+    </div>
+  </div>
+
+  <!-- 07 招聘 -->
+  <section id="jobs">
+    <div class="sec-h"><span class="no">07</span><h2>现在在招什么</h2></div>
+    <p class="sec-sub">看懂 JD，就看懂了公司眼下在赌什么</p>
+
+    <div class="job-hd">
+      <div class="n">42</div>
+      <div class="t"><b>社会招聘职位</b>另有校园招聘 5 个职位 · 官网 2026-10-28 口径</div>
+    </div>
+
+    <div class="jobs">
+      <div class="job"><span class="n">01</span><span class="nm">机器人结构工程师</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">02</span><span class="nm">工业设计 / ID 设计</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">03</span><span class="nm">运动控制算法（MPC / WBC）</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">04</span><span class="nm">机器人运动控制算法（RL）</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">05</span><span class="nm">强化学习 / 多足运动控制负责人</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">06</span><span class="nm">仿真与训练工具工程师</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">07</span><span class="nm">嵌入式软件（Linux）</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">08</span><span class="nm">嵌入式软件（MCU）</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">09</span><span class="nm">机器人硬件工程师</span><span class="lb">机器人研发</span></div>
+      <div class="job"><span class="n">10</span><span class="nm">机器人项目负责人</span><span class="lb">机器人研发</span></div>
+    </div>
+
+    <div class="take">
+      <div class="ic">!</div>
+      <p>这份 JD 很能说明阶段：既要 <b>MPC / WBC</b> 这种把双足四足跑稳的传统功底，也要 <b>RL + Sim2Real</b> 的新范式，还要 ID 与结构。<b>这不是零件公司的招聘结构，是整机公司的。</b>组织重心正从「卖件」往「做产品」移。</p>
+    </div>
+  </section>
+
+  <!-- 08 联系 -->
+  <section id="contact" style="padding-bottom:clamp(30px,4vw,44px)">
+    <div class="contact">
+      <h2>想聊聊，或者想被推荐？</h2>
+      <p>这页是给候选人看的，不投简历也没关系。想了解某个岗位的真实情况、团队现在的阶段、或者这家公司适不适合你，直接找我。</p>
+      <div class="btns">
+        <button class="btn btn--p" type="button" id="copywx" data-copy="Ljhh-HH6666">复制微信 <small id="wxl">Ljhh-HH6666</small></button>
+        <a class="btn btn--g" href="mailto:1045321663@qq.com?subject=%E5%92%A8%E8%AF%A2%E9%87%91%E9%92%A2%E7%A7%91%E6%8A%80">发邮件</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><b>本页由猎头 Lionel 整理，非官方资料页。</b>内容用于人才沟通与行业研究，不代表金钢科技官方立场。</p>
+  <p><b>图片与数据来源：</b>金钢科技官网（kingkong.tech）及官方公众号、东方网、商道创投网、瑞财经、萝卜时代等公开报道，截至 2026-10-28。</p>
+  <p class="src">数字口径以公司官方披露为准；第三方数据库与官网存在差异处已在文中注明。专利信息引自国家知识产权局发明专利证书（ZL 2019 1 0047346.X）。图片版权归金钢科技所有。</p>
+</footer>
+
+<script>
+(function(){
+  var b = document.getElementById('copywx');
+  if(!b) return;
+  var lab = document.getElementById('wxl');
+  var raw = b.getAttribute('data-copy');
+  function done(){
+    var old = lab.textContent;
+    lab.textContent = '已复制';
+    b.classList.add('is-done');
+    setTimeout(function(){ lab.textContent = old; b.classList.remove('is-done'); }, 1600);
+  }
+  b.addEventListener('click', function(){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(raw).then(done).catch(fallback);
+    } else { fallback(); }
+  });
+  function fallback(){
+    var ta = document.createElement('textarea');
+    ta.value = raw; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
