@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>歌尔视显 · 微显示｜在镜片后面，做一块屏</title>
+<meta name="description" content="歌尔视显（济南歌尔视显科技有限公司）企业介绍：Micro OLED 与 Micro LED 双线布局，济南与上海张江两条 12 英寸产线，配套歌尔光学全彩光波导与 Pancake 模组。数据引自公开报道与工商信息，截至 2026-10-29。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2308090B'/><circle cx='11' cy='16' r='3.4' fill='%23FF4D4D'/><circle cx='16' cy='16' r='3.4' fill='%233DD68C'/><circle cx='21' cy='16' r='3.4' fill='%234D8DFF'/></svg>">
+<style>
+  :root{
+    --bg:#08090b; --panel:#0e1013; --line:rgba(255,255,255,.09);
+    --line-2:rgba(255,255,255,.16);
+    --ink:#eef0f4; --ink-2:#9aa3b2; --ink-3:#646d7c;
+    --r:#ff4d4d; --g:#3dd68c; --b:#4d8dff;
+    --sans:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",-apple-system,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased; line-height:1.7;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.028) 1px, transparent 1px);
+    background-size:72px 72px;
+    mask-image:radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 78%);
+    -webkit-mask-image:radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 78%);
+  }
+  .spectrum{
+    height:2px; width:100%; position:relative; z-index:2;
+    background:linear-gradient(90deg,var(--r) 0%,var(--r) 22%,var(--g) 44%,var(--b) 66%,var(--b) 100%);
+    opacity:.85;
+  }
+  .wrap{width:min(1080px,90vw); margin:0 auto; position:relative; z-index:1}
+
+  /* ── hero ── */
+  header.hero{padding:clamp(56px,10vh,104px) 0 clamp(40px,7vh,72px)}
+  .eyebrow{
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.2em;
+    color:var(--ink-3); text-transform:uppercase;
+  }
+  .eyebrow i{width:22px; height:1px; background:var(--ink-3); display:block}
+  h1{
+    margin-top:26px; font-size:clamp(34px,6.6vw,64px); line-height:1.1;
+    font-weight:800; letter-spacing:-.02em;
+  }
+  h1 em{
+    font-style:normal;
+    background:linear-gradient(96deg,var(--r),var(--g) 52%,var(--b));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .lede{
+    margin-top:26px; max-width:60ch; font-size:clamp(14.5px,1.7vw,17px);
+    color:var(--ink-2); line-height:1.85;
+  }
+  .lede b{color:var(--ink); font-weight:600}
+
+  .stats{
+    margin-top:clamp(38px,6vh,56px); list-style:none;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .stats li{background:var(--bg); padding:22px 20px 24px}
+  .stats .v{
+    font-size:clamp(22px,3.1vw,32px); font-weight:750; letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums; display:block; line-height:1.15;
+  }
+  .stats .v i{font-style:normal; font-size:.44em; color:var(--ink-3); margin-left:5px; font-weight:500}
+  .stats .k{display:block; margin-top:10px; font-size:12px; color:var(--ink-3); line-height:1.55}
+
+  /* ── 章节 ── */
+  section{padding:clamp(52px,9vh,88px) 0; border-top:1px solid var(--line)}
+  .head{display:flex; gap:20px; align-items:baseline; flex-wrap:wrap; margin-bottom:clamp(26px,4vh,40px)}
+  .num{
+    font-family:var(--mono); font-size:12px; color:var(--ink-3);
+    letter-spacing:.14em; padding-top:8px;
+  }
+  h2{
+    font-size:clamp(23px,3.4vw,34px); font-weight:750; letter-spacing:-.015em;
+    line-height:1.28;
+  }
+  h2 span{color:var(--ink-3); font-weight:400}
+
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,52px)}
+  .cols--3{grid-template-columns:repeat(3,1fr)}
+  p.t{font-size:14.5px; color:var(--ink-2); line-height:1.9}
+  p.t + p.t{margin-top:14px}
+  p.t b{color:var(--ink); font-weight:600}
+
+  dl.kv{margin-top:22px; border-top:1px solid var(--line)}
+  dl.kv div{
+    display:grid; grid-template-columns:92px 1fr; gap:16px;
+    padding:13px 0; border-bottom:1px solid var(--line);
+  }
+  dl.kv dt{font-size:12px; color:var(--ink-3); letter-spacing:.04em}
+  dl.kv dd{font-size:13.5px; color:var(--ink-2); font-variant-numeric:tabular-nums}
+
+  /* 双线卡片 */
+  .lines{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2.4vw,24px)}
+  .card{
+    background:var(--panel); border:1px solid var(--line);
+    padding:clamp(22px,3vw,32px); position:relative; overflow:hidden;
+  }
+  .card::before{content:""; position:absolute; left:0; top:0; height:2px; width:100%}
+  .card--oled::before{background:linear-gradient(90deg,var(--b),transparent 70%)}
+  .card--led::before{background:linear-gradient(90deg,var(--g),transparent 70%)}
+  .card h3{font-size:19px; font-weight:700; letter-spacing:-.01em; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+  .card h3 small{font-family:var(--mono); font-size:10.5px; color:var(--ink-3); letter-spacing:.16em; font-weight:400}
+  .card .tag{
+    display:inline-block; margin-top:12px; font-size:11.5px; padding:5px 9px;
+    border:1px solid var(--line-2); color:var(--ink-2); border-radius:2px; letter-spacing:.04em;
+  }
+  .card p{margin-top:16px; font-size:13.5px; color:var(--ink-2); line-height:1.85}
+  .card ul{margin-top:16px; list-style:none; font-size:13px; color:var(--ink-2)}
+  .card ul li{position:relative; padding-left:16px; margin-top:9px; line-height:1.7}
+  .card ul li::before{
+    content:""; position:absolute; left:0; top:.62em; width:6px; height:1px; background:var(--ink-3);
+  }
+
+  /* 参数表 */
+  .spec{margin-top:8px; border-top:1px solid var(--line)}
+  .spec .row{
+    display:grid; grid-template-columns:1.05fr 1fr 1.5fr; gap:16px;
+    padding:15px 0; border-bottom:1px solid var(--line); align-items:baseline;
+  }
+  .spec .nm{font-size:13.5px; font-weight:650; color:var(--ink)}
+  .spec .nm i{display:block; font-family:var(--mono); font-style:normal; font-size:10.5px; color:var(--ink-3); letter-spacing:.1em; margin-top:5px}
+  .spec .mt{font-family:var(--mono); font-size:12.5px; color:var(--g); font-variant-numeric:tabular-nums}
+  .spec .ds{font-size:13px; color:var(--ink-2); line-height:1.7}
+
+  .group{margin-top:clamp(30px,4.5vh,44px)}
+  .group h4{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.2em; color:var(--ink-3);
+    text-transform:uppercase; margin-bottom:4px;
+  }
+
+  /* 引用 */
+  blockquote{
+    margin-top:clamp(26px,4vh,38px); padding:22px 24px;
+    border-left:2px solid var(--b); background:rgba(77,141,255,.05);
+    font-size:14.5px; color:var(--ink-2); line-height:1.85;
+  }
+  blockquote b{color:var(--ink)}
+
+  /* 在招 */
+  .roles{list-style:none; margin-top:26px; border-top:1px solid var(--line)}
+  .roles li{
+    display:flex; justify-content:space-between; gap:18px; align-items:baseline;
+    padding:17px 0; border-bottom:1px solid var(--line); flex-wrap:wrap;
+  }
+  .roles b{font-size:15px; font-weight:650}
+  .roles span{font-size:12.5px; color:var(--ink-3); font-family:var(--mono); letter-spacing:.02em}
+
+  .cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:clamp(30px,5vh,42px)}
+  .btn{
+    display:inline-flex; align-items:center; gap:9px; padding:13px 22px;
+    font-size:13.5px; text-decoration:none; border:1px solid var(--line-2);
+    color:var(--ink); transition:.2s; letter-spacing:.02em; background:transparent; cursor:pointer;
+    font-family:var(--sans);
+  }
+  .btn:hover{border-color:var(--ink-3); background:rgba(255,255,255,.045)}
+  .btn--fill{background:var(--ink); color:#08090b; border-color:var(--ink); font-weight:650}
+  .btn--fill:hover{background:#fff; border-color:#fff}
+
+  footer{
+    border-top:1px solid var(--line); padding:clamp(34px,6vh,52px) 0 clamp(30px,5vh,46px);
+    display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    font-size:11.5px; color:var(--ink-3); line-height:1.85;
+  }
+  footer b{color:var(--ink-2); font-weight:600}
+  footer p{max-width:62ch}
+
+  @media (max-width:860px){
+    .stats{grid-template-columns:1fr 1fr}
+    .cols,.cols--3,.lines{grid-template-columns:1fr}
+    .spec .row{grid-template-columns:1fr; gap:6px}
+    .spec .mt{order:-1}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="spectrum"></div>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow"><i></i>Goertek Display · 微显示<span style="color:var(--ink-3)">／</span>济南 · 上海张江</p>
+    <h1>在镜片后面，<br>做<em>一块屏</em>。</h1>
+    <p class="lede">歌尔把微显示当成下一块必须自己握住的地盘。2025 年 9 月，<b>济南歌尔视显科技有限公司</b>注册成立，注册资本 <b>42.3 亿元</b>；同一年，Micro OLED 与 Micro LED 两条 12 英寸产线同时铺开——把过去用来做整机的工艺管控能力，往最上游的发光层推。</p>
+
+    <ul class="stats">
+      <li>
+        <span class="v">42.3<i>亿元</i></span>
+        <span class="k">注册资本（2025 年 9 月成立）</span>
+      </li>
+      <li>
+        <span class="v">1.97<i>亿元</i></span>
+        <span class="k">首笔 Micro OLED 蒸镀设备订单</span>
+      </li>
+      <li>
+        <span class="v">6,000<i>片/月</i></span>
+        <span class="k">上海张江 12 英寸 Micro LED 规划产能</span>
+      </li>
+      <li>
+        <span class="v">85<i>%</i></span>
+        <span class="k">Pancake 光学模组良率（2023，行业均值约 70%）</span>
+      </li>
+    </ul>
+  </header>
+
+  <section>
+    <div class="head">
+      <span class="num">01</span>
+      <h2>这家公司是谁<span>／歌尔集团的显示棋子</span></h2>
+    </div>
+    <div class="cols">
+      <div>
+        <p class="t">歌尔 2001 年成立、2008 年在深交所上市，长期以来给人「声学代工、VR 整机组装」的印象。它真正的底牌是另一件事：<b>用千万级整机出货量，反向定义零部件该怎么做</b>。</p>
+        <p class="t">2023 年，歌尔把 Pancake 光学模组的良率做到 85%，比行业平均线高出十来个点——靠的不是单点技术突破，是整机制造攒下来的工艺管控。这套能力现在正被平移到微显示：当终端的设计需求可以直接传导到蒸镀工艺参数，中间那套「需求对接—排期调整—样品验证」的长链条就被跳过了。</p>
+        <p class="t">歌尔视显就是这条平移路径的落点。</p>
+      </div>
+      <div>
+        <dl class="kv">
+          <div><dt>公司主体</dt><dd>济南歌尔视显科技有限公司</dd></div>
+          <div><dt>成立时间</dt><dd>2025 年 9 月 13 日</dd></div>
+          <div><dt>法定代表人</dt><dd>刘耀诚</dd></div>
+          <div><dt>注册资本</dt><dd>423,000 万元人民币</dd></div>
+          <div><dt>注册地</dt><dd>山东济南高新区 · 中德智汇中心</dd></div>
+          <div><dt>股权归属</dt><dd>隶属歌尔集团有限公司，实际控制人姜滨</dd></div>
+          <div><dt>另一处落点</dt><dd>上海张江（12 英寸 Micro LED 新线规划）</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">02</span>
+      <h2>双线押注<span>／两条路线，两个市场</span></h2>
+    </div>
+    <p class="t" style="max-width:66ch; margin-bottom:clamp(24px,3.6vh,34px)">这两条线不是备胎关系。歌尔从一开始就给它们划了边界：Micro OLED 接当下的 VR/MR 出货，Micro LED 赌 AR 眼镜的中长期需求。在行业技术路线还没收敛的时候，双线并行是规避单点押注失败成本的办法。</p>
+
+    <div class="lines">
+      <article class="card card--oled">
+        <h3>Micro OLED <small>济南</small></h3>
+        <span class="tag">锚定高分辨率 VR / MR</span>
+        <p>引入韩国鲜益系统（Sunic System）的蒸镀设备搭量产体系，CMOS 背板拟从晶合集成采购——把国内半导体制造基础与韩国蒸镀工艺组合在一起，在成本与供应链安全上同时留了后手。</p>
+        <ul>
+          <li>2026 年 1 月签约，蒸镀设备合同约 1.97 亿元人民币（约 410 亿韩元）</li>
+          <li>2025 年已自研出 4K Micro OLED 显示模组</li>
+          <li>路线相对成熟，承接当下 XR 终端的出货需求</li>
+        </ul>
+      </article>
+
+      <article class="card card--led">
+        <h3>Micro LED <small>上海张江</small></h3>
+        <span class="tag">锚定 AR 眼镜的亮度与功耗</span>
+        <p>正在评估的 12 英寸新产线，设计月产能 6,000 片，与济南项目同量级。投资决策与开工预计在 2026 年底前后，目前尚未最终确认。</p>
+        <ul>
+          <li>面向 AR 对高亮度、小体积、低功耗的硬需求</li>
+          <li>与自有光波导、光机做垂直整合，而不是单卖面板</li>
+          <li>全彩 Micro LED 光引擎已在 2026 年对外展示</li>
+        </ul>
+      </article>
+    </div>
+
+    <blockquote>歌尔在 2026 年 9 月的投资者交流中，把<b>「关键器件垂直整合」</b>列为提升盈利能力的主要手段之一。如果显示、光学模组、整机三段打通，它卖给 XR 品牌的东西会从零件变成整段方案——议价权的位置也就变了。</blockquote>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">03</span>
+      <h2>光学这一侧的家底<span>／CIOE 2026 一次性摆出来的东西</span></h2>
+    </div>
+    <p class="t" style="max-width:66ch">2026 年 9 月 9 日的光博会上，歌尔光学把 XR、车载、投影几条线的新品一起放了出来。这些参数决定了微显示做出来之后，能被装进多薄的一副眼镜里。</p>
+
+    <div class="group">
+      <h4>AR · 全彩光波导</h4>
+      <div class="spec">
+        <div class="row">
+          <span class="nm">F20Ge-FL<i>全贴合刻蚀</i></span>
+          <span class="mt">0.65 mm ／ &lt;4 g</span>
+          <span class="ds">全贴合工艺消除波导基底与盖板间空气层，含双层盖板总厚 0.65 mm，重量小于 4 g，光栅区域透过率超 94%。</span>
+        </div>
+        <div class="row">
+          <span class="nm">F20Gi<i>纳米压印</i></span>
+          <span class="mt">0.5 mm ／ 3.2 g</span>
+          <span class="ds">面向消费级 AI 眼镜，单片厚 0.5 mm、重 3.2 g，室内彩虹纹近乎不可见。</span>
+        </div>
+        <div class="row">
+          <span class="nm">F25Ge-DUV<i>DUV ＋ 刻蚀</i></span>
+          <span class="mt">MTF ↑30%</span>
+          <span class="ds">图像细节还原指标较纳米压印＋刻蚀方案提升 30%，依托国内首条 12 英寸 DUV＋刻蚀量产线，可规模交付。</span>
+        </div>
+        <div class="row">
+          <span class="nm">F25Ge-LT<i>低密度基材</i></span>
+          <span class="mt">厚 ↓30% ／ 重 ↓50%+</span>
+          <span class="ds">采用全新低密度基材，同规格产品中轻量化处于行业前列。</span>
+        </div>
+        <div class="row">
+          <span class="nm">F50Se<i>碳化硅全彩</i></span>
+          <span class="mt">50° ／ &gt;1500 nit</span>
+          <span class="ds">大视场全彩显示，搭配自研 0.75 cc LCoS 光机，入眼亮度超 1500 尼特。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h4>VR / MR · Pancake 模组</h4>
+      <div class="spec">
+        <div class="row">
+          <span class="nm">星际 C61</span>
+          <span class="mt">120°+ ／ 双目 8K</span>
+          <span class="ds">视场提升、双目 8K 显示，厚度压缩至 15.4 mm，较前代减薄超过 10%。</span>
+        </div>
+        <div class="row">
+          <span class="nm">星河 LE62</span>
+          <span class="mt">TTL 12.5 mm</span>
+          <span class="ds">从屏幕到人眼的折叠光路仅 12.5 mm，约为主流 Pancake 方案的一半，同时优化边缘色散。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h4>车载光学</h4>
+      <div class="spec">
+        <div class="row">
+          <span class="nm">双模 DLP 投影大灯</span>
+          <span class="mt">白光 / 彩色独立</span>
+          <span class="ds">行业首创双光路设计，照明与彩色投影可独立运行，兼顾迎宾与安全提示。</span>
+        </div>
+        <div class="row">
+          <span class="nm">Micro LED 数字矩阵大灯</span>
+          <span class="mt">2.56 万像素</span>
+          <span class="ds">像素级控光，会车时精准遮蔽，光学畸变控制在 1.5% 以内。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">04</span>
+      <h2>为什么是现在<span>／钱正在往上游走</span></h2>
+    </div>
+    <div class="cols">
+      <div>
+        <p class="t">据洛图科技（RUNTO）不完全统计，2026 年上半年全球智能眼镜产业链融资并购 64 起，披露总额约 <b>90 亿元</b>，其中约 <b>70% 落在光波导、微显示这些上游环节</b>。</p>
+        <p class="t">资本押的不是整机组装，是「谁能把屏和光学做出来」。这个判断和歌尔的动作是对得上的——它同时在做显示、光学模组、整机三段，往上游走的同时也没丢掉下游的出货口。</p>
+      </div>
+      <div>
+        <p class="t">对做技术的人来说，这件事的意义更直接：<b>一条产线从 0 建起来，工艺窗口、良率曲线、设备调机，全都是空白页</b>。在已经跑顺的量产线上做优化，和在还没定型的产线上定标准，是两种完全不同的职业经历。</p>
+        <p class="t">这也是这个团队现在最缺人的原因——不是缺执行，是缺能把标准定下来的人。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">05</span>
+      <h2>现在在找的人</h2>
+    </div>
+    <ul class="roles">
+      <li><b>微显示器件与工艺</b><span>OLED / LED 器件、蒸镀与封装</span></li>
+      <li><b>光学模组与波导</b><span>衍射光波导、Pancake、光机设计</span></li>
+      <li><b>产线建设与成本管理</b><span>新厂导入、IE、成本与良率</span></li>
+    </ul>
+    <p class="t" style="margin-top:18px; font-size:13px; color:var(--ink-3)">具体岗位、职级与薪酬带宽，我们单独聊。部分方向属保密寻访，不在本页展开。</p>
+
+    <div class="cta">
+      <a class="btn btn--fill" href="mailto:1045321663@qq.com?subject=%E5%BA%94%E8%81%98%E6%AD%8C%E5%B0%94%E8%A7%86%E6%98%BE">发邮件聊聊</a>
+      <a class="btn" href="weixin://">微信 Ljhh-HH6666</a>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>歌尔视显 · 微显示</b> · 本页由猎头 Lionel 受客户委托整理，非企业官方页面。数据引自工商公开信息、歌尔官方发布、光博会公开资料及行业媒体报道，出处可查，整理截至 2026-10-29。本页未使用第三方图片。</p>
+    <p style="text-align:right">猎头 Lionel，受客户委托寻访<br>微信 Ljhh-HH6666 ／ 1045321663@qq.com</p>
+  </footer>
+</div>
+</body>
+</html>
