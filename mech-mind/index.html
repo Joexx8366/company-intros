@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>梅卡曼德 Mech-Mind｜给机器人一套看懂世界的眼脑手</title>
+<meta name="description" content="梅卡曼德（Mech-Mind）企业介绍：3D 视觉、Mech-GPT 具身大模型与 Mech-Hand 灵巧手组成的“眼脑手”平台，面向工业机器人、协作机器人、双臂与人形机器人。资料整理截至 2026-10-30。">
+<meta property="og:title" content="梅卡曼德 Mech-Mind｜给机器人一套看懂世界的眼脑手">
+<meta property="og:description" content="不绑定机器人本体，用 3D 视觉、机器人大脑与灵巧手构成通用物理 AI 组件平台。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f4ee'/%3E%3Cpath d='M6 23V9h6l4 6 4-6h6v14h-5v-7l-5 7-5-7v7H6Z' fill='%23121418'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#121418;
+    --ink-2:#31363c;
+    --paper:#f4f4ee;
+    --paper-2:#e9eae2;
+    --mint:#52e6a8;
+    --acid:#e8ff47;
+    --coral:#ff5b38;
+    --line:#c7cac1;
+    --line-dark:#363a40;
+    --muted:#696e68;
+    --muted-dark:#9da39e;
+    --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"SFMono-Regular","SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::after{
+    content:""; position:fixed; inset:0; z-index:120; pointer-events:none; opacity:.12;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--mint); color:var(--ink)}
+  a{color:inherit}
+  img{display:block; max-width:100%}
+  .progress{position:fixed; inset:0 auto auto 0; z-index:130; width:0; height:3px; background:var(--coral)}
+
+  .nav{
+    position:fixed; inset:0 0 auto; z-index:110; height:70px; display:flex; align-items:center;
+    color:#fff; background:linear-gradient(to bottom,rgba(18,20,24,.74),rgba(18,20,24,.06));
+    border-bottom:1px solid rgba(255,255,255,.15); backdrop-filter:blur(9px); transition:.3s ease;
+  }
+  .nav.solid{color:var(--ink); background:rgba(244,244,238,.95); border-color:var(--line)}
+  .nav__in{width:min(1240px,92vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0}
+  .brand__mark{width:29px; height:29px; background:var(--mint); color:var(--ink); display:grid; place-items:center; font:900 15px/1 var(--mono); flex:none}
+  .brand__tx{font-size:14px; line-height:1.12; font-weight:760; white-space:nowrap}
+  .brand__tx small{display:block; margin-top:4px; font:8px/1.2 var(--mono); letter-spacing:.14em; opacity:.55}
+  .nav__links{display:flex; align-items:center; gap:24px}
+  .nav__links a{text-decoration:none; font-size:11.5px; opacity:.7}
+  .nav__links a:hover{opacity:1}
+  .nav__stock{font:9px/1 var(--mono); letter-spacing:.08em; opacity:.6; white-space:nowrap}
+
+  .hero{height:100svh; min-height:740px; max-height:1040px; position:relative; overflow:hidden; background:var(--ink); color:#fff}
+  .hero__bg{position:absolute; inset:-7% 0; width:100%; height:114%; object-fit:cover; object-position:center 45%; filter:brightness(.55) saturate(.66) contrast(1.14)}
+  .hero__veil{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(90deg,rgba(18,20,24,.95) 0%,rgba(18,20,24,.68) 38%,rgba(18,20,24,.18) 71%,rgba(18,20,24,.5) 100%),
+      linear-gradient(to top,rgba(18,20,24,.98) 0%,transparent 48%);
+  }
+  .hero__mesh{
+    position:absolute; inset:0; opacity:.28; pointer-events:none;
+    background-image:
+      radial-gradient(circle at center,rgba(82,230,168,.95) 0 1px,transparent 1.4px),
+      linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);
+    background-size:34px 34px,68px 68px,68px 68px;
+    mask-image:linear-gradient(90deg,transparent 0%,#000 37%,#000 100%);
+  }
+  .hero__in{position:relative; z-index:2; width:min(1240px,92vw); height:100%; margin:0 auto; padding:120px 0 130px; display:flex; flex-direction:column; justify-content:flex-end}
+  .hero__kick{display:flex; align-items:center; gap:12px; color:rgba(255,255,255,.58); font:10px/1.3 var(--mono); letter-spacing:.14em}
+  .hero__kick::before{content:""; width:28px; height:1px; background:var(--mint)}
+  .hero h1{margin-top:21px; max-width:960px; font-size:clamp(48px,7.3vw,96px); line-height:1.01; font-weight:850}
+  .hero h1 span{display:block; color:var(--mint)}
+  .hero__lede{margin-top:26px; max-width:680px; font-size:clamp(14px,1.45vw,17px); line-height:1.9; color:rgba(255,255,255,.72)}
+  .hero__lede b{color:#fff}
+  .hero__coords{position:absolute; z-index:3; right:4vw; top:120px; text-align:right; font:9px/1.8 var(--mono); color:rgba(255,255,255,.4); letter-spacing:.08em}
+  .hero__rail{position:absolute; inset:auto 0 0; z-index:3; border-top:1px solid rgba(255,255,255,.18); background:rgba(18,20,24,.56); backdrop-filter:blur(8px)}
+  .hero__rail-in{width:min(1240px,92vw); margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr)}
+  .hero__rail div{padding:15px 18px 15px 0; border-right:1px solid rgba(255,255,255,.15)}
+  .hero__rail div+div{padding-left:18px}
+  .hero__rail div:last-child{border-right:0}
+  .hero__rail b{display:block; color:var(--mint); font:650 19px/1.1 var(--mono)}
+  .hero__rail small{display:block; margin-top:5px; color:rgba(255,255,255,.45); font-size:10px}
+
+  .wrap{width:min(1180px,92vw); margin:0 auto}
+  .band{padding:clamp(70px,10vw,120px) 0; position:relative}
+  .band--paper{background:var(--paper)}
+  .band--dark{background:var(--ink); color:#fff}
+  .band--mint{background:var(--mint); color:var(--ink)}
+  .kicker{display:flex; align-items:center; gap:11px; font:10px/1.2 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+  .kicker::before{content:""; width:23px; height:1px; background:currentColor}
+  .band--dark .kicker{color:rgba(255,255,255,.46)}
+  .section-head{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr); gap:clamp(28px,6vw,80px); align-items:end; margin-top:23px}
+  h2{max-width:18ch; font-size:clamp(34px,5.4vw,66px); line-height:1.05; font-weight:830}
+  h2 em{font-style:normal; color:var(--coral)}
+  .band--dark h2 em{color:var(--acid)}
+  .section-head p{max-width:45ch; color:var(--muted); font-size:13.5px; line-height:1.9}
+  .band--dark .section-head p{color:rgba(255,255,255,.54)}
+
+  .position{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,6vw,82px); margin-top:clamp(46px,7vw,76px); align-items:start}
+  .position__big{max-width:16ch; font-size:clamp(28px,4vw,49px); line-height:1.3; font-weight:650}
+  .position__big span{border-bottom:4px solid var(--coral)}
+  .position__copy p{color:var(--muted); font-size:14px; line-height:1.95}
+  .position__copy p+p{margin-top:15px}
+  .position__copy b{color:var(--ink)}
+  .trio{display:grid; grid-template-columns:repeat(3,1fr); margin-top:clamp(44px,7vw,72px); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .trio div{padding:24px 24px 25px 0}
+  .trio div+div{padding-left:24px; border-left:1px solid var(--line)}
+  .trio__code{font:9px/1 var(--mono); color:var(--coral)}
+  .trio h3{font-size:clamp(20px,2.8vw,29px); margin-top:22px}
+  .trio p{margin-top:9px; font-size:11.5px; line-height:1.7; color:var(--muted)}
+
+  .eye-grid{display:grid; grid-template-columns:1.08fr .92fr; gap:1px; margin-top:clamp(46px,7vw,76px); background:var(--line-dark); border:1px solid var(--line-dark)}
+  .eye-grid__copy{padding:clamp(28px,5vw,58px)}
+  .eye-grid__copy h3{font-size:clamp(31px,4.5vw,54px); line-height:1.05}
+  .eye-grid__copy h3 span{display:block; margin-top:9px; color:var(--mint); font:10px/1.3 var(--mono); letter-spacing:.13em}
+  .eye-grid__copy p{margin-top:22px; max-width:47ch; color:rgba(255,255,255,.58); font-size:13px; line-height:1.9}
+  .eye-grid__copy .specs{display:grid; grid-template-columns:1fr 1fr; margin-top:28px; border-top:1px solid var(--line-dark)}
+  .eye-grid__copy .specs div{padding:16px 12px 15px 0; border-bottom:1px solid var(--line-dark)}
+  .eye-grid__copy .specs div:nth-child(even){padding-left:14px; border-left:1px solid var(--line-dark)}
+  .eye-grid__copy .specs b{display:block; color:var(--acid); font:650 23px/1.1 var(--mono)}
+  .eye-grid__copy .specs small{display:block; margin-top:5px; color:rgba(255,255,255,.43); font-size:10px}
+  .eye-grid__fig{min-height:480px; overflow:hidden; position:relative; background:#0d0f11}
+  .eye-grid__fig img{width:100%; height:100%; object-fit:cover; filter:saturate(.72) contrast(1.1)}
+  .eye-grid__fig::after{content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(18,20,24,.72),transparent 42%)}
+  .eye-grid__fig figcaption{position:absolute; left:16px; right:16px; bottom:14px; z-index:2; display:flex; justify-content:space-between; gap:12px; color:rgba(255,255,255,.6); font:9px/1.4 var(--mono)}
+
+  .software{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:34px; background:var(--line-dark); border:1px solid var(--line-dark)}
+  .software article{background:var(--ink); min-height:245px; padding:24px; display:flex; flex-direction:column}
+  .software article:hover{background:#191c20}
+  .software__thumb{height:96px; margin:-24px -24px 22px; overflow:hidden; background:#0d1012; border-bottom:1px solid var(--line-dark)}
+  .software__thumb img{width:100%; height:100%; object-fit:cover; opacity:.68; filter:saturate(.7)}
+  .software .tag{font:9px/1 var(--mono); color:var(--mint)}
+  .software h4{font-size:20px; margin-top:17px}
+  .software p{margin-top:9px; color:rgba(255,255,255,.45); font-size:11.5px; line-height:1.75}
+
+  .hand{margin-top:clamp(46px,7vw,76px); border-top:1px solid var(--line-dark)}
+  .hand__top{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,66px); padding:clamp(30px,5vw,54px) 0}
+  .hand h3{font-size:clamp(28px,4.2vw,48px); line-height:1.15; max-width:16ch}
+  .hand h3 span{color:var(--acid)}
+  .hand__copy{padding-top:4px}
+  .hand__copy p{color:rgba(255,255,255,.55); font-size:13px; line-height:1.9}
+  .hand__copy b{color:#fff}
+  .hand__metrics{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark)}
+  .hand__metrics div{padding:20px 22px 22px 0}
+  .hand__metrics div+div{padding-left:22px; border-left:1px solid var(--line-dark)}
+  .hand__metrics b{display:block; color:var(--mint); font:650 26px/1 var(--mono)}
+  .hand__metrics small{display:block; margin-top:8px; color:rgba(255,255,255,.43); font-size:10.5px}
+
+  .applications{display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:clamp(44px,7vw,72px); background:rgba(18,20,24,.25); border:1px solid rgba(18,20,24,.25)}
+  .applications__copy{padding:clamp(26px,4vw,44px); background:var(--mint)}
+  .applications__fig{min-height:380px; background:var(--ink); overflow:hidden}
+  .applications__fig img{width:100%; height:100%; object-fit:cover; filter:saturate(.75) contrast(1.08)}
+  .app-list{list-style:none; margin-top:22px; border-top:2px solid var(--ink)}
+  .app-list li{display:grid; grid-template-columns:38px 1fr auto; gap:13px; align-items:center; padding:13px 0; border-bottom:1px solid rgba(18,20,24,.2)}
+  .app-list span{font:9px/1 var(--mono)}
+  .app-list b{font-size:14px}
+  .app-list small{font:8.5px/1 var(--mono); text-transform:uppercase}
+
+  .proof{display:grid; grid-template-columns:.82fr 1.18fr; gap:clamp(28px,6vw,76px); margin-top:clamp(46px,7vw,74px); align-items:start}
+  .proof__lead{font-size:clamp(27px,4vw,45px); line-height:1.28; font-weight:650; max-width:16ch}
+  .proof__lead span{color:var(--coral)}
+  .proof__table{border-top:1px solid var(--line)}
+  .proof__row{display:grid; grid-template-columns:150px 1fr; gap:22px; padding:16px 0; border-bottom:1px solid var(--line); align-items:baseline}
+  .proof__row b{font:650 20px/1.2 var(--mono)}
+  .proof__row span{font-size:11.5px; color:var(--muted); line-height:1.6}
+  .public-note{margin-top:25px; border-left:4px solid var(--coral); padding:17px 20px; background:rgba(255,91,56,.07); font-size:11px; line-height:1.8; color:var(--muted)}
+
+  .join{background:var(--ink); color:#fff}
+  .join__in{display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(30px,6vw,78px)}
+  .join h2 em{color:var(--mint)}
+  .join__lead p{margin-top:20px; color:rgba(255,255,255,.54); font-size:13px; line-height:1.9; max-width:39ch}
+  .contact{display:flex; flex-direction:column; align-items:flex-start; gap:9px; margin-top:28px}
+  .contact a{display:inline-flex; align-items:center; min-height:43px; padding:0 14px; border:1px solid rgba(255,255,255,.24); text-decoration:none; font-size:12px; transition:.2s}
+  .contact a:hover{border-color:var(--mint); color:var(--mint)}
+  .contact .primary{background:var(--mint); color:var(--ink); border-color:var(--mint); font-weight:700}
+  .jobs{border-top:1px solid var(--line-dark); display:grid; grid-template-columns:1fr 1fr; gap:0 34px}
+  .job{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:baseline; padding:14px 0; border-bottom:1px solid var(--line-dark)}
+  .job b{font-size:12.5px; font-weight:520}
+  .job span{font:9px/1.2 var(--mono); color:rgba(255,255,255,.34); white-space:nowrap}
+
+  footer{background:#090a0b; color:rgba(255,255,255,.4); padding:36px 0 44px; font-size:10.5px; line-height:1.8}
+  .foot{display:grid; grid-template-columns:1.35fr .65fr; gap:40px}
+  .foot b{color:rgba(255,255,255,.76); font-weight:500}
+  .foot__r{text-align:right}
+  .sources{display:flex; flex-wrap:wrap; gap:8px 15px; margin-top:13px}
+  .sources a{color:rgba(255,255,255,.54); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.2)}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+  .reveal.is-in{opacity:1; transform:none}
+
+  @media (max-width:920px){
+    .nav__links{display:none}
+    .hero__coords{display:none}
+    .hero__rail-in{grid-template-columns:1fr 1fr}
+    .hero__rail div:nth-child(2){border-right:0}
+    .hero__rail div:nth-child(3){padding-left:0;border-top:1px solid rgba(255,255,255,.15)}
+    .hero__rail div:nth-child(4){border-top:1px solid rgba(255,255,255,.15)}
+    .section-head,.position,.eye-grid,.hand__top,.applications,.proof,.join__in,.foot{grid-template-columns:1fr}
+    .software{grid-template-columns:1fr}
+    .trio{grid-template-columns:1fr}
+    .trio div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+    .eye-grid__fig{min-height:330px}
+    .foot__r{text-align:left}
+  }
+  @media (max-width:620px){
+    .brand__tx{font-size:11px}
+    .nav__stock{display:none}
+    .hero h1{font-size:clamp(44px,12.8vw,64px)}
+    .hero__rail b{font-size:15px}
+    .eye-grid__copy .specs{grid-template-columns:1fr}
+    .eye-grid__copy .specs div:nth-child(even){padding-left:0;border-left:0}
+    .hand__metrics{grid-template-columns:1fr}
+    .hand__metrics div+div{padding-left:0;border-left:0;border-top:1px solid var(--line-dark)}
+    .proof__row{grid-template-columns:1fr;gap:4px}
+    .jobs{grid-template-columns:1fr}
+    .job span{white-space:normal}
+    .applications__fig{min-height:250px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="页面导航">
+  <div class="nav__in">
+    <a class="brand" href="#top">
+      <span class="brand__mark">M</span>
+      <span class="brand__tx">梅卡曼德 Mech-Mind<small>EYE · BRAIN · HAND</small></span>
+    </a>
+    <div class="nav__links">
+      <a href="#position">定位</a>
+      <a href="#vision">3D 视觉</a>
+      <a href="#brain">脑与手</a>
+      <a href="#applications">场景</a>
+      <a href="#join">加入</a>
+    </div>
+    <span class="nav__stock">09615.HK / GLOBAL PHYSICAL AI</span>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <img class="hero__bg" src="assets/application.webp" width="1920" height="1280" alt="梅卡曼德 AI 3D 视觉引导工业机器人应用">
+    <div class="hero__veil"></div>
+    <div class="hero__mesh"></div>
+    <div class="hero__coords">X 124.638 / Y 86.412 / Z 42.705<br>PLANE CONFIDENCE 0.982<br>6D POSE LOCKED</div>
+    <div class="hero__in">
+      <div class="hero__kick">MECH-MIND / ROBOTIC PERCEPTION &amp; COGNITION</div>
+      <h1>梅卡曼德<br><span>让机器人看懂世界。</span></h1>
+      <p class="hero__lede">不绑定任何一种机器人本体，只提供共通的 <b>眼、脑、手</b>。让工业机械臂、协作机器人、双臂与人形机器人，都获得感知、理解和执行的能力。</p>
+    </div>
+    <div class="hero__rail">
+      <div class="hero__rail-in">
+        <div><b>30,000+</b><small>全球累计部署</small></div>
+        <div><b>100+</b><small>《财富》500 强客户</small></div>
+        <div><b>93.9%</b><small>2026H1 客户复购率</small></div>
+        <div><b>22.1%</b><small>全球细分市场份额第一</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="position">
+    <div class="wrap">
+      <div class="kicker reveal">01 / Position</div>
+      <div class="section-head reveal">
+        <h2>不造机器人，<br><em>造机器人都需要的智能。</em></h2>
+        <p>梅卡曼德成立于 2016 年，由清华海归团队创办。公司选择了一条与整机厂商不同的路：不下场做机器人本体，而是把感知、决策和执行做成可跨形态复用的标准化组件。</p>
+      </div>
+      <div class="position">
+        <div class="position__big reveal">“智能<span>大于</span>形态。”</div>
+        <div class="position__copy reveal">
+          <p>工业机械臂、协作机器人、双臂机器人、复合移动机器人乃至人形机器人，外形不同，但都需要看懂工件、理解任务、规划路径并精确执行。</p>
+          <p>梅卡曼德以 <strong>Mech-Eye 工业 3D 相机</strong>解决“看”，以 <strong>Mech-GPT 多模态具身大模型</strong>和机器人软件平台解决“想”，以 <strong>Mech-Hand 灵巧手</strong>解决“做”。</p>
+          <p>这套“眼脑手”能力不依赖单一本体，反而随着机器人形态变多而扩大适用范围。它不是一台机器人的零件，而是物理 AI 的通用底座。</p>
+        </div>
+      </div>
+      <div class="trio reveal">
+        <div><span class="trio__code">EYE / PERCEPTION</span><h3>看得懂</h3><p>3D 成像、6D 位姿、缺陷识别与在线测量，把真实世界变成机器人可计算的数据。</p></div>
+        <div><span class="trio__code">BRAIN / COGNITION</span><h3>想得清</h3><p>环境理解、任务分解、动作规划与自主恢复，把自然语言目标转成可执行步骤。</p></div>
+        <div><span class="trio__code">HAND / ACTION</span><h3>做得准</h3><p>灵巧手、路径规划与作业软件结合，完成抓取、装配、上下料和精细操作。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="vision">
+    <div class="wrap">
+      <div class="kicker reveal">02 / Mech-Eye</div>
+      <div class="section-head reveal">
+        <h2>工业现场，<br><em>先要看得足够准。</em></h2>
+        <p>反光、深色、薄壁、透明、杂乱堆叠，这些让传统视觉失效的物体，恰好是 3D 视觉真正产生价值的边界。Mech-Eye 把成像硬件、算法和现场适配放进同一套产品体系。</p>
+      </div>
+      <div class="eye-grid reveal">
+        <div class="eye-grid__copy">
+          <h3>MECH-EYE<span>INDUSTRIAL 3D VISION</span></h3>
+          <p>面向工业机器人引导与检测场景，提供结构光、激光轮廓等多条产品线。结合自研 6D 位姿算法，让机器人在无序来料和动态产线中稳定找到目标。</p>
+          <div class="specs">
+            <div><b>25ms</b><small>单帧 6D 位姿算法耗时</small></div>
+            <div><b>2mm</b><small>500mm/s 动态精度</small></div>
+            <div><b>100,000+</b><small>累计处理货品 / 工件类型</small></div>
+            <div><b>80+</b><small>典型工业应用场景</small></div>
+          </div>
+        </div>
+        <figure class="eye-grid__fig">
+          <img src="assets/mech-eye.webp" width="750" height="542" alt="梅卡曼德 Mech-Eye 工业级 3D 相机">
+          <figcaption><span>MECH-EYE / 3D CAMERA</span><span>图源：梅卡曼德官网</span></figcaption>
+        </figure>
+      </div>
+      <div class="software reveal">
+        <article>
+          <div class="software__thumb"><img src="assets/mech-vision.webp" width="350" height="258" alt="Mech-Vision 机器视觉软件"></div>
+          <span class="tag">VISION / NO-CODE</span>
+          <h4>Mech-Vision</h4>
+          <p>图形化机器视觉软件，把图像采集、识别、定位和后处理组织成可视化工作流。</p>
+        </article>
+        <article>
+          <div class="software__thumb"><img src="assets/mech-viz.webp" width="350" height="258" alt="Mech-Viz 机器人编程软件"></div>
+          <span class="tag">ROBOT / PLANNING</span>
+          <h4>Mech-Viz</h4>
+          <p>智能机器人编程环境，负责路径规划、碰撞检测、抓放策略与产线节拍优化。</p>
+        </article>
+        <article>
+          <div class="software__thumb"><img src="assets/eye-brain-hand.webp" width="350" height="258" alt="梅卡曼德具身智能眼脑手平台"></div>
+          <span class="tag">PLATFORM / EMBODIED AI</span>
+          <h4>Eye-Brain-Hand</h4>
+          <p>从 3D 感知到任务理解，再到灵巧执行，形成可嵌入多种机器人形态的完整闭环。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="brain" style="padding-top:0">
+    <div class="wrap">
+      <div class="hand reveal">
+        <div class="hand__top">
+          <h3>从“执行程序”到<br><span>“自主完成任务”。</span></h3>
+          <div class="hand__copy">
+            <p><b>Mech-GPT</b> 负责理解环境、拆解任务、规划动作并在执行后自主检查。它不只回答问题，而是把自然语言目标接到机器人动作链路上。</p>
+            <p><b>Mech-Hand</b> 把认知闭环延伸到抓取与精细操作：500g 重量、50kg 静态承载、抓取循环寿命不低于 200 万次，并与 Mech-Viz 和 Mech-GPT 协同。</p>
+          </div>
+        </div>
+        <div class="hand__metrics">
+          <div><b>500g</b><small>Mech-Hand 整机重量</small></div>
+          <div><b>50kg</b><small>静态承载</small></div>
+          <div><b>2,000,000+</b><small>抓取循环寿命</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--mint" id="applications">
+    <div class="wrap">
+      <div class="kicker reveal">03 / Applications</div>
+      <div class="section-head reveal">
+        <h2>从深筐抓取，<br><em>到整条产线协同。</em></h2>
+        <p>梅卡曼德的产品已经进入汽车、新能源、消费电子、物流、家电与制药等行业，用同一套平台覆盖不同工件、不同节拍和不同机器人本体。</p>
+      </div>
+      <div class="applications reveal">
+        <div class="applications__copy">
+          <ul class="app-list">
+            <li><span>01</span><b>无序抓取 / 深筐上料</b><small>Bin Picking</small></li>
+            <li><span>02</span><b>拆垛 / 码垛</b><small>Palletizing</small></li>
+            <li><span>03</span><b>高精度定位装配</b><small>Assembly</small></li>
+            <li><span>04</span><b>在线测量 / 缺陷检测</b><small>Inspection</small></li>
+            <li><span>05</span><b>焊接 / 涂胶 / 拧紧</b><small>Process</small></li>
+            <li><span>06</span><b>多 SKU 商品拣选</b><small>Logistics</small></li>
+          </ul>
+        </div>
+        <figure class="applications__fig">
+          <img src="assets/hero-factory.webp" width="1920" height="550" alt="梅卡曼德 AI 3D 视觉工业机器人典型应用">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="proof">
+    <div class="wrap">
+      <div class="kicker reveal">04 / Commercial Proof</div>
+      <div class="section-head reveal">
+        <h2>真正的技术验证，<br><em>是客户持续复购。</em></h2>
+        <p>工业客户不为概念付费，只为稳定的节拍、良率和投资回报买单。梅卡曼德的增长来自标准化产品、全球交付体系和长期场景数据，而不是一次性演示。</p>
+      </div>
+      <div class="proof">
+        <div class="proof__lead reveal">全球落地，<br><span>本地交付。</span></div>
+        <div class="reveal">
+          <div class="proof__table">
+            <div class="proof__row"><b>50+</b><span>产品进入近 50 个国家和地区</span></div>
+            <div class="proof__row"><b>1,600+</b><span>全球客户数量</span></div>
+            <div class="proof__row"><b>65.0%</b><span>2026 年上半年毛利率</span></div>
+            <div class="proof__row"><b>54.7%</b><span>2026 年上半年收入同比增速</span></div>
+            <div class="proof__row"><b>50.3%</b><span>2025 年海外收入占比</span></div>
+          </div>
+          <div class="public-note">截至 2026 年上半年，公司收入仍主要由工业 3D 视觉与机器人引导产品贡献；Mech-GPT 与 Mech-Hand 是下一阶段增长曲线，相关数据来自公司官网、2026 中期业绩与公开报道。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band join" id="join">
+    <div class="wrap join__in">
+      <div class="join__lead reveal">
+        <div class="kicker">05 / Join the Platform</div>
+        <h2>把智能，<br><em>写进真实产线。</em></h2>
+        <p>北京做研发，上海承接销售与交付，并在深圳、青岛、长沙及海外设有团队。这里适合既愿意研究算法，也愿意走进工厂解决真实问题的人。</p>
+        <div class="contact">
+          <a class="primary" href="mailto:mollytao@yihelietou.com?subject=%E5%BA%94%E8%81%98%E6%A2%85%E5%8D%A1%E6%9B%BC%E5%BE%B7">发邮件聊机会</a>
+          <a href="weixin://">微信 A-xinyu1011</a>
+          <a href="mailto:mollytao@yihelietou.com">mollytao@yihelietou.com</a>
+        </div>
+      </div>
+      <div class="jobs reveal" aria-label="重点人才方向">
+        <div class="job"><b>3D 成像 / 视觉算法</b><span>VISION</span></div>
+        <div class="job"><b>多模态大模型 / VLA</b><span>AI</span></div>
+        <div class="job"><b>机器人运动规划</b><span>ROBOTICS</span></div>
+        <div class="job"><b>工业软件 / 图形化平台</b><span>SOFTWARE</span></div>
+        <div class="job"><b>嵌入式 / 光学 / 电子硬件</b><span>HARDWARE</span></div>
+        <div class="job"><b>机械臂应用 / 现场调试</b><span>APPLICATION</span></div>
+        <div class="job"><b>产品经理 / 解决方案</b><span>PRODUCT</span></div>
+        <div class="job"><b>海外技术支持 / 销售</b><span>GLOBAL</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <b>梅卡曼德 Mech-Mind · 非官方人才沟通资料页</b><br>
+      页面由猎头 molly 受客户委托整理，不代表梅卡曼德官方立场。资料与数据引自公司官网、2026 中期业绩及公开产业报道，整理截至 2026-10-30。
+      <div class="sources">
+        <a href="https://www.mech-mind.com.cn/" target="_blank" rel="noopener">梅卡曼德官网</a>
+        <a href="https://www.yicai.com/news/103378085.html" target="_blank" rel="noopener">2026 中期业绩</a>
+        <a href="https://www.qimingvc.com/cn/news/%E5%90%AF%E6%98%8E%E6%98%9F-%E5%85%A8%E7%90%83%E9%A2%86%E5%85%88%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%84%91%E4%BC%81%E4%B8%9A%E6%A2%85%E5%8D%A1%E6%9B%BC%E5%BE%B7%E6%88%90%E5%8A%9F%E7%99%BB%E9%99%86%E9%A6%99%E6%B8%AF%E4%BA%A4%E6%98%93%E6%89%80" target="_blank" rel="noopener">上市与市场地位</a>
+        <a href="https://www.zhaopin.com/companydetail/CZ437770080.htm" target="_blank" rel="noopener">团队与招聘</a>
+      </div>
+    </div>
+    <div class="foot__r">
+      联系猎头 molly<br>
+      微信 A-xinyu1011 ／ mollytao@yihelietou.com
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var progress = document.querySelector('.progress');
+  var nav = document.querySelector('.nav');
+  var bg = document.querySelector('.hero__bg');
+  var ticking = false;
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function update() {
+    var y = scrollY || 0;
+    var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    progress.style.width = Math.min(100, y / max * 100) + '%';
+    nav.classList.toggle('solid', y > innerHeight * .72);
+    if (bg && !reduced) bg.style.transform = 'scale(1.04) translate3d(0,' + Math.min(82, y * .072) + 'px,0)';
+    ticking = false;
+  }
+  addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+  update();
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.1, rootMargin:'0px 0px -42px'});
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

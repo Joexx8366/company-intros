@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>璇玑动力 ASTRALL｜把重活交给机器</title>
+<meta name="description" content="璇玑动力（ASTRALL Dynamics）企业介绍：自研轴向磁通电机、一体化关节与重载轮足机器人 Hypertron-T01，面向电力巡检、消防救援和特种作业。资料整理截至 2026-10-30。">
+<meta property="og:title" content="璇玑动力 ASTRALL｜把重活交给机器">
+<meta property="og:description" content="从轴向磁通电机到 80kg 负载轮足机器人，一页看懂璇玑动力的动力底座、产品矩阵与量产路径。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0c0e'/%3E%3Cpath d='M5 22 13 8h6l8 14h-6l-5-9-5 9H5Z' fill='%23e6ff3f'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#0b0c0e;
+    --panel:#15171a;
+    --panel-2:#1d2024;
+    --concrete:#e9e9e4;
+    --paper:#f4f4ef;
+    --line:#c9cbc4;
+    --line-dark:#35393f;
+    --muted:#666960;
+    --muted-dark:#979c98;
+    --yellow:#e6ff3f;
+    --cyan:#54e4e5;
+    --hazard:#ff5428;
+    --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"SFMono-Regular","SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--concrete); color:var(--ink); font-family:var(--sans);
+    line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:120; opacity:.13;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--cyan); color:var(--ink)}
+  a{color:inherit}
+  img{display:block; max-width:100%}
+  .progress{position:fixed; inset:0 auto auto 0; width:0; height:3px; background:var(--yellow); z-index:130}
+
+  .nav{
+    position:fixed; inset:0 0 auto; z-index:110; height:70px; color:#fff;
+    display:flex; align-items:center; border-bottom:1px solid rgba(255,255,255,.16);
+    background:rgba(11,12,14,.52); backdrop-filter:blur(10px);
+    transition:.3s ease;
+  }
+  .nav.solid{background:rgba(244,244,239,.96); color:var(--ink); border-color:var(--line)}
+  .nav__in{width:min(1240px,92vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0}
+  .brand__mark{
+    width:29px; height:29px; display:grid; place-items:center; flex:none;
+    background:var(--yellow); color:var(--ink); font:900 16px/1 var(--mono);
+    clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);
+  }
+  .brand__tx{font-size:14px; font-weight:760; line-height:1.1; white-space:nowrap}
+  .brand__tx small{display:block; margin-top:4px; font:8px/1.2 var(--mono); letter-spacing:.12em; opacity:.55}
+  .nav__links{display:flex; align-items:center; gap:23px}
+  .nav__links a{font-size:11.5px; text-decoration:none; opacity:.72}
+  .nav__links a:hover{opacity:1}
+  .nav__pill{font:9px/1 var(--mono); border:1px solid currentColor; padding:8px 10px; opacity:.6; white-space:nowrap}
+
+  .hero{
+    height:100svh; min-height:740px; max-height:1040px; position:relative;
+    background:var(--ink); color:#fff; overflow:hidden;
+  }
+  .hero__bg{position:absolute; inset:-8% 0; width:100%; height:116%; object-fit:cover; object-position:center 46%; filter:brightness(.56) saturate(.72) contrast(1.12)}
+  .hero__shade{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(90deg, rgba(11,12,14,.96) 0%, rgba(11,12,14,.72) 38%, rgba(11,12,14,.1) 68%, rgba(11,12,14,.55) 100%),
+      linear-gradient(to top, rgba(11,12,14,.98) 0%, rgba(11,12,14,.08) 48%);
+  }
+  .hero__grid{
+    position:absolute; inset:0; opacity:.22; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px);
+    background-size:70px 70px;
+    mask-image:linear-gradient(to bottom,transparent 8%,#000 40%,transparent 100%);
+  }
+  .hero__stripe{
+    position:absolute; top:70px; right:0; width:12px; height:calc(100% - 70px);
+    background:repeating-linear-gradient(180deg,var(--yellow) 0 16px,var(--ink) 16px 32px);
+    opacity:.92;
+  }
+  .hero__in{position:relative; z-index:2; width:min(1240px,92vw); height:100%; margin:0 auto; display:flex; flex-direction:column; justify-content:flex-end; padding:118px 0 124px}
+  .hero__kicker{display:flex; align-items:center; gap:12px; font:10px/1.3 var(--mono); letter-spacing:.14em; color:rgba(255,255,255,.58)}
+  .hero__kicker::before{content:""; width:28px; height:1px; background:var(--yellow)}
+  .hero h1{margin-top:22px; max-width:960px; font-size:clamp(48px,7.5vw,100px); line-height:.98; font-weight:850}
+  .hero h1 span{display:block; color:var(--yellow)}
+  .hero__lede{margin-top:26px; max-width:650px; color:rgba(255,255,255,.72); font-size:clamp(14px,1.45vw,17px); line-height:1.9}
+  .hero__lede b{color:#fff}
+  .hero__code{position:absolute; right:4vw; bottom:148px; z-index:3; text-align:right; font:9px/1.7 var(--mono); color:rgba(255,255,255,.42); letter-spacing:.08em}
+  .hero__rail{position:absolute; inset:auto 0 0; z-index:3; border-top:1px solid rgba(255,255,255,.17); background:rgba(11,12,14,.58); backdrop-filter:blur(8px)}
+  .hero__rail-in{width:min(1240px,92vw); margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr)}
+  .hero__rail div{padding:15px 18px 15px 0; border-right:1px solid rgba(255,255,255,.15)}
+  .hero__rail div+div{padding-left:18px}
+  .hero__rail div:last-child{border-right:0}
+  .hero__rail b{display:block; font:650 20px/1.1 var(--mono); color:var(--yellow)}
+  .hero__rail small{display:block; margin-top:5px; font-size:10px; color:rgba(255,255,255,.45)}
+
+  .wrap{width:min(1180px,92vw); margin:0 auto}
+  .band{padding:clamp(70px,10vw,120px) 0; position:relative}
+  .band--paper{background:var(--paper)}
+  .band--dark{background:var(--ink); color:#fff}
+  .band--yellow{background:var(--yellow); color:var(--ink)}
+  .band--dark + .band--dark{border-top:1px solid var(--line-dark)}
+  .kicker{display:flex; align-items:center; gap:11px; color:var(--muted); font:10px/1.2 var(--mono); letter-spacing:.12em; text-transform:uppercase}
+  .kicker::before{content:""; width:23px; height:1px; background:currentColor}
+  .band--dark .kicker{color:rgba(255,255,255,.45)}
+  .section-head{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr); gap:clamp(28px,6vw,80px); align-items:end; margin-top:23px}
+  h2{font-size:clamp(34px,5.4vw,66px); line-height:1.05; font-weight:820; max-width:18ch}
+  h2 em{font-style:normal; color:var(--hazard)}
+  .band--dark h2 em{color:var(--yellow)}
+  .section-head p{font-size:13.5px; line-height:1.9; color:var(--muted); max-width:45ch}
+  .band--dark .section-head p{color:rgba(255,255,255,.55)}
+
+  .thesis{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,6vw,80px); margin-top:clamp(48px,7vw,76px); align-items:start}
+  .thesis__big{font-size:clamp(28px,4vw,49px); line-height:1.3; font-weight:650; max-width:16ch}
+  .thesis__big span{background:var(--cyan); padding:0 .08em}
+  .thesis__copy p{font-size:14px; line-height:1.95; color:var(--muted)}
+  .thesis__copy p+p{margin-top:15px}
+  .thesis__copy b{color:var(--ink)}
+  .factbar{display:grid; grid-template-columns:repeat(3,1fr); margin-top:clamp(46px,7vw,74px); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .factbar div{padding:22px 22px 22px 0}
+  .factbar div+div{padding-left:22px; border-left:1px solid var(--line)}
+  .factbar b{display:block; font-size:clamp(25px,3.3vw,38px); line-height:1}
+  .factbar small{display:block; margin-top:9px; font-size:11px; color:var(--muted); line-height:1.5}
+
+  .motor{display:grid; grid-template-columns:1.04fr .96fr; gap:1px; margin-top:clamp(46px,7vw,78px); background:var(--line-dark); border:1px solid var(--line-dark)}
+  .motor__visual{position:relative; min-height:470px; overflow:hidden; background:#0e1012}
+  .motor__visual img{width:100%; height:100%; object-fit:cover; filter:saturate(.72) contrast(1.12); opacity:.84}
+  .motor__visual::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(circle at var(--mx,55%) var(--my,45%),rgba(84,228,229,.17),transparent 36%);
+  }
+  .motor__stamp{position:absolute; left:18px; top:18px; z-index:2; border:1px solid rgba(255,255,255,.3); padding:7px 9px; font:9px/1 var(--mono); color:rgba(255,255,255,.6)}
+  .motor__copy{padding:clamp(26px,4.4vw,54px); background:var(--panel)}
+  .motor__copy h3{font-size:clamp(32px,4.6vw,56px); line-height:1; font-weight:800}
+  .motor__copy h3 span{display:block; margin-top:8px; font:10px/1.2 var(--mono); color:var(--cyan); letter-spacing:.12em}
+  .motor__copy p{margin-top:22px; color:rgba(255,255,255,.58); font-size:13px; line-height:1.9; max-width:45ch}
+  .motor__metrics{display:grid; grid-template-columns:1fr 1fr; margin-top:28px; border-top:1px solid var(--line-dark)}
+  .motor__metrics div{padding:16px 12px 15px 0; border-bottom:1px solid var(--line-dark)}
+  .motor__metrics div:nth-child(even){padding-left:14px; border-left:1px solid var(--line-dark)}
+  .motor__metrics b{display:block; font:650 23px/1.1 var(--mono); color:var(--yellow)}
+  .motor__metrics small{display:block; margin-top:5px; font-size:10px; color:rgba(255,255,255,.43)}
+  .spec-table{margin-top:32px; border-top:1px solid var(--line-dark)}
+  .spec-table .tr{display:grid; grid-template-columns:1.1fr .9fr .9fr; gap:14px; padding:10px 0; border-bottom:1px solid var(--line-dark); font-size:11px}
+  .spec-table .th{font:9px/1.2 var(--mono); color:var(--yellow)}
+  .spec-table span:nth-child(n+2){font-family:var(--mono); color:rgba(255,255,255,.65)}
+
+  .machines{margin-top:clamp(46px,7vw,78px); display:grid; gap:1px; border-top:1px solid var(--line); background:var(--line)}
+  .machine{display:grid; grid-template-columns:1.1fr .9fr; background:var(--paper)}
+  .machine:nth-child(even){grid-template-columns:.9fr 1.1fr}
+  .machine__copy{padding:clamp(28px,5vw,58px)}
+  .machine:nth-child(even) .machine__copy{order:2}
+  .machine__no{font:10px/1 var(--mono); color:var(--hazard)}
+  .machine h3{font-size:clamp(30px,4.4vw,50px); line-height:1.06; margin-top:17px}
+  .machine h3 span{display:block; margin-top:8px; font:10px/1.2 var(--mono); color:var(--muted); letter-spacing:.08em}
+  .machine p{margin-top:19px; color:var(--muted); font-size:13.5px; line-height:1.9; max-width:47ch}
+  .machine__specs{display:grid; grid-template-columns:1fr 1fr; gap:0 16px; margin-top:25px; border-top:1px solid var(--line)}
+  .machine__specs div{padding:13px 0; border-bottom:1px solid var(--line)}
+  .machine__specs b{display:block; font:650 18px/1.1 var(--mono)}
+  .machine__specs small{display:block; margin-top:5px; color:var(--muted); font-size:10px}
+  .machine__fig{min-height:440px; overflow:hidden; background:#111}
+  .machine__fig img{width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.75,.2,1)}
+  .machine:hover .machine__fig img{transform:scale(1.025)}
+
+  .field{display:grid; grid-template-columns:1fr 1fr; gap:clamp(26px,5vw,64px); margin-top:clamp(42px,6vw,66px); align-items:center}
+  .field__list{border-top:2px solid var(--ink)}
+  .field__item{display:grid; grid-template-columns:40px 1fr auto; gap:15px; padding:15px 0; border-bottom:1px solid rgba(11,12,14,.22); align-items:center}
+  .field__item span{font:10px/1 var(--mono)}
+  .field__item b{font-size:15px}
+  .field__item small{font:9px/1 var(--mono); text-transform:uppercase}
+  .field__fig{position:relative; border:1px solid rgba(11,12,14,.35); background:#fff}
+  .field__fig img{width:100%; aspect-ratio:1.45; object-fit:cover; filter:contrast(1.08) saturate(.8)}
+  .field__fig figcaption{display:flex; justify-content:space-between; gap:12px; padding:10px 12px; background:var(--ink); color:rgba(255,255,255,.55); font:9px/1.4 var(--mono)}
+
+  .loop{margin-top:clamp(46px,7vw,76px); display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark)}
+  .loop__i{padding:24px 19px 25px 0; min-height:172px; position:relative}
+  .loop__i+ .loop__i{padding-left:19px; border-left:1px solid var(--line-dark)}
+  .loop__i .n{font:9px/1 var(--mono); color:var(--yellow)}
+  .loop__i h4{font-size:17px; margin-top:28px}
+  .loop__i p{font-size:10.5px; line-height:1.7; color:rgba(255,255,255,.45); margin-top:7px}
+  .loop__i::after{content:"→"; position:absolute; right:-8px; top:46%; color:var(--yellow); font:13px/1 var(--mono); z-index:2}
+  .loop__i:last-child::after{content:"↺"}
+  .mass{padding:clamp(26px,4vw,40px); margin-top:30px; display:grid; grid-template-columns:1fr 1fr; gap:30px; background:var(--panel-2); border-left:4px solid var(--yellow)}
+  .mass b{display:block; font-size:clamp(24px,3.5vw,38px); line-height:1.2}
+  .mass small{display:block; color:rgba(255,255,255,.5); font-size:11px; margin-top:8px}
+  .mass p{font-size:13px; line-height:1.8; color:rgba(255,255,255,.58); max-width:50ch}
+
+  .events{margin-top:clamp(46px,7vw,72px); border-top:1px solid var(--line)}
+  .event{display:grid; grid-template-columns:110px 1fr 1.15fr; gap:22px; padding:18px 0; border-bottom:1px solid var(--line); align-items:start}
+  .event time{font:10px/1.3 var(--mono); color:var(--hazard)}
+  .event b{font-size:14px; line-height:1.55}
+  .event p{font-size:12px; line-height:1.75; color:var(--muted)}
+  .investors{margin-top:34px; padding:24px; border:1px solid var(--line); background:rgba(255,255,255,.38); display:grid; grid-template-columns:.75fr 1.25fr; gap:25px}
+  .investors h4{font-size:18px}
+  .investors p{font-size:11.5px; line-height:1.85; color:var(--muted)}
+  .investors strong{color:var(--ink)}
+
+  .join{background:var(--ink); color:#fff}
+  .join__in{display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(32px,6vw,78px); align-items:start}
+  .join h2 em{color:var(--cyan)}
+  .join__lead p{margin-top:22px; max-width:38ch; font-size:13px; line-height:1.9; color:rgba(255,255,255,.55)}
+  .contact{display:flex; flex-direction:column; align-items:flex-start; gap:9px; margin-top:28px}
+  .contact a{border:1px solid rgba(255,255,255,.25); min-height:43px; display:inline-flex; align-items:center; padding:0 14px; text-decoration:none; font-size:12px; transition:.2s}
+  .contact a:hover{border-color:var(--cyan); color:var(--cyan)}
+  .contact .primary{background:var(--cyan); color:var(--ink); border-color:var(--cyan); font-weight:700}
+  .jobs{display:grid; grid-template-columns:1fr 1fr; gap:0 32px; border-top:1px solid var(--line-dark)}
+  .job{display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--line-dark); align-items:baseline}
+  .job b{font-size:12.5px; font-weight:520}
+  .job span{font:9px/1.2 var(--mono); color:rgba(255,255,255,.35); white-space:nowrap}
+
+  footer{background:#08090a; color:rgba(255,255,255,.4); padding:36px 0 44px; font-size:10.5px; line-height:1.8}
+  .foot{display:grid; grid-template-columns:1.35fr .65fr; gap:40px}
+  .foot b{color:rgba(255,255,255,.76); font-weight:500}
+  .foot__r{text-align:right}
+  .sources{display:flex; flex-wrap:wrap; gap:8px 15px; margin-top:13px}
+  .sources a{color:rgba(255,255,255,.55); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.2)}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+  .reveal.is-in{opacity:1; transform:none}
+
+  @media (max-width:920px){
+    .nav__links{display:none}
+    .hero{min-height:720px}
+    .hero__code{display:none}
+    .hero__rail-in{grid-template-columns:1fr 1fr}
+    .hero__rail div:nth-child(2){border-right:0}
+    .hero__rail div:nth-child(3){padding-left:0;border-top:1px solid rgba(255,255,255,.15)}
+    .hero__rail div:nth-child(4){border-top:1px solid rgba(255,255,255,.15)}
+    .section-head,.thesis,.motor,.machine,.machine:nth-child(even),.field,.join__in,.foot,.investors{grid-template-columns:1fr}
+    .machine:nth-child(even) .machine__copy{order:0}
+    .machine__fig{min-height:330px; order:0}
+    .motor__visual{min-height:350px}
+    .loop{grid-template-columns:1fr 1fr}
+    .loop__i:nth-child(3){padding-left:0; border-left:0; border-top:1px solid var(--line-dark)}
+    .loop__i:nth-child(4),.loop__i:nth-child(5){border-top:1px solid var(--line-dark)}
+    .loop__i:nth-child(5){grid-column:1/-1; padding-left:0; border-left:0}
+    .loop__i::after{display:none}
+    .mass{grid-template-columns:1fr}
+    .foot__r{text-align:left}
+  }
+  @media (max-width:620px){
+    .brand__tx{font-size:11px}
+    .nav__pill{display:none}
+    .hero__stripe{width:7px}
+    .hero h1{font-size:clamp(44px,13vw,64px)}
+    .hero__rail b{font-size:16px}
+    .factbar{grid-template-columns:1fr}
+    .factbar div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+    .motor__metrics{grid-template-columns:1fr}
+    .motor__metrics div:nth-child(even){padding-left:0;border-left:0}
+    .spec-table .tr{grid-template-columns:1.1fr 1fr}
+    .spec-table .tr span:last-child{display:none}
+    .machine__copy{padding:28px 22px 34px}
+    .machine__fig{min-height:250px}
+    .field__fig img{aspect-ratio:1.2}
+    .loop{grid-template-columns:1fr}
+    .loop__i,.loop__i+ .loop__i{padding:20px 0;border-left:0;border-top:1px solid var(--line-dark)}
+    .loop__i:first-child{border-top:0}
+    .event{grid-template-columns:1fr;gap:6px}
+    .jobs{grid-template-columns:1fr}
+    .job span{white-space:normal}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="页面导航">
+  <div class="nav__in">
+    <a class="brand" href="#top">
+      <span class="brand__mark">A</span>
+      <span class="brand__tx">璇玑动力 ASTRALL<small>EMBODIED POWER SYSTEMS</small></span>
+    </a>
+    <div class="nav__links">
+      <a href="#upstream">动力底座</a>
+      <a href="#motor">AT MOTOR</a>
+      <a href="#machines">机器人</a>
+      <a href="#field">落地场景</a>
+      <a href="#join">加入</a>
+    </div>
+    <span class="nav__pill">SHENZHEN / 2024</span>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <img class="hero__bg" src="assets/t01-field.jpg" width="1920" height="1280" alt="璇玑动力 Hypertron-T01 重载轮足机器人">
+    <div class="hero__shade"></div>
+    <div class="hero__grid"></div>
+    <div class="hero__stripe" aria-hidden="true"></div>
+    <div class="hero__in">
+      <div class="hero__kicker">ASTRALL DYNAMICS / HEAVY-DUTY EMBODIED INTELLIGENCE</div>
+      <h1>璇玑动力<br><span>把重活交给机器。</span></h1>
+      <p class="hero__lede">从轴向磁通电机、一体化关节，到 80kg 负载的重载轮足机器人。<b>先打通动力，再把整机送到电网、消防和特种作业现场。</b></p>
+    </div>
+    <div class="hero__code">HYPERTRON PLATFORM<br>MODEL T01 / SW01<br>POWERED BY AT MOTOR</div>
+    <div class="hero__rail">
+      <div class="hero__rail-in">
+        <div><b>80kg</b><small>最大工作负载</small></div>
+        <div><b>4–8h</b><small>负载 / 空载续航</small></div>
+        <div><b>45°</b><small>最大爬坡角度</small></div>
+        <div><b>IP66</b><small>复杂环境防护</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="upstream">
+    <div class="wrap">
+      <div class="kicker reveal">01 / Power-first Engineering</div>
+      <div class="section-head reveal">
+        <h2>先造心脏，<br><em>再造身体。</em></h2>
+        <p>四足机器人的很多问题，表面上出在步态、控制或算法，根部却卡在动力密度。璇玑动力选择从电机和关节往上做，再把整机推到最苦的现场。</p>
+      </div>
+      <div class="thesis">
+        <div class="thesis__big reveal">把“腿软”<br>变成<span>持续输出。</span></div>
+        <div class="thesis__copy reveal">
+          <p>传统机器人关节在高负载、长时间作业时容易过热和堵转。璇玑动力以<strong>轴向磁通电机</strong>为起点，重构磁场拓扑、定子工艺与转子磁钢结构，在更薄、更轻的盘式体积里换出更高扭矩。</p>
+          <p>再向上集成减速器、双编码器和控制算法，形成一体化关节模组。动力、精度、响应速度不再由不同供应商拼接，而是从设计阶段一起定义。</p>
+          <p>最终落到整机：<strong>Hypertron-T01</strong> 负责重载与极端环境，<strong>Hypertron-SW01</strong> 负责更广泛的行业平台。零部件能力和整机产品形成同一个性能闭环。</p>
+        </div>
+      </div>
+      <div class="factbar reveal">
+        <div><b>2024.06</b><small>公司成立<br>总部深圳宝安</small></div>
+        <div><b>70%+</b><small>高级工程师占比<br>另有 20%+ 博士</small></div>
+        <div><b>全栈</b><small>核心部件到整机<br>研发、量产、交付</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="motor">
+    <div class="wrap">
+      <div class="kicker reveal">02 / The Power Core</div>
+      <div class="section-head reveal">
+        <h2>同样重量，<br><em>输出更狠。</em></h2>
+        <p>AT 系列轴向磁通一体化关节模组，核心不是单个零部件参数，而是把高扭矩、低发热、毫秒级响应和高精度位置反馈压进同一个紧凑体积。</p>
+      </div>
+      <div class="motor reveal">
+        <div class="motor__visual" id="motorVisual">
+          <img src="assets/at-motor.jpg" width="1920" height="1080" alt="璇玑动力 AT 系列轴向磁通电机一体化关节模组">
+          <span class="motor__stamp">AT SERIES / INTEGRATED JOINT MODULE</span>
+        </div>
+        <div class="motor__copy">
+          <h3>AT MOTOR<span>AXIAL FLUX / DUAL ENCODER / HOLLOW SHAFT</span></h3>
+          <p>扁平盘式结构把轴向长度压缩到传统结构的三分之一。高槽满率扁线绕组、SMC 定子和一体化辐射环转子共同换出更高功率密度。</p>
+          <div class="motor__metrics">
+            <div><b>580N·m</b><small>AT1010 峰值扭矩 ±10%</small></div>
+            <div><b>240N·m/kg</b><small>扭矩密度</small></div>
+            <div><b>&lt;5ms</b><small>动态响应时间</small></div>
+            <div><b>17-bit × 2</b><small>电机端 / 负载端双编码器</small></div>
+          </div>
+          <div class="spec-table" aria-label="AT 电机参数摘要">
+            <div class="tr th"><span>PARAMETER</span><span>AT 7510</span><span>AT 1010</span></div>
+            <div class="tr"><span>额定 / 峰值扭矩</span><span>50 / 300 N·m</span><span>104 / 580 N·m</span></div>
+            <div class="tr"><span>重量</span><span>1.9 kg</span><span>2.9 kg</span></div>
+            <div class="tr"><span>防护等级</span><span>IP55</span><span>IP55</span></div>
+            <div class="tr"><span>空心轴过孔</span><span>11 mm</span><span>11 mm</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="machines">
+    <div class="wrap">
+      <div class="kicker reveal">03 / Machine Portfolio</div>
+      <div class="section-head reveal">
+        <h2>不是一台样机，<br><em>是一组能干活的平台。</em></h2>
+        <p>重载机型解决高危、重物、复杂地形；中型平台覆盖更广泛的行业应用。两款产品共用自研动力与关节，但针对不同负载和场景做正向设计。</p>
+      </div>
+      <div class="machines">
+        <article class="machine reveal">
+          <div class="machine__copy">
+            <span class="machine__no">HYPERTRON / 01</span>
+            <h3>T01 重载轮足机器人<span>ALL-TERRAIN HEAVY-DUTY PLATFORM</span></h3>
+            <p>为电力能源、应急消防、园区厂区等高要求场景设计。轮足结构兼顾巡航效率与越障能力，能完成运维巡检、重物运输、应急救援和监控巡逻。</p>
+            <div class="machine__specs">
+              <div><b>80kg</b><small>最大工作负载</small></div>
+              <div><b>200kg</b><small>最大站立负载</small></div>
+              <div><b>90cm</b><small>最大越障高度</small></div>
+              <div><b>−20–55℃</b><small>工作温度</small></div>
+            </div>
+          </div>
+          <figure class="machine__fig">
+            <img src="assets/t01-field.jpg" width="1920" height="1280" alt="Hypertron-T01 重载轮足机器人在 WRC 2026 展示">
+          </figure>
+        </article>
+        <article class="machine reveal">
+          <div class="machine__copy">
+            <span class="machine__no">HYPERTRON / 02</span>
+            <h3>SW01 中型轮足机器人<span>GENERAL-INDUSTRY MOBILITY PLATFORM</span></h3>
+            <p>面向安防巡逻、物流配送、勘探测绘与工业巡检的中型平台。追求负载、续航和灵活机动的平衡，支持自主运行与多功能模块扩展。</p>
+            <div class="machine__specs">
+              <div><b>模块化</b><small>传感器与作业载荷扩展</small></div>
+              <div><b>全地形</b><small>轮式巡航 + 足式越障</small></div>
+              <div><b>自主</b><small>建图、规划、避障、回充</small></div>
+              <div><b>泛行业</b><small>园区、管廊、物流、测绘</small></div>
+            </div>
+          </div>
+          <figure class="machine__fig">
+            <img src="assets/sw01.jpg" width="1920" height="1280" alt="Hypertron-SW01 中型轮足机器人">
+          </figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--yellow" id="field">
+    <div class="wrap">
+      <div class="kicker reveal">04 / Field Operations</div>
+      <div class="section-head reveal">
+        <h2>去人不愿意去，<br><em>或者不该去的地方。</em></h2>
+        <p>真正的量产不是把机器人摆进发布会，而是让它进入变电站、火场外围、化工园区和地下管廊，持续产生可用的巡检数据。</p>
+      </div>
+      <div class="field">
+        <div class="field__list reveal">
+          <div class="field__item"><span>01</span><b>电力运检</b><small>Substation</small></div>
+          <div class="field__item"><span>02</span><b>消防救援</b><small>Fire / Rescue</small></div>
+          <div class="field__item"><span>03</span><b>警务安防</b><small>Patrol</small></div>
+          <div class="field__item"><span>04</span><b>园区厂区</b><small>Industrial Park</small></div>
+          <div class="field__item"><span>05</span><b>建筑管廊</b><small>Tunnel</small></div>
+          <div class="field__item"><span>06</span><b>石油化工</b><small>Oil &amp; Gas</small></div>
+        </div>
+        <figure class="field__fig reveal">
+          <img src="assets/fire-scene.png" width="700" height="480" alt="璇玑动力四足机器人消防应急场景">
+          <figcaption><span>FIRE / RESCUE</span><span>热成像 · 物资搬运 · 危险区穿越</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="production">
+    <div class="wrap">
+      <div class="kicker reveal">05 / From Motor to Fleet</div>
+      <div class="section-head reveal">
+        <h2>研发不是终点，<br><em>量产才是分水岭。</em></h2>
+        <p>从核心零部件到自有产线，璇玑动力把设计、供应链和交付放在同一条链路上。T01 已进入量产，并批量交付头部电网企业投入常态化运行。</p>
+      </div>
+      <div class="loop reveal">
+        <div class="loop__i"><span class="n">01</span><h4>电磁设计</h4><p>轴向磁场、磁路拓扑、盘式结构</p></div>
+        <div class="loop__i"><span class="n">02</span><h4>关节集成</h4><p>电机、减速器、双编码器、驱动</p></div>
+        <div class="loop__i"><span class="n">03</span><h4>运动控制</h4><p>轮足步态、地形感知、稳定控制</p></div>
+        <div class="loop__i"><span class="n">04</span><h4>整机量产</h4><p>结构、工艺、测试、质量一致性</p></div>
+        <div class="loop__i"><span class="n">05</span><h4>场景数据</h4><p>巡检、消防、安防中的真实反馈</p></div>
+      </div>
+      <div class="mass reveal">
+        <div><b>T01 已量产</b><small>工业级重载四足机器人</small></div>
+        <p>产品已批量交付头部电网企业，并投入常态化运行。“研发—量产—落地”不再只是路线图，而是正在运行的交付闭环。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="signals">
+    <div class="wrap">
+      <div class="kicker reveal">06 / Signals</div>
+      <div class="section-head reveal">
+        <h2>两年时间，<br><em>跑完从 0 到交付。</em></h2>
+        <p>从公司成立、产品定义和量产，到产业资本进入与头部电网客户落地，璇玑动力的节奏更像一家硬件产品公司，而不是仍在做样机的实验室团队。</p>
+      </div>
+      <div class="events reveal">
+        <div class="event"><time>2024.06</time><b>深圳璇玑动力成立</b><p>总部落地深圳宝安华丰机器人产业园，团队覆盖算法、电驱、运控、机械、图传和系统工程。</p></div>
+        <div class="event"><time>2025.12</time><b>完成近亿元天使轮</b><p>融资用于重载与轻载机器人量产，同时推进面向 C 端的消费级机器人研发。</p></div>
+        <div class="event"><time>2026</time><b>数亿元 Pre-A 轮</b><p>上汽金控、东方精工等产业资本进入，资金用于产品迭代、新产线和规模化交付。</p></div>
+        <div class="event"><time>2026.08</time><b>T01 实现量产并批量交付</b><p>首款工业级重载四足机器人进入头部电网企业常态化运行，同时亮相 WRC 2026。</p></div>
+      </div>
+      <div class="investors reveal">
+        <h4>产业资本 × 制造资源</h4>
+        <p><strong>上汽金控、东方精工、建银国际、正景资本</strong>等公开报道中的产业投资方，分别对应整车与先进制造、精密制造、产业金融和自动化场景资源。融资信息以公司及投资方正式公告为准。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band join" id="join">
+    <div class="wrap join__in">
+      <div class="join__lead reveal">
+        <div class="kicker">07 / Build the Next Platform</div>
+        <h2>把力量做成产品，<br><em>把产品做进现场。</em></h2>
+        <p>璇玑动力以深圳为主要研发与工程基地，团队来自机器人、无人机、电机和智能制造等硬科技方向。适合愿意把算法真正装进硬件、再把硬件送进现场的人。</p>
+        <div class="contact">
+          <a class="primary" href="mailto:mollytao@yihelietou.com?subject=%E5%BA%94%E8%81%98%E7%92%87%E7%8E%91%E5%8A%A8%E5%8A%9B">发邮件聊机会</a>
+          <a href="weixin://">微信 A-xinyu1011</a>
+          <a href="mailto:mollytao@yihelietou.com">mollytao@yihelietou.com</a>
+        </div>
+      </div>
+      <div class="jobs reveal" aria-label="重点人才方向">
+        <div class="job"><b>具身智能 / VLA 算法</b><span>AI</span></div>
+        <div class="job"><b>运动控制 / 强化学习</b><span>CONTROL</span></div>
+        <div class="job"><b>轴向磁通电机设计</b><span>MOTOR</span></div>
+        <div class="job"><b>一体化关节模组</b><span>ACTUATOR</span></div>
+        <div class="job"><b>嵌入式 / 机器人系统</b><span>SYSTEM</span></div>
+        <div class="job"><b>结构 / 机械设计</b><span>MECHANICAL</span></div>
+        <div class="job"><b>测试 / 质量 / 可靠性</b><span>VALIDATION</span></div>
+        <div class="job"><b>供应链 / 制造工程</b><span>OPERATIONS</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <b>璇玑动力 ASTRALL DYNAMICS · 非官方人才沟通资料页</b><br>
+      页面由猎头 molly 受客户委托整理，不代表璇玑动力官方立场。文字、参数与图片根据公司官网、世界机器人大会展商资料及公开产业报道整理，资料截至 2026-10-30。
+      <div class="sources">
+        <a href="https://astralldynamics.com/" target="_blank" rel="noopener">璇玑动力官网</a>
+        <a href="https://astralldynamics.com/project-Hypertron-T01.html" target="_blank" rel="noopener">Hypertron-T01</a>
+        <a href="https://astralldynamics.com/project-motor.html" target="_blank" rel="noopener">AT MOTOR</a>
+        <a href="https://worldrobotconference.com/expo/company/795.html" target="_blank" rel="noopener">WRC 2026</a>
+      </div>
+    </div>
+    <div class="foot__r">
+      联系猎头 molly<br>
+      微信 A-xinyu1011 ／ mollytao@yihelietou.com
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var progress = document.querySelector('.progress');
+  var nav = document.querySelector('.nav');
+  var bg = document.querySelector('.hero__bg');
+  var motor = document.querySelector('.motor__visual');
+  var ticking = false;
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function onScroll() {
+    var y = window.scrollY || 0;
+    var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    progress.style.width = Math.min(100, y / max * 100) + '%';
+    nav.classList.toggle('solid', y > innerHeight * .72);
+    if (bg && !reduced) bg.style.transform = 'scale(1.04) translate3d(0,' + Math.min(80, y * .07) + 'px,0)';
+    ticking = false;
+  }
+  addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, {passive:true});
+  onScroll();
+
+  if (motor && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    motor.addEventListener('pointermove', function (e) {
+      var r = motor.getBoundingClientRect();
+      motor.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      motor.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.1, rootMargin:'0px 0px -42px'});
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

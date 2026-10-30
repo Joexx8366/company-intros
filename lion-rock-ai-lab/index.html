@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>招商局狮子山人工智能实验室｜让智能进入真实世界</title>
+<meta name="description" content="招商局狮子山人工智能实验室介绍：聚焦具身智能大脑、感知、推理与机器人本体，建设 LiOS 端云协同基础设施，推动机器人进入真实场景。资料整理截至 2026-10-30。">
+<meta property="og:title" content="招商局狮子山人工智能实验室｜让智能进入真实世界">
+<meta property="og:description" content="从云端模型到真实机器人，从 LiOS 到灵卫，一页看懂招商局集团首个自主建设的具身智能研发平台。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2311100e'/%3E%3Cpath d='M7 23V9h5v14H7Zm7 0V9h5l6 14h-5l-1-3h-5l2 3h-2Zm4-7h2l-1-3-1 3Z' fill='%23ff5a1f'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#11100e;
+    --paper:#f3efe6;
+    --paper-2:#e9e3d7;
+    --muted:#6d6a63;
+    --line:#cfc8bb;
+    --line-dark:#34312b;
+    --orange:#ff5a1f;
+    --lime:#d8ff45;
+    --white:#fffdf8;
+    --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"SFMono-Regular","SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased; line-height:1.7; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:99; opacity:.16;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.23'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--orange); color:var(--ink)}
+  a{color:inherit}
+  img{display:block; max-width:100%}
+  .progress{position:fixed; left:0; top:0; height:2px; width:0; background:var(--orange); z-index:110}
+
+  .nav{
+    position:fixed; z-index:100; inset:0 0 auto; height:72px;
+    display:flex; align-items:center; color:var(--white);
+    border-bottom:1px solid rgba(255,255,255,.15);
+    background:linear-gradient(to bottom, rgba(17,16,14,.8), rgba(17,16,14,.06));
+    backdrop-filter:blur(8px);
+    transition:background .3s, border-color .3s, color .3s;
+  }
+  .nav.is-solid{background:rgba(243,239,230,.94); color:var(--ink); border-color:var(--line)}
+  .nav__in{width:min(1240px,92vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0}
+  .brand__mark{
+    width:26px; height:26px; background:var(--orange); display:grid; place-items:center;
+    color:var(--ink); font:800 13px/1 var(--mono); flex:none;
+  }
+  .brand__tx{font-size:13px; font-weight:700; line-height:1.2; white-space:nowrap}
+  .brand__tx small{display:block; margin-top:3px; font:8px/1.2 var(--mono); opacity:.6; letter-spacing:.1em}
+  .nav__links{display:flex; gap:24px; align-items:center}
+  .nav__links a{font-size:12px; text-decoration:none; opacity:.72; transition:opacity .2s}
+  .nav__links a:hover{opacity:1}
+  .nav__status{font:10px/1 var(--mono); letter-spacing:.08em; display:flex; align-items:center; gap:8px; white-space:nowrap}
+  .nav__status::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--lime); box-shadow:0 0 12px var(--lime)}
+
+  .hero{min-height:760px; height:100svh; max-height:1040px; position:relative; overflow:hidden; background:var(--ink); color:var(--white)}
+  .hero__media{
+    position:absolute; inset:-6% 0; width:100%; height:112%; object-fit:cover; object-position:center 43%;
+    filter:brightness(.62) saturate(.7) contrast(1.08);
+    transform:scale(1.04);
+  }
+  .hero__veil{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(90deg, rgba(17,16,14,.94) 0%, rgba(17,16,14,.68) 42%, rgba(17,16,14,.16) 72%, rgba(17,16,14,.5) 100%),
+      linear-gradient(to top, rgba(17,16,14,.95) 0%, transparent 42%);
+  }
+  .hero__grid{
+    position:absolute; inset:0; opacity:.18;
+    background-image:
+      linear-gradient(rgba(255,255,255,.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.14) 1px, transparent 1px);
+    background-size:72px 72px;
+    mask-image:linear-gradient(to bottom, transparent 12%, #000 50%, transparent 100%);
+  }
+  .hero__in{
+    position:relative; z-index:2; width:min(1240px,92vw); height:100%; margin:0 auto;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:116px 0 124px;
+  }
+  .hero__meta{display:flex; align-items:center; gap:12px; font:10px/1.3 var(--mono); letter-spacing:.13em; color:rgba(255,255,255,.62)}
+  .hero__meta::before{content:""; width:28px; height:1px; background:var(--orange)}
+  .hero h1{margin-top:22px; font-size:clamp(44px,7vw,94px); line-height:1.02; font-weight:800; max-width:980px; letter-spacing:0}
+  .hero h1 span{display:block; color:var(--orange)}
+  .hero__lede{margin-top:26px; max-width:620px; font-size:clamp(14px,1.4vw,17px); line-height:1.9; color:rgba(255,255,255,.74)}
+  .hero__lede b{color:var(--white)}
+  .hero__rail{
+    position:absolute; left:0; right:0; bottom:0; z-index:3;
+    border-top:1px solid rgba(255,255,255,.18);
+    background:rgba(17,16,14,.56); backdrop-filter:blur(8px);
+  }
+  .hero__rail-in{width:min(1240px,92vw); margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr)}
+  .hero__rail div{padding:17px 18px 16px 0; border-right:1px solid rgba(255,255,255,.16)}
+  .hero__rail div+div{padding-left:18px}
+  .hero__rail div:last-child{border-right:0}
+  .hero__rail b{display:block; font:600 18px/1.2 var(--mono); color:var(--white)}
+  .hero__rail small{display:block; margin-top:5px; color:rgba(255,255,255,.5); font-size:10.5px; line-height:1.3}
+  .hero__hint{position:absolute; right:4vw; bottom:132px; z-index:3; font:9px/1.5 var(--mono); color:rgba(255,255,255,.45); text-align:right; letter-spacing:.1em}
+
+  .wrap{width:min(1160px,92vw); margin:0 auto}
+  section{position:relative}
+  .band{padding:clamp(68px,10vw,122px) 0}
+  .band--white{background:var(--paper)}
+  .band--dark{background:var(--ink); color:var(--white)}
+  .band--orange{background:var(--orange); color:var(--ink)}
+  .section-kicker{display:flex; align-items:center; gap:13px; font:10px/1.2 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+  .section-kicker::before{content:""; width:24px; height:1px; background:currentColor}
+  .band--dark .section-kicker{color:rgba(255,255,255,.5)}
+  .section-head{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr); gap:clamp(28px,6vw,84px); align-items:end; margin-top:24px}
+  h2{font-size:clamp(32px,5vw,62px); line-height:1.1; font-weight:760; max-width:18ch; letter-spacing:0}
+  h2 em{font-style:normal; color:var(--orange)}
+  .band--dark h2 em{color:var(--lime)}
+  .section-head p{font-size:14px; line-height:1.9; color:var(--muted); max-width:44ch}
+  .band--dark .section-head p{color:rgba(255,255,255,.6)}
+
+  .thesis{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(28px,6vw,84px); margin-top:clamp(44px,7vw,76px); align-items:start}
+  .thesis__quote{font-size:clamp(24px,3.2vw,38px); line-height:1.38; font-weight:600; max-width:18ch}
+  .thesis__quote span{color:var(--orange)}
+  .thesis__copy p{font-size:14px; line-height:1.95; color:var(--muted)}
+  .thesis__copy p+p{margin-top:16px}
+  .thesis__copy strong{color:var(--ink)}
+  .factline{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:clamp(46px,7vw,72px)}
+  .factline div{padding:22px 22px 20px 0}
+  .factline div+div{border-left:1px solid var(--line); padding-left:22px}
+  .factline b{display:block; font-size:clamp(22px,3vw,34px); line-height:1.1}
+  .factline small{display:block; margin-top:8px; font-size:11px; line-height:1.5; color:var(--muted)}
+
+  .ios{margin-top:clamp(48px,7vw,80px); border-top:1px solid var(--line-dark)}
+  .ios__top{display:grid; grid-template-columns:1fr 2fr; border-bottom:1px solid var(--line-dark)}
+  .ios__title{padding:26px 26px 30px 0}
+  .ios__title h3{font-size:clamp(25px,3.6vw,42px); line-height:1.15}
+  .ios__title p{margin-top:12px; color:rgba(255,255,255,.55); font-size:12px; max-width:24ch}
+  .ios__layers{display:grid; grid-template-columns:repeat(3,1fr)}
+  .layer{padding:26px; border-left:1px solid var(--line-dark); min-height:230px}
+  .layer__id{font:10px/1 var(--mono); color:var(--orange)}
+  .layer h4{font-size:18px; margin-top:30px}
+  .layer p{margin-top:12px; color:rgba(255,255,255,.55); font-size:12.5px; line-height:1.8}
+  .layer ul{list-style:none; margin-top:16px; display:grid; gap:5px}
+  .layer li{font:10.5px/1.5 var(--mono); color:rgba(255,255,255,.52)}
+  .layer li::before{content:"↳ "; color:var(--lime)}
+  .loop{display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--line-dark)}
+  .loop div{padding:22px 24px}
+  .loop div+div{border-left:1px solid var(--line-dark)}
+  .loop b{display:block; font:600 25px/1.1 var(--mono); color:var(--white)}
+  .loop small{display:block; margin-top:8px; color:rgba(255,255,255,.48); font-size:11px; line-height:1.5}
+  .ios__note{display:grid; grid-template-columns:1fr 1fr; gap:60px; padding-top:24px; color:rgba(255,255,255,.46); font-size:11px; line-height:1.8}
+  .ios__note b{color:var(--lime); font-weight:500}
+
+  .products{margin-top:clamp(46px,7vw,76px); display:grid; gap:1px; background:var(--line); border-top:1px solid var(--line)}
+  .product{display:grid; grid-template-columns:1.05fr .95fr; background:var(--paper)}
+  .product:nth-child(even){grid-template-columns:.95fr 1.05fr}
+  .product__copy{padding:clamp(30px,5vw,58px); display:flex; flex-direction:column; justify-content:center}
+  .product:nth-child(even) .product__copy{order:2}
+  .product__no{font:11px/1 var(--mono); color:var(--orange)}
+  .product h3{font-size:clamp(28px,4.1vw,48px); line-height:1.1; margin-top:18px}
+  .product h3 span{display:block; font-size:.36em; margin-top:10px; color:var(--muted); font-weight:500}
+  .product p{font-size:14px; line-height:1.9; color:var(--muted); margin-top:22px; max-width:47ch}
+  .product__specs{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+  .product__specs span{font:10px/1 var(--mono); border:1px solid var(--line); padding:8px 9px; background:rgba(255,255,255,.3)}
+  .product__fig{min-height:360px; background:var(--ink); overflow:hidden; position:relative}
+  .product__fig img{width:100%; height:100%; object-fit:cover; filter:saturate(.76) contrast(1.08); transition:transform .8s cubic-bezier(.2,.75,.2,1)}
+  .product:hover .product__fig img{transform:scale(1.035)}
+  .product__fig figcaption{position:absolute; left:14px; bottom:12px; padding:6px 8px; background:rgba(17,16,14,.76); color:rgba(255,255,255,.65); font:9px/1.2 var(--mono)}
+
+  .flow{margin-top:clamp(46px,7vw,78px); border-top:1px solid var(--line)}
+  .flow__row{display:grid; grid-template-columns:90px 1fr 1.1fr; gap:24px; padding:22px 0; border-bottom:1px solid var(--line); align-items:baseline}
+  .flow__n{font:11px/1 var(--mono); color:var(--orange)}
+  .flow__name{font-size:clamp(20px,2.8vw,30px); font-weight:650}
+  .flow__desc{font-size:13px; line-height:1.8; color:var(--muted); max-width:56ch}
+  .flow__arrow{font:12px/1 var(--mono); color:var(--orange); margin-left:8px}
+
+  .bench{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,6vw,84px); margin-top:clamp(44px,7vw,72px); align-items:start}
+  .bench__lead{font-size:clamp(26px,4vw,44px); line-height:1.32; font-weight:650; max-width:16ch}
+  .bench__lead span{color:var(--orange)}
+  .timeline{border-top:1px solid var(--line)}
+  .event{display:grid; grid-template-columns:86px 1fr 1fr; gap:18px; padding:19px 0; border-bottom:1px solid var(--line); align-items:start}
+  .event time{font:10px/1.3 var(--mono); color:var(--orange)}
+  .event b{font-size:13px; line-height:1.55}
+  .event p{font-size:12px; line-height:1.65; color:var(--muted)}
+
+  .join{background:var(--ink); color:var(--white); overflow:hidden}
+  .join__in{display:grid; grid-template-columns:.72fr 1.28fr; gap:clamp(28px,5vw,66px); align-items:start}
+  .join__title{position:sticky; top:110px}
+  .join h2{max-width:9ch}
+  .join__title p{margin-top:22px; max-width:38ch; font-size:13px; line-height:1.9; color:rgba(255,255,255,.55)}
+  .contact{margin-top:32px; display:flex; flex-direction:column; gap:9px; align-items:flex-start}
+  .contact a{display:inline-flex; align-items:center; min-height:42px; padding:0 14px; border:1px solid rgba(255,255,255,.26); text-decoration:none; font-size:12px; transition:.2s}
+  .contact a:hover{border-color:var(--lime); color:var(--lime)}
+  .contact .primary{background:var(--lime); border-color:var(--lime); color:var(--ink); font-weight:700}
+  .jobs{border-top:1px solid var(--line-dark)}
+  .job{display:grid; grid-template-columns:1fr auto; gap:20px; padding:17px 0; border-bottom:1px solid var(--line-dark); align-items:center}
+  .job b{font-size:13.5px; font-weight:550}
+  .job span{font:9.5px/1.2 var(--mono); color:rgba(255,255,255,.45); white-space:nowrap}
+  .job:hover b{color:var(--lime)}
+  .job-groups{display:grid; grid-template-columns:1fr 1fr; gap:0 34px}
+  .job-group__title{margin:23px 0 10px; font:10px/1 var(--mono); color:var(--orange)}
+  .job-group__title:first-child{margin-top:0}
+
+  footer{background:#0a0908; color:rgba(255,255,255,.4); padding:36px 0 42px; font-size:10.5px; line-height:1.8}
+  .foot{display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:end}
+  .foot b{color:rgba(255,255,255,.78); font-weight:500}
+  .foot__r{text-align:right}
+  .src-links{display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:13px}
+  .src-links a{text-decoration:none; color:rgba(255,255,255,.54); border-bottom:1px solid rgba(255,255,255,.2)}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1)}
+  .reveal.is-in{opacity:1; transform:none}
+
+  @media (max-width:900px){
+    .nav__links{display:none}
+    .hero{min-height:720px}
+    .hero__in{padding-bottom:122px}
+    .hero__rail-in{grid-template-columns:1fr 1fr}
+    .hero__rail div:nth-child(2){border-right:0}
+    .hero__rail div:nth-child(3),.hero__rail div:nth-child(4){border-top:1px solid rgba(255,255,255,.16)}
+    .hero__rail div:nth-child(3){padding-left:0}
+    .hero__hint{display:none}
+    .section-head,.thesis,.bench,.join__in,.foot{grid-template-columns:1fr}
+    .ios__top{grid-template-columns:1fr}
+    .ios__title{border-bottom:1px solid var(--line-dark); padding-right:0}
+    .ios__layers{grid-template-columns:1fr}
+    .layer{border-left:0; border-top:1px solid var(--line-dark); min-height:0}
+    .loop{grid-template-columns:1fr 1fr}
+    .loop div:nth-child(3){border-left:0; border-top:1px solid var(--line-dark)}
+    .loop div:nth-child(4){border-top:1px solid var(--line-dark)}
+    .ios__note,.job-groups{grid-template-columns:1fr}
+    .product,.product:nth-child(even){grid-template-columns:1fr}
+    .product__copy,.product:nth-child(even) .product__copy{order:2}
+    .product__fig{min-height:300px; order:1}
+    .join__title{position:static}
+    .foot__r{text-align:left}
+  }
+  @media (max-width:620px){
+    .brand__tx{font-size:11px}
+    .nav__status{display:none}
+    .hero h1{font-size:clamp(40px,12vw,60px)}
+    .hero__lede{max-width:92%}
+    .hero__rail b{font-size:15px}
+    .factline,.flow__row,.event{grid-template-columns:1fr}
+    .factline div+div{border-left:0; border-top:1px solid var(--line); padding-left:0}
+    .flow__row{gap:8px}
+    .event{gap:7px}
+    .product__copy{padding:30px 24px 36px}
+    .product__fig{min-height:240px}
+    .job{grid-template-columns:1fr}
+    .job span{white-space:normal}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important; animation:none!important}
+    .reveal{opacity:1; transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="页面导航">
+  <div class="nav__in">
+    <a class="brand" href="#top">
+      <span class="brand__mark">狮</span>
+      <span class="brand__tx">招商局狮子山人工智能实验室<small>LION ROCK AI LAB</small></span>
+    </a>
+    <div class="nav__links">
+      <a href="#thesis">研究命题</a>
+      <a href="#lios">LiOS</a>
+      <a href="#products">产品</a>
+      <a href="#evidence">成果</a>
+      <a href="#join">加入</a>
+    </div>
+    <span class="nav__status">HONG KONG × SHENZHEN</span>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <img class="hero__media" src="assets/hero-wrc.webp" width="1080" height="810" alt="招商局狮子山人工智能实验室在 2026 世界机器人大会展示具身智能成果">
+    <div class="hero__veil"></div>
+    <div class="hero__grid"></div>
+    <div class="hero__in">
+      <div class="hero__meta">CHINA MERCHANTS GROUP / EMBODIED AI / EST. 2024</div>
+      <h1>让智能<br><span>进入真实世界。</span></h1>
+      <p class="hero__lede">招商局集团首个自主建设的具身智能研发平台。以 <b>Data × Model × System × Product</b> 为路径，把云端大模型、端侧机器人与真实场景连成一个持续进化的闭环。</p>
+    </div>
+    <div class="hero__hint">SCROLL TO EXPLORE<br>HONG KONG SCIENCE PARK</div>
+    <div class="hero__rail">
+      <div class="hero__rail-in">
+        <div><b>2024.09</b><small>香港科学园揭牌</small></div>
+        <div><b>HK × SZ</b><small>香港研发 · 深圳工程</small></div>
+        <div><b>ICRA 2026</b><small>LeHome Challenge 全球第一</small></div>
+        <div><b>IROS 2026</b><small>VLA 论文入选 P0 必读</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--white" id="thesis">
+    <div class="wrap">
+      <div class="section-kicker reveal">01 / Research Thesis</div>
+      <div class="section-head reveal">
+        <h2>真正困难的，不是让机器人<em>动起来</em>。</h2>
+        <p>而是让它在褶皱、误差、长尾状态和不断变化的环境里，持续做对一件事。实验室围绕“机器人 × 智能体”两条主线，把数据、模型、系统和产品放在同一张工程地图上。</p>
+      </div>
+      <div class="thesis">
+        <div class="thesis__quote reveal">“将智能赋予机器，<br>把温暖送给<span>人类</span>。”</div>
+        <div class="thesis__copy reveal">
+          <p>实验室聚焦<strong>具身大小脑、具身感知、具身推理、四足与人形本体</strong>等前沿方向，目标不是制造一次性演示，而是形成可迁移、可部署、可持续学习的能力底座。</p>
+          <p>总部位于香港科学园，同时联动深圳工程与产业资源。香港承接前沿研发与国际人才，深圳承接系统集成、硬件迭代与场景验证，形成一条短反馈的具身智能创新链。</p>
+          <p>这也是招商局“第三次创业”在科技侧的落点：把百年产业场景，转化为机器人能够学习、验证和规模化的真实数据场。</p>
+        </div>
+      </div>
+      <div class="factline reveal">
+        <div><b>01</b><small>招商局首个自主建设的<br>具身智能研发平台</small></div>
+        <div><b>02</b><small>香港 × 深圳双城协同<br>研发与工程并行</small></div>
+        <div><b>03</b><small>机器人 × 智能体<br>两条核心技术主线</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="lios">
+    <div class="wrap">
+      <div class="section-kicker reveal">02 / LiOS Infrastructure</div>
+      <div class="section-head reveal">
+        <h2>不是一个模型，<br><em>是一整套物理 AI 操作系统。</em></h2>
+        <p>LiOS 把云端训练、端侧运行和端云协同纳入统一基础设施。模型能力向上扩展，机器人执行保持实时、安全，失败数据再回流成下一轮训练资产。</p>
+      </div>
+      <div class="ios reveal">
+        <div class="ios__top">
+          <div class="ios__title">
+            <h3>LiOS</h3>
+            <p>Embodied intelligence, from cloud to action.</p>
+          </div>
+          <div class="ios__layers">
+            <div class="layer">
+              <span class="layer__id">01 / CLOUD</span>
+              <h4>规模扩展</h4>
+              <p>多模态训练与推理优化、数据湖仓、高并发仿真评估，支撑百亿参数模型与 VLA / WAM / WM 基座构建。</p>
+              <ul><li>Distributed training</li><li>Data lakehouse</li><li>Simulation eval</li></ul>
+            </div>
+            <div class="layer">
+              <span class="layer__id">02 / RUNTIME</span>
+              <h4>真实执行</h4>
+              <p>统一接入异构本体、传感器、末端执行器和边缘算力，在严格实时边界内完成同步、控制、安全与恢复。</p>
+              <ul><li>Sensor sync</li><li>Motion control</li><li>Safe takeover</li></ul>
+            </div>
+            <div class="layer">
+              <span class="layer__id">03 / LOOP</span>
+              <h4>端云闭环</h4>
+              <p>用低延迟图传把现场状态送入云端，支撑推理、遥操作和数据回流，让每次失败都变成下一版模型的输入。</p>
+              <ul><li>WebRTC / GStreamer</li><li>Real2Sim</li><li>Data flywheel</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="loop">
+          <div><b>5×</b><small>训练吞吐效率提升<br>分布式并行与算子优化</small></div>
+          <div><b>4×</b><small>仿真评测效率提升<br>并行化环境重构</small></div>
+          <div><b>~30ms</b><small>本地相机到云端显存<br>单向端到端延迟</small></div>
+          <div><b>26.8%</b><small>VLA 空间泛化最高提升<br>混合动态数据方案</small></div>
+        </div>
+        <div class="ios__note">
+          <span><b>Cloud:</b> Qwen3-VL、Wan2.2、DINOv3、V-JEPA-2 等基座之上，构建具身基础模型。</span>
+          <span><b>Edge:</b> Real-time Chunking 把大模型生成的动作转成可实时执行的序列。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--white" id="products">
+    <div class="wrap">
+      <div class="section-kicker reveal">03 / Products in the Real World</div>
+      <div class="section-head reveal">
+        <h2>技术最终要落到<br><em>具体的任务上。</em></h2>
+        <p>一条线解决开放环境中的柔性操作，一条线进入园区与楼宇做长期巡检。前者验证通用能力，后者验证产品化与运营闭环。</p>
+      </div>
+      <div class="products">
+        <article class="product reveal">
+          <div class="product__copy">
+            <span class="product__no">PRODUCT / 01</span>
+            <h3>双臂柔性操作<span>General-purpose dexterity</span></h3>
+            <p>面对成团、缠绕、褶皱的衣物，系统自主完成识别、展平、折叠、递送与装袋。LiOS 统一不同双臂平台的接入、任务编排与执行，一台机器人学会的动作，可以迁移到另一台本体。</p>
+            <div class="product__specs"><span>多本体适配</span><span>长程任务</span><span>接触力控</span><span>状态恢复</span></div>
+          </div>
+          <figure class="product__fig">
+            <img src="assets/fold-task.webp" width="1080" height="810" alt="招商局狮子山人工智能实验室双臂机器人柔性衣物折叠任务">
+            <figcaption>图源：招商局狮子山人工智能实验室 / 量子位公开报道</figcaption>
+          </figure>
+        </article>
+        <article class="product reveal">
+          <div class="product__copy">
+            <span class="product__no">PRODUCT / 02</span>
+            <h3>灵卫·智能巡检<span>Urban inspection, always on</span></h3>
+            <p>“机器人本体 + 智能巡检背包 + AI 中枢平台”一体化方案，融合视觉、激光雷达、红外热成像与自主导航，面向产业园区、商业楼宇等场景执行 7×24 小时巡检。</p>
+            <div class="product__specs"><span>多模态感知</span><span>自主避障</span><span>多机协同</span><span>风险预警</span></div>
+          </div>
+          <figure class="product__fig">
+            <img src="assets/lingwei-inspection.jpg" width="1702" height="1276" alt="灵卫智能巡检机器人产品现场展示">
+            <figcaption>图源：招商局狮子山人工智能实验室 / 智东西公开报道</figcaption>
+          </figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--white" id="path" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-kicker reveal">04 / Production Path</div>
+      <div class="section-head reveal">
+        <h2>从数据到产品，<br><em>一条完整的飞轮。</em></h2>
+        <p>实验室的核心方法不是单点算法，而是把研究、系统和场景组织成一条可持续迭代的工程链路。</p>
+      </div>
+      <div class="flow reveal">
+        <div class="flow__row"><span class="flow__n">01</span><span class="flow__name">DATA <span class="flow__arrow">→</span></span><span class="flow__desc">真机数据、仿真合成、Real2Sim 遥操作与失败样本共同构成数据资产，持续覆盖长尾状态。</span></div>
+        <div class="flow__row"><span class="flow__n">02</span><span class="flow__name">MODEL <span class="flow__arrow">→</span></span><span class="flow__desc">在 VLA、WAM、世界模型等架构上训练具身基础模型，提升感知、推理与动作生成的泛化。</span></div>
+        <div class="flow__row"><span class="flow__n">03</span><span class="flow__name">SYSTEM <span class="flow__arrow">→</span></span><span class="flow__desc">LiOS 统一云侧、端侧与异构本体，把模型输出转化为实时、安全、可恢复的机器人动作。</span></div>
+        <div class="flow__row"><span class="flow__n">04</span><span class="flow__name">PRODUCT <span class="flow__arrow">↺</span></span><span class="flow__desc">叠衣、巡检、四足与人形本体进入真实场景，现场数据再回流，推动下一轮能力升级。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--orange" id="evidence">
+    <div class="wrap">
+      <div class="section-kicker reveal">05 / Evidence</div>
+      <div class="section-head reveal">
+        <h2>看结果。<br><em>也看结果如何产生。</em></h2>
+        <p>从正式揭牌到国际竞赛、顶会论文与真实产品，实验室在不到两年内完成了从组织搭建到技术验证的第一轮闭环。</p>
+      </div>
+      <div class="bench">
+        <div class="bench__lead reveal">不是“实验室里会做”，<br>而是<span>真实世界可复现。</span></div>
+        <div class="timeline reveal">
+          <div class="event"><time>2024.09</time><b>香港科学园揭牌</b><p>招商局集团首个前沿科技研发平台在香港启动，明确香港与深圳双城协同。</p></div>
+          <div class="event"><time>2026.06</time><b>ICRA LeHome Challenge 全球第一</b><p>在真实机器人柔性操作任务中击败多支国际强队，验证 VLA 与系统工程的组合能力。</p></div>
+          <div class="event"><time>2026.08</time><b>WRC 2026 首次集中亮相</b><p>LiOS 端云协同基础设施、双臂叠衣和灵卫智能巡检机器人同时进入公众视野。</p></div>
+          <div class="event"><time>2026.10</time><b>IROS 2026 口头报告</b><p>“运动之眼”论文从 1929 篇录用论文中入选 P0 必读，最高带来 26.8% 性能提升。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band join" id="join">
+    <div class="wrap join__in">
+      <div class="join__title reveal">
+        <div class="section-kicker">06 / Join the Build</div>
+        <h2>和机器一起，<em>进入真实世界。</em></h2>
+        <p>香港做前沿研发，深圳做系统、硬件与工程落地。算法、系统、本体和产品，在同一张桌上迭代。</p>
+        <div class="contact">
+          <a class="primary" href="mailto:mollytao@yihelietou.com?subject=%E5%BA%94%E8%81%98%E7%8B%AE%E5%AD%90%E5%B1%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E9%AA%8C%E5%AE%A4">发邮件聊机会</a>
+          <a href="weixin://">微信 A-xinyu1011</a>
+          <a href="mailto:mollytao@yihelietou.com">mollytao@yihelietou.com</a>
+        </div>
+      </div>
+      <div class="jobs reveal">
+        <div class="job-groups">
+          <div>
+            <div class="job-group__title">RESEARCH / AI</div>
+            <div class="job"><b>AI Agent 工程师</b><span>SHENZHEN</span></div>
+            <div class="job"><b>具身智能大模型算法专家</b><span>SHENZHEN</span></div>
+            <div class="job"><b>具身智能算法工程师</b><span>HONG KONG</span></div>
+            <div class="job"><b>AI 算法研究员</b><span>HONG KONG</span></div>
+            <div class="job"><b>机器人导航建图算法工程师</b><span>HONG KONG</span></div>
+            <div class="job"><b>导航定位工程师</b><span>HONG KONG</span></div>
+          </div>
+          <div>
+            <div class="job-group__title">SYSTEM / HARDWARE</div>
+            <div class="job"><b>机器人本体 / 硬件专家或团队负责人</b><span>HONG KONG</span></div>
+            <div class="job"><b>系统工程师</b><span>HONG KONG</span></div>
+            <div class="job"><b>高级结构工程师</b><span>SHENZHEN</span></div>
+            <div class="job"><b>高级机械工程师</b><span>HONG KONG</span></div>
+            <div class="job"><b>高级 Linux 嵌入式软件工程师</b><span>SHENZHEN</span></div>
+            <div class="job"><b>高级电子硬件工程师</b><span>HONG KONG</span></div>
+            <div class="job"><b>运动控制算法工程师</b><span>SHENZHEN</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <b>招商局狮子山人工智能实验室 · 非官方人才沟通资料页</b><br>
+      页面由猎头 molly 受客户委托整理，不代表实验室或招商局集团官方立场。数据与图片来自招商局集团官网、新华网、量子位、智东西、高校人才网等公开资料。<br>
+      <div class="src-links">
+        <a href="https://www.cmhk.com/main/xwzx/xsgsdt/content/2108467634596737026_2108467634621902850.html" target="_blank" rel="noopener">招商局集团</a>
+        <a href="http://www.news.cn/gangao/20240912/9f1eb0953e83425e8d1c9237471357f4/c.html" target="_blank" rel="noopener">新华网</a>
+        <a href="https://hub.baai.ac.cn/view/57303" target="_blank" rel="noopener">量子位 / 智源社区</a>
+        <a href="https://www.gaoxiaojob.com/announcement/job-list?id=368926" target="_blank" rel="noopener">招聘方向</a>
+      </div>
+    </div>
+    <div class="foot__r">
+      资料整理截至 2026-10-30<br>
+      微信 A-xinyu1011 ／ mollytao@yihelietou.com
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var progress = document.querySelector('.progress');
+  var nav = document.querySelector('.nav');
+  var hero = document.querySelector('.hero__media');
+  var ticking = false;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function updateScroll() {
+    var y = window.scrollY || 0;
+    var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    progress.style.width = Math.min(100, y / max * 100) + '%';
+    nav.classList.toggle('is-solid', y > innerHeight * .72);
+    if (hero && !reduce) hero.style.transform = 'scale(1.04) translate3d(0,' + Math.min(90, y * .085) + 'px,0)';
+    ticking = false;
+  }
+  addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(updateScroll); ticking = true; }
+  }, {passive:true});
+  updateScroll();
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -48px'});
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>亮源新创 Light Origins｜让智能拥有身体</title>
+<meta name="description" content="亮源新创（Light Origins）企业介绍：以规模化预训练、规模化对齐、规模化部署探索 Physical AGI，构建 Light-O1、LightNav-0、Light REACT 与 LightBot 人形机器人。资料整理截至 2026-10-30。">
+<meta property="og:title" content="亮源新创 Light Origins｜让智能拥有身体">
+<meta property="og:description" content="从互联网视频中的人类动作，到跨本体的全身智能。一页看懂亮源新创的 Physical AI 三段范式。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3f1ea'/%3E%3Cpath d='M7 8h5v13h13v5H7V8Z' fill='%230f1113'/%3E%3Ccircle cx='22' cy='10' r='4' fill='%23ff5b37'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#101214;
+    --ink-2:#2e3235;
+    --paper:#f3f1ea;
+    --paper-2:#e8e5dc;
+    --line:#cbc8bf;
+    --line-dark:#35393d;
+    --muted:#6b6d68;
+    --muted-dark:#9ba0a2;
+    --cyan:#38e5dc;
+    --lime:#dfff5a;
+    --coral:#ff5b37;
+    --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"SFMono-Regular","SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:120; opacity:.12;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--cyan); color:var(--ink)}
+  a{color:inherit}
+  img{display:block; max-width:100%}
+  .progress{position:fixed; inset:0 auto auto 0; z-index:130; width:0; height:3px; background:var(--coral)}
+
+  .nav{
+    position:fixed; inset:0 0 auto; z-index:110; height:70px; display:flex; align-items:center;
+    color:#fff; background:linear-gradient(to bottom,rgba(16,18,20,.74),rgba(16,18,20,.04));
+    border-bottom:1px solid rgba(255,255,255,.15); backdrop-filter:blur(9px); transition:.3s ease;
+  }
+  .nav.solid{color:var(--ink); background:rgba(243,241,234,.95); border-color:var(--line)}
+  .nav__in{width:min(1240px,92vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0}
+  .brand__mark{width:29px; height:29px; display:grid; place-items:center; background:var(--paper); color:var(--ink); font:900 14px/1 var(--mono); flex:none}
+  .brand__tx{font-size:14px; font-weight:760; line-height:1.12; white-space:nowrap}
+  .brand__tx small{display:block; margin-top:4px; font:8px/1.2 var(--mono); letter-spacing:.14em; opacity:.55}
+  .nav__links{display:flex; align-items:center; gap:24px}
+  .nav__links a{text-decoration:none; font-size:11.5px; opacity:.7}
+  .nav__links a:hover{opacity:1}
+  .nav__meta{font:9px/1 var(--mono); letter-spacing:.08em; opacity:.58; white-space:nowrap}
+
+  .hero{height:100svh; min-height:750px; max-height:1060px; position:relative; overflow:hidden; background:var(--ink); color:#fff}
+  .hero__bg{position:absolute; inset:-8% 0; width:100%; height:116%; object-fit:cover; object-position:center 22%; filter:brightness(.60) saturate(.64) contrast(1.12)}
+  .hero__veil{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(90deg,rgba(16,18,20,.95) 0%,rgba(16,18,20,.64) 39%,rgba(16,18,20,.1) 69%,rgba(16,18,20,.58) 100%),
+      linear-gradient(to top,rgba(16,18,20,.98) 0%,transparent 48%);
+  }
+  .hero__beam{
+    position:absolute; top:0; bottom:0; left:68%; width:1px; z-index:1;
+    background:linear-gradient(to bottom,transparent,var(--cyan),transparent); opacity:.72;
+    box-shadow:0 0 18px rgba(56,229,220,.7);
+  }
+  .hero__beam::after{content:""; position:absolute; inset:-10% -80px; background:linear-gradient(90deg,transparent,rgba(56,229,220,.12),transparent); filter:blur(14px)}
+  .hero__in{position:relative; z-index:2; width:min(1240px,92vw); height:100%; margin:0 auto; padding:120px 0 130px; display:flex; flex-direction:column; justify-content:flex-end}
+  .hero__kicker{display:flex; align-items:center; gap:12px; font:10px/1.3 var(--mono); letter-spacing:.14em; color:rgba(255,255,255,.58)}
+  .hero__kicker::before{content:""; width:28px; height:1px; background:var(--cyan)}
+  .hero h1{margin-top:22px; max-width:960px; font-size:clamp(48px,7.4vw,98px); line-height:1; font-weight:850}
+  .hero h1 span{display:block; color:var(--cyan)}
+  .hero__lede{margin-top:26px; max-width:660px; font-size:clamp(14px,1.45vw,17px); line-height:1.9; color:rgba(255,255,255,.72)}
+  .hero__lede b{color:#fff}
+  .hero__code{position:absolute; right:4vw; top:120px; z-index:3; color:rgba(255,255,255,.42); text-align:right; font:9px/1.8 var(--mono); letter-spacing:.08em}
+  .hero__rail{position:absolute; inset:auto 0 0; z-index:3; border-top:1px solid rgba(255,255,255,.18); background:rgba(16,18,20,.56); backdrop-filter:blur(8px)}
+  .hero__rail-in{width:min(1240px,92vw); margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr)}
+  .hero__rail div{padding:15px 18px 15px 0; border-right:1px solid rgba(255,255,255,.15)}
+  .hero__rail div+div{padding-left:18px}
+  .hero__rail div:last-child{border-right:0}
+  .hero__rail b{display:block; color:var(--cyan); font:650 19px/1.1 var(--mono)}
+  .hero__rail small{display:block; margin-top:5px; color:rgba(255,255,255,.45); font-size:10px}
+
+  .wrap{width:min(1180px,92vw); margin:0 auto}
+  .band{padding:clamp(70px,10vw,120px) 0; position:relative}
+  .band--paper{background:var(--paper)}
+  .band--dark{background:var(--ink); color:#fff}
+  .band--cyan{background:var(--cyan); color:var(--ink)}
+  .kicker{display:flex; align-items:center; gap:11px; font:10px/1.2 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+  .kicker::before{content:""; width:23px; height:1px; background:currentColor}
+  .band--dark .kicker{color:rgba(255,255,255,.46)}
+  .section-head{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr); gap:clamp(28px,6vw,80px); align-items:end; margin-top:23px}
+  h2{max-width:18ch; font-size:clamp(34px,5.4vw,66px); line-height:1.05; font-weight:830}
+  h2 em{font-style:normal; color:var(--coral)}
+  .band--dark h2 em{color:var(--lime)}
+  .section-head p{max-width:45ch; color:var(--muted); font-size:13.5px; line-height:1.9}
+  .band--dark .section-head p{color:rgba(255,255,255,.54)}
+
+  .thesis{display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(30px,6vw,80px); margin-top:clamp(46px,7vw,76px); align-items:start}
+  .thesis__big{max-width:16ch; font-size:clamp(28px,4vw,49px); line-height:1.3; font-weight:650}
+  .thesis__big span{background:linear-gradient(transparent 68%,var(--lime) 68%)}
+  .thesis__copy p{color:var(--muted); font-size:14px; line-height:1.95}
+  .thesis__copy p+p{margin-top:15px}
+  .thesis__copy b{color:var(--ink)}
+  .founder{display:grid; grid-template-columns:280px 1fr; gap:1px; margin-top:clamp(42px,6vw,68px); border:1px solid var(--line); background:var(--line)}
+  .founder__fig{min-height:340px; overflow:hidden; background:#ddd}
+  .founder__fig img{width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(.82) contrast(1.06)}
+  .founder__copy{padding:clamp(26px,4vw,44px); background:var(--paper)}
+  .founder__copy .role{font:9px/1 var(--mono); color:var(--coral)}
+  .founder__copy h3{font-size:clamp(25px,3.4vw,38px); margin-top:15px}
+  .founder__copy p{font-size:12.5px; line-height:1.9; color:var(--muted); margin-top:15px}
+  .founder__code{display:flex; flex-wrap:wrap; gap:7px; margin-top:20px}
+  .founder__code span{border:1px solid var(--line); padding:7px 9px; font:9px/1 var(--mono)}
+
+  .paradigm{margin-top:clamp(46px,7vw,76px); border-top:1px solid var(--line-dark); display:grid; grid-template-columns:repeat(3,1fr)}
+  .paradigm__i{padding:26px 28px 30px 0; min-height:260px; border-bottom:1px solid var(--line-dark)}
+  .paradigm__i+ .paradigm__i{padding-left:28px; border-left:1px solid var(--line-dark)}
+  .paradigm__n{font:9px/1 var(--mono); color:var(--cyan)}
+  .paradigm__i:nth-child(2) .paradigm__n{color:var(--lime)}
+  .paradigm__i:nth-child(3) .paradigm__n{color:var(--coral)}
+  .paradigm h3{font-size:clamp(23px,3.1vw,34px); margin-top:42px; line-height:1.18}
+  .paradigm h3 span{display:block; margin-top:7px; font:9px/1.2 var(--mono); color:rgba(255,255,255,.4); letter-spacing:.08em}
+  .paradigm p{margin-top:15px; color:rgba(255,255,255,.51); font-size:11.5px; line-height:1.8}
+  .paradigm__out{display:inline-block; margin-top:19px; padding:7px 9px; border:1px solid var(--line-dark); color:var(--cyan); font:9px/1 var(--mono)}
+  .paradigm__i:nth-child(2) .paradigm__out{color:var(--lime)}
+  .paradigm__i:nth-child(3) .paradigm__out{color:var(--coral)}
+
+  .research{margin-top:clamp(46px,7vw,76px); display:grid; gap:1px; background:var(--line); border-top:1px solid var(--line)}
+  .research__item{display:grid; grid-template-columns:1.02fr .98fr; background:var(--paper)}
+  .research__item:nth-child(even){grid-template-columns:.98fr 1.02fr}
+  .research__copy{padding:clamp(28px,5vw,56px); display:flex; flex-direction:column; justify-content:center}
+  .research__item:nth-child(even) .research__copy{order:2}
+  .research__no{font:9px/1 var(--mono); color:var(--coral)}
+  .research h3{font-size:clamp(28px,4.2vw,46px); line-height:1.08; margin-top:16px}
+  .research h3 span{display:block; margin-top:8px; color:var(--muted); font-size:.42em; font-weight:450}
+  .research p{margin-top:19px; color:var(--muted); font-size:13px; line-height:1.9}
+  .research__metrics{display:grid; grid-template-columns:1fr 1fr; margin-top:24px; border-top:1px solid var(--line)}
+  .research__metrics div{padding:14px 0; border-bottom:1px solid var(--line)}
+  .research__metrics div:nth-child(even){padding-left:15px; border-left:1px solid var(--line)}
+  .research__metrics b{display:block; font:650 21px/1.1 var(--mono)}
+  .research__metrics small{display:block; margin-top:5px; font-size:10px; color:var(--muted)}
+  .research__fig{min-height:450px; overflow:hidden; background:#0d0f10}
+  .research__fig img{width:100%; height:100%; object-fit:cover; filter:saturate(.75) contrast(1.08); transition:transform .8s cubic-bezier(.2,.75,.2,1)}
+  .research__item:hover .research__fig img{transform:scale(1.025)}
+
+  .body-band{display:grid; grid-template-columns:1.1fr .9fr; gap:0; margin-top:clamp(46px,7vw,76px); border:1px solid rgba(16,18,20,.24); background:rgba(16,18,20,.08)}
+  .body-band__copy{padding:clamp(28px,5vw,56px); background:var(--cyan)}
+  .body-band h3{font-size:clamp(32px,4.8vw,54px); line-height:1.05}
+  .body-band h3 span{display:block; margin-top:9px; color:rgba(16,18,20,.5); font:10px/1.3 var(--mono); letter-spacing:.1em}
+  .body-band p{margin-top:20px; font-size:13px; line-height:1.9}
+  .specs{display:grid; grid-template-columns:1fr 1fr; margin-top:25px; border-top:1px solid rgba(16,18,20,.3)}
+  .specs div{padding:14px 12px 14px 0; border-bottom:1px solid rgba(16,18,20,.3)}
+  .specs div:nth-child(even){padding-left:14px; border-left:1px solid rgba(16,18,20,.3)}
+  .specs b{display:block; font:650 22px/1 var(--mono)}
+  .specs small{display:block; margin-top:6px; font-size:10px; color:rgba(16,18,20,.57)}
+  .body-band__fig{overflow:hidden; min-height:490px; background:#111}
+  .body-band__fig img{width:100%; height:100%; object-fit:cover; object-position:center 28%}
+
+  .timeline{margin-top:clamp(44px,7vw,72px); border-top:1px solid var(--line)}
+  .event{display:grid; grid-template-columns:110px 1fr 1.15fr; gap:22px; padding:18px 0; border-bottom:1px solid var(--line); align-items:start}
+  .event time{font:10px/1.3 var(--mono); color:var(--coral)}
+  .event b{font-size:14px; line-height:1.55}
+  .event p{font-size:12px; line-height:1.75; color:var(--muted)}
+  .signal-grid{display:grid; grid-template-columns:repeat(3,1fr); margin-top:clamp(44px,7vw,70px); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .signal-grid div{padding:24px 24px 24px 0}
+  .signal-grid div+div{padding-left:24px; border-left:1px solid var(--line)}
+  .signal-grid b{display:block; font-size:clamp(25px,3.5vw,39px); line-height:1}
+  .signal-grid small{display:block; margin-top:9px; color:var(--muted); font-size:11px; line-height:1.55}
+
+  .join{background:var(--ink); color:#fff}
+  .join__in{display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(30px,6vw,78px)}
+  .join h2 em{color:var(--cyan)}
+  .join__lead p{margin-top:20px; max-width:39ch; color:rgba(255,255,255,.54); font-size:13px; line-height:1.9}
+  .contact{display:flex; flex-direction:column; align-items:flex-start; gap:9px; margin-top:27px}
+  .contact a{display:inline-flex; align-items:center; min-height:43px; padding:0 14px; border:1px solid rgba(255,255,255,.24); text-decoration:none; font-size:12px; transition:.2s}
+  .contact a:hover{border-color:var(--cyan); color:var(--cyan)}
+  .contact .primary{background:var(--cyan); color:var(--ink); border-color:var(--cyan); font-weight:700}
+  .jobs{display:grid; grid-template-columns:1fr 1fr; gap:0 34px; border-top:1px solid var(--line-dark)}
+  .job{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:baseline; padding:14px 0; border-bottom:1px solid var(--line-dark)}
+  .job b{font-size:12.5px; font-weight:520}
+  .job span{font:9px/1.2 var(--mono); color:rgba(255,255,255,.34); white-space:nowrap}
+
+  footer{background:#090a0b; color:rgba(255,255,255,.4); padding:36px 0 44px; font-size:10.5px; line-height:1.8}
+  .foot{display:grid; grid-template-columns:1.35fr .65fr; gap:40px}
+  .foot b{color:rgba(255,255,255,.76); font-weight:500}
+  .foot__r{text-align:right}
+  .sources{display:flex; flex-wrap:wrap; gap:8px 15px; margin-top:13px}
+  .sources a{color:rgba(255,255,255,.54); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.2)}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+  .reveal.is-in{opacity:1; transform:none}
+
+  @media (max-width:920px){
+    .nav__links{display:none}
+    .hero__code{display:none}
+    .hero__beam{left:76%}
+    .hero__rail-in{grid-template-columns:1fr 1fr}
+    .hero__rail div:nth-child(2){border-right:0}
+    .hero__rail div:nth-child(3){padding-left:0;border-top:1px solid rgba(255,255,255,.15)}
+    .hero__rail div:nth-child(4){border-top:1px solid rgba(255,255,255,.15)}
+    .section-head,.thesis,.founder,.research__item,.research__item:nth-child(even),.body-band,.join__in,.foot{grid-template-columns:1fr}
+    .research__item:nth-child(even) .research__copy{order:0}
+    .research__fig{min-height:340px}
+    .paradigm{grid-template-columns:1fr}
+    .paradigm__i,.paradigm__i+ .paradigm__i{padding:24px 0 27px; border-left:0; border-top:1px solid var(--line-dark)}
+    .paradigm__i:first-child{border-top:0}
+    .body-band__fig{min-height:360px}
+    .signal-grid{grid-template-columns:1fr}
+    .signal-grid div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+    .foot__r{text-align:left}
+  }
+  @media (max-width:620px){
+    .brand__tx{font-size:11px}
+    .nav__meta{display:none}
+    .hero h1{font-size:clamp(44px,12.8vw,64px)}
+    .hero__rail b{font-size:15px}
+    .founder__fig{min-height:360px}
+    .research__copy{padding:28px 22px 34px}
+    .research__fig{min-height:260px}
+    .body-band__copy{padding:28px 22px 34px}
+    .body-band__fig{min-height:300px}
+    .research__metrics,.specs{grid-template-columns:1fr}
+    .research__metrics div:nth-child(even),.specs div:nth-child(even){padding-left:0;border-left:0}
+    .event{grid-template-columns:1fr;gap:6px}
+    .jobs{grid-template-columns:1fr}
+    .job span{white-space:normal}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="页面导航">
+  <div class="nav__in">
+    <a class="brand" href="#top">
+      <span class="brand__mark">L</span>
+      <span class="brand__tx">亮源新创 Light Origins<small>GENERAL EMBODIED INTELLIGENCE</small></span>
+    </a>
+    <div class="nav__links">
+      <a href="#paradigm">三段范式</a>
+      <a href="#research">技术成果</a>
+      <a href="#lightbot">LightBot</a>
+      <a href="#team">团队</a>
+      <a href="#join">加入</a>
+    </div>
+    <span class="nav__meta">SHENZHEN · SINGAPORE / PHYSICAL AGI</span>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <img class="hero__bg" src="assets/hero-robot.jpg" width="1280" height="1537" alt="亮源新创 LightBot 人形机器人">
+    <div class="hero__veil"></div>
+    <div class="hero__beam"></div>
+    <div class="hero__code">HUMAN ACTION PRIOR<br>MULTIMODAL TOKEN STREAM<br>VISION / LANGUAGE / ACTION</div>
+    <div class="hero__in">
+      <div class="hero__kicker">LIGHT ORIGINS / INTELLIGENCE-FIRST / PHYSICAL AI</div>
+      <h1>亮源新创<br><span>让智能拥有身体。</span></h1>
+      <p class="hero__lede">从互联网视频中的人类动作学习，再迁移到不同机器人本体。<b>先把“行动”压缩成智能，再让智能进入真实世界。</b></p>
+    </div>
+    <div class="hero__rail">
+      <div class="hero__rail-in">
+        <div><b>120B</b><small>最大预训练多模态词元</small></div>
+        <div><b>100k h</b><small>最大一档对应人类动作数据</small></div>
+        <div><b>200k h</b><small>每周视频处理吞吐</small></div>
+        <div><b>90%+</b><small>团队研发人员占比</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="about">
+    <div class="wrap">
+      <div class="kicker reveal">01 / Intelligence-first</div>
+      <div class="section-head reveal">
+        <h2>从压缩语言，<br><em>到压缩行为。</em></h2>
+        <p>亮源新创坚持“智能优先”的路线：不先定义机器人长什么样，而是先解决感知、理解和全身行动如何形成可扩展的通用能力。</p>
+      </div>
+      <div class="thesis">
+        <div class="thesis__big reveal">让机器人从人类经验中，学会<span>怎么行动。</span></div>
+        <div class="thesis__copy reveal">
+          <p>语言模型通过预测下一个词学习知识。亮源新创把同样的思路用于行动：从视频中还原三维人体动作，与语言、视觉观察和动作反馈交错成序列，形成可迁移的<strong>人类动作先验</strong>。</p>
+          <p>这套先验再通过机器人数据适配到不同本体。预训练规模越大，适配后的动作预测损失和全身姿态误差持续下降，呈现清晰的规模化关系。</p>
+          <p>最终目标不是单一动作演示，而是可跨任务、跨环境、跨本体迁移的 <strong>Physical AGI</strong> 底层智能。</p>
+        </div>
+      </div>
+      <div class="founder reveal">
+        <figure class="founder__fig">
+          <img src="assets/founder.jpg" width="768" height="884" alt="亮源新创创始人兼 CEO 姜旭">
+        </figure>
+        <div class="founder__copy">
+          <span class="role">FOUNDER &amp; CEO</span>
+          <h3>姜旭 · Roger Jiang</h3>
+          <p>ChatGPT 核心贡献者，美国马里兰大学物理学博士。2019 年至 2023 年在 OpenAI 参与 InstructGPT、ChatGPT 与 GPT-4 等基础模型研发，是 RLHF 与 8-bit 训练推理算法的核心研究者之一。</p>
+          <div class="founder__code">
+            <span>UMD PHYSICS PHD</span><span>OPENAI 2019–2023</span><span>GPT-4 CONTRIBUTOR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="paradigm">
+    <div class="wrap">
+      <div class="kicker reveal">02 / Three Scaling Paradigms</div>
+      <div class="section-head reveal">
+        <h2>预训练、对齐、部署，<br><em>接成同一个飞轮。</em></h2>
+        <p>亮源新创提出的三段范式不是三个孤立项目，而是一条从数据到能力、从能力到真实反馈的连续路径。</p>
+      </div>
+      <div class="paradigm reveal">
+        <div class="paradigm__i">
+          <span class="paradigm__n">01 / PRE-TRAINING</span>
+          <h3>规模化预训练<span>SCALABLE PRE-TRAINING</span></h3>
+          <p>从互联网规模的人类视频中恢复动作，以自回归 Transformer 压缩可迁移的行动先验。</p>
+          <span class="paradigm__out">LIGHT-O1</span>
+        </div>
+        <div class="paradigm__i">
+          <span class="paradigm__n">02 / ALIGNMENT</span>
+          <h3>规模化对齐<span>SCALABLE ALIGNMENT</span></h3>
+          <p>用 Real2Sim2Real 将真实场景变成可复用的仿真资产，合成跨本体、跨任务的具身经验。</p>
+          <span class="paradigm__out">LIGHTNAV-0</span>
+        </div>
+        <div class="paradigm__i">
+          <span class="paradigm__n">03 / DEPLOYMENT</span>
+          <h3>规模化部署<span>SCALABLE DEPLOYMENT</span></h3>
+          <p>让机器人在受扰、受损或环境受限时利用交互历史自主适应，减少人工救援与任务中断。</p>
+          <span class="paradigm__out">LIGHT REACT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="research">
+    <div class="wrap">
+      <div class="kicker reveal">03 / Research Outputs</div>
+      <div class="section-head reveal">
+        <h2>三项成果，<br><em>打通一条完整链路。</em></h2>
+        <p>Light-O1 学行动，LightNav-0 学空间对齐，Light REACT 学在真实世界继续活下去。三者共同构成从预训练到部署的技术骨架。</p>
+      </div>
+      <div class="research">
+        <article class="research__item reveal">
+          <div class="research__copy">
+            <span class="research__no">MODEL / 01</span>
+            <h3>Light-O1<span>WHOLE-BODY FOUNDATION MODEL</span></h3>
+            <p>从人类动作视频中学习全身先验，再适配到 LightBot 与宇树人形机器人。模型不仅执行固定策略，也能根据语言描述生成丰富的全身行为。</p>
+            <div class="research__metrics">
+              <div><b>79.3%</b><small>RoboCasa GR-1 桌面操作成功率</small></div>
+              <div><b>1472.8</b><small>动作生成 Elo 评分</small></div>
+            </div>
+          </div>
+          <figure class="research__fig">
+            <img src="assets/light-o1-cover-2.jpg" width="1600" height="1200" alt="亮源新创 LightBot 与另一台机器人完成毛巾交接">
+          </figure>
+        </article>
+        <article class="research__item reveal">
+          <div class="research__copy">
+            <span class="research__no">MODEL / 02</span>
+            <h3>LightNav-0<span>GENERAL NAVIGATION BRAIN</span></h3>
+            <p>使用 2,000+ 真实场景构建 Real2Sim2Real 数据引擎，合成 4,000+ 小时视觉—语言—动作经验，实现跨本体的零样本通用导航。</p>
+            <div class="research__metrics">
+              <div><b>10 / 10</b><small>单目公开评测排名第一</small></div>
+              <div><b>4 类本体</b><small>人形、四足、飞行与轮式</small></div>
+            </div>
+          </div>
+          <figure class="research__fig">
+            <img src="assets/sgl-2026-cover.jpg" width="1600" height="1200" alt="亮源新创人形机器人现场展示">
+          </figure>
+        </article>
+        <article class="research__item reveal">
+          <div class="research__copy">
+            <span class="research__no">MODEL / 03</span>
+            <h3>Light REACT<span>RESILIENT HUMANOID CONTROL</span></h3>
+            <p>把跌倒恢复、关节失效、关节锁定与环境约束统一进一个控制策略。机器人以 64 帧交互历史判断身体能力，在模型参数不变的情况下调整全身行为。</p>
+            <div class="research__metrics">
+              <div><b>196</b><small>训练覆盖的受损情形</small></div>
+              <div><b>64 帧</b><small>Transformer 上下文窗口</small></div>
+            </div>
+          </div>
+          <figure class="research__fig">
+            <img src="assets/light-react-cover-2.jpg" width="1600" height="1200" alt="Light REACT 人形机器人在受损状态下调整姿态与运动方式">
+          </figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--cyan" id="lightbot">
+    <div class="wrap">
+      <div class="kicker reveal">04 / Embodiment</div>
+      <div class="section-head reveal">
+        <h2>模型之外，<br><em>还要有一副好身体。</em></h2>
+        <p>LightBot 是算法走向现实的试验平台。小尺寸并不意味着能力被压缩：更高自由度、更轻机身和更强的动态控制，让复杂动作可以在可控成本下反复迭代。</p>
+      </div>
+      <div class="body-band reveal">
+        <div class="body-band__copy">
+          <h3>LightBot-0<span>COMPACT HUMANOID / PARKOUR PLATFORM</span></h3>
+          <p>90cm 级人形机器人，使用单个机载深度策略完成行走、爬楼、跨越与速度翻越。全身策略直接从深度相机、本体感知与速度指令生成动作，不依赖外部动捕、运行时参考或人工切换技能。</p>
+          <div class="specs">
+            <div><b>90 cm</b><small>机器人高度</small></div>
+            <div><b>18.9 kg</b><small>整机重量</small></div>
+            <div><b>21</b><small>驱动关节</small></div>
+            <div><b>50 Hz</b><small>机载控制频率</small></div>
+          </div>
+        </div>
+        <figure class="body-band__fig">
+          <img src="assets/bipedal.jpg" width="900" height="1081" alt="亮源新创双足人形机器人">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--paper" id="team">
+    <div class="wrap">
+      <div class="kicker reveal">05 / Team &amp; Signals</div>
+      <div class="section-head reveal">
+        <h2>高人才密度，<br><em>做长期正确的事。</em></h2>
+        <p>算法团队由 QS Top 20 高校博士与世界级科技公司工程师组成；硬件团队具备华为、大疆等消费级机器人从设计到量产的完整经验。</p>
+      </div>
+      <div class="signal-grid reveal">
+        <div><b>100+</b><small>团队规模<br>研发人员占比超 90%</small></div>
+        <div><b>数亿元</b><small>Pre-A 轮融资<br>国科投资领投</small></div>
+        <div><b>3 地</b><small>北京 · 深圳 · 新加坡<br>全球化研发协作</small></div>
+      </div>
+      <div class="timeline reveal">
+        <div class="event"><time>2024 年底</time><b>亮源新创成立</b><p>由前 OpenAI 算法专家姜旭创办，提出以三段范式探索 Physical AGI。</p></div>
+        <div class="event"><time>2026.08</time><b>完成数亿元 Pre-A 轮</b><p>国科投资领投，招商局创投、襄禾资本等参与，资金用于模型、数据、软硬件平台和团队扩张。</p></div>
+        <div class="event"><time>2026.09</time><b>三项技术成果连续发布</b><p>LightNav-0、Light-O1、Light REACT 分别对应规模化对齐、预训练与部署。</p></div>
+        <div class="event"><time>2026.10</time><b>多本体与真实场景持续验证</b><p>模型已跨 LightBot、宇树 G1、四足、飞行和轮式机器人验证，并进入公共空间部署测试。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band join" id="join">
+    <div class="wrap join__in">
+      <div class="join__lead reveal">
+        <div class="kicker">06 / Build Physical AGI</div>
+        <h2>把人类的动作，<br><em>变成机器的能力。</em></h2>
+        <p>亮源新创在北京、深圳和新加坡设有团队。适合愿意同时面对大规模模型、复杂机器人系统和真实世界不确定性的人。</p>
+        <div class="contact">
+          <a class="primary" href="mailto:mollytao@yihelietou.com?subject=%E5%BA%94%E8%81%98%E4%BA%AE%E6%BA%90%E6%96%B0%E5%88%9B">发邮件聊机会</a>
+          <a href="weixin://">微信 A-xinyu1011</a>
+          <a href="mailto:mollytao@yihelietou.com">mollytao@yihelietou.com</a>
+        </div>
+      </div>
+      <div class="jobs reveal" aria-label="重点人才方向">
+        <div class="job"><b>具身视觉导航大模型</b><span>FOUNDATION MODEL</span></div>
+        <div class="job"><b>多模态大模型 / 模型架构</b><span>AI</span></div>
+        <div class="job"><b>运动控制 / 全身控制</b><span>CONTROL</span></div>
+        <div class="job"><b>强化学习 / 具身智能</b><span>RL</span></div>
+        <div class="job"><b>机器人导航 / 视觉感知</b><span>ROBOTICS</span></div>
+        <div class="job"><b>嵌入式 / 机械 / 云台电控</b><span>HARDWARE</span></div>
+        <div class="job"><b>硬件 / 软件 / AI 产品经理</b><span>PRODUCT</span></div>
+        <div class="job"><b>供应链 / NPI / 智能制造</b><span>OPERATIONS</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <b>亮源新创 Light Origins · 非官方人才沟通资料页</b><br>
+      页面由猎头 molly 受客户委托整理，不代表亮源新创官方立场。资料与图片来自公司官网、官方技术报告和公开融资报道，整理截至 2026-10-30。
+      <div class="sources">
+        <a href="https://www.lightorigins.com/" target="_blank" rel="noopener">亮源新创官网</a>
+        <a href="https://www.lightorigins.com/blog/light-o1" target="_blank" rel="noopener">Light-O1</a>
+        <a href="https://www.lightorigins.com/blog/lightnav-0" target="_blank" rel="noopener">LightNav-0</a>
+        <a href="https://www.lightorigins.com/blog/light-react" target="_blank" rel="noopener">Light REACT</a>
+        <a href="https://news.pedaily.cn/202608/567689.shtml" target="_blank" rel="noopener">融资信息</a>
+      </div>
+    </div>
+    <div class="foot__r">
+      联系猎头 molly<br>
+      微信 A-xinyu1011 ／ mollytao@yihelietou.com
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var progress = document.querySelector('.progress');
+  var nav = document.querySelector('.nav');
+  var bg = document.querySelector('.hero__bg');
+  var ticking = false;
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function update() {
+    var y = window.scrollY || 0;
+    var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    progress.style.width = Math.min(100, y / max * 100) + '%';
+    nav.classList.toggle('solid', y > innerHeight * .72);
+    if (bg && !reduced) bg.style.transform = 'scale(1.04) translate3d(0,' + Math.min(82, y * .072) + 'px,0)';
+    ticking = false;
+  }
+  addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+  update();
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.1, rootMargin:'0px 0px -42px'});
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
