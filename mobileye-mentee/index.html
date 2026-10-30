@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Mobileye × Mentee Robotics｜同一套物理 AI，装进车，也装进身体</title>
+<meta name="description" content="Mobileye 以约 9 亿美元收购人形机器人公司 Mentee Robotics。总部在以色列负责大脑，中国工程中心（上海）负责本体与量产工程。资料整理截至 2026-10-30。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230f1a2e'/><path d='M8 22V13l4 4 4-4v9' stroke='%234d7bff' stroke-width='2.4' fill='none' stroke-linejoin='round'/></svg>">
+<style>
+  :root{
+    --bg:#ffffff; --bg-2:#f6f7fa; --bg-3:#eef1f7;
+    --ink:#0f1a2e; --ink-2:#495468; --ink-3:#8b95a8;
+    --line:#e2e7f0; --line-2:#cfd6e4;
+    --blue:#1c47c9; --blue-2:#4d7bff; --blue-deep:#0a1230;
+    --sans:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",-apple-system,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased; line-height:1.72; overflow-x:hidden;}
+  .wrap{width:min(1080px,90vw); margin:0 auto}
+
+  /* ── hero ── */
+  .hero{background:var(--blue-deep); color:#fff; position:relative; overflow:hidden}
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(90% 120% at 15% 0%, rgba(77,123,255,.22), transparent 60%);
+  }
+  .hero__in{
+    width:min(1080px,90vw); margin:0 auto; position:relative; z-index:2;
+    display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(24px,4vw,48px);
+    align-items:center; padding:clamp(48px,8vh,84px) 0 clamp(44px,7vh,72px);
+  }
+  .eyebrow{
+    display:flex; align-items:center; gap:11px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:rgba(255,255,255,.55);
+    text-transform:uppercase;
+  }
+  .eyebrow i{width:20px; height:1px; background:rgba(255,255,255,.4); display:block}
+  h1{
+    margin-top:22px; font-size:clamp(30px,4.6vw,50px); line-height:1.16;
+    font-weight:800; letter-spacing:-.02em;
+  }
+  h1 em{font-style:normal; color:#7ea0ff}
+  .hero p.lede{
+    margin-top:22px; font-size:15px; line-height:1.9; color:rgba(255,255,255,.72); max-width:50ch;
+  }
+  .hero p.lede b{color:#fff; font-weight:600}
+  .hero__fig{margin:0; border:1px solid rgba(255,255,255,.14); overflow:hidden; height:100%; min-height:300px}
+  .hero__fig img{width:100%; height:100%; object-fit:cover; object-position:center; display:block}
+
+  /* ── stats ── */
+  .stats{
+    list-style:none; display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line); background:var(--bg-2);
+  }
+  .stats li{padding:26px clamp(14px,2vw,26px); border-right:1px solid var(--line)}
+  .stats li:last-child{border-right:0}
+  .stats .v{display:block; font-size:clamp(21px,2.7vw,29px); font-weight:750; letter-spacing:-.025em;
+    color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.2}
+  .stats .v i{font-style:normal; font-size:.46em; color:var(--ink-3); margin-left:4px; font-weight:500}
+  .stats .k{display:block; margin-top:9px; font-size:12px; color:var(--ink-3); line-height:1.6}
+
+  /* ── 章节 ── */
+  section{padding:clamp(50px,8vh,84px) 0; border-top:1px solid var(--line)}
+  .head{display:flex; gap:18px; align-items:baseline; margin-bottom:clamp(24px,4vh,38px); flex-wrap:wrap}
+  .num{font-family:var(--mono); font-size:12px; color:var(--blue); letter-spacing:.12em; padding-top:7px}
+  h2{font-size:clamp(22px,3.1vw,32px); font-weight:750; letter-spacing:-.015em; line-height:1.3}
+  h2 span{color:var(--ink-3); font-weight:400}
+  .cols{display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(24px,4vw,54px)}
+  .cols--even{grid-template-columns:1fr 1fr}
+  p.t{font-size:14.5px; color:var(--ink-2); line-height:1.92}
+  p.t + p.t{margin-top:15px}
+  p.t b{color:var(--ink); font-weight:600}
+
+  dl.kv{margin-top:4px; border-top:1px solid var(--line)}
+  dl.kv div{display:grid; grid-template-columns:96px 1fr; gap:16px; padding:13px 0; border-bottom:1px solid var(--line)}
+  dl.kv dt{font-size:12px; color:var(--ink-3)}
+  dl.kv dd{font-size:13.5px; color:var(--ink-2)}
+  dl.kv dd b{color:var(--ink); font-weight:600}
+
+  /* 参数表 */
+  .spec{margin-top:6px; border-top:1px solid var(--line)}
+  .spec .row{display:grid; grid-template-columns:.9fr 1fr 1.4fr; gap:16px; padding:15px 0;
+    border-bottom:1px solid var(--line); align-items:baseline}
+  .spec .nm{font-size:13.5px; font-weight:650}
+  .spec .nm i{display:block; font-style:normal; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); letter-spacing:.08em; margin-top:4px}
+  .spec .mt{font-family:var(--mono); font-size:12.5px; color:var(--blue); font-variant-numeric:tabular-nums}
+  .spec .ds{font-size:13px; color:var(--ink-2); line-height:1.75}
+
+  /* 对照 */
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line)}
+  .pair > div{background:var(--bg); padding:clamp(20px,3vw,30px)}
+  .pair h3{font-size:15px; font-weight:700; display:flex; align-items:center; gap:9px}
+  .pair h3 span{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--ink-3); font-weight:400}
+  .pair ul{list-style:none; margin-top:14px; font-size:13.5px; color:var(--ink-2)}
+  .pair ul li{position:relative; padding-left:15px; margin-top:10px; line-height:1.7}
+  .pair ul li::before{content:""; position:absolute; left:0; top:.68em; width:5px; height:1px; background:var(--blue-2)}
+
+  /* 图 */
+  figure.shot{margin:0; border:1px solid var(--line); overflow:hidden; background:var(--bg-2)}
+  figure.shot img{width:100%; display:block}
+  figure.shot figcaption{
+    font-family:var(--mono); font-size:10.5px; color:var(--ink-3); letter-spacing:.04em;
+    padding:10px 14px; border-top:1px solid var(--line); display:flex; justify-content:space-between;
+    gap:10px; flex-wrap:wrap; background:var(--bg-2);
+  }
+  .shot--wide{margin-top:clamp(24px,4vh,34px)}
+  .shot--tall img{aspect-ratio:3/4; object-fit:cover; object-position:center 30%}
+
+  /* 分工 */
+  .split{display:grid; grid-template-columns:1fr 300px; gap:clamp(24px,4vw,44px); align-items:start}
+  .duty{margin-top:26px; display:grid; gap:14px}
+  .duty__i{display:grid; grid-template-columns:88px 1fr; gap:16px; padding-top:14px; border-top:1px solid var(--line)}
+  .duty__i .lab{font-size:12.5px; font-weight:700; color:var(--blue)}
+  .duty__i .val{font-size:13.5px; color:var(--ink-2); line-height:1.75}
+
+  /* 岗位 */
+  .roles{list-style:none; margin-top:8px; border-top:1px solid var(--line);
+    display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(20px,3vw,36px)}
+  .roles li{padding:13px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:12px; align-items:baseline}
+  .roles b{font-size:13.5px; font-weight:650}
+  .roles span{font-family:var(--mono); font-size:10.5px; color:var(--ink-3); letter-spacing:.02em; white-space:nowrap}
+
+  .cta{display:flex; gap:13px; flex-wrap:wrap; margin-top:clamp(28px,4vh,38px)}
+  .btn{display:inline-flex; align-items:center; padding:13px 24px; font-size:13.5px; text-decoration:none;
+    border:1px solid var(--line-2); color:var(--ink); transition:.2s; letter-spacing:.02em; background:transparent}
+  .btn:hover{border-color:var(--ink-3); background:var(--bg-2)}
+  .btn--fill{background:var(--blue); color:#fff; border-color:var(--blue); font-weight:650}
+  .btn--fill:hover{background:#1639a5; border-color:#1639a5}
+
+  footer{
+    border-top:1px solid var(--line); padding:clamp(32px,5vh,48px) 0 clamp(28px,4vh,42px);
+    display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    font-size:11.5px; color:var(--ink-3); line-height:1.85;
+  }
+  footer b{color:var(--ink-2); font-weight:600}
+  footer p{max-width:64ch}
+
+  @media (max-width:900px){
+    .hero__in{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .stats li:nth-child(2){border-right:0}
+    .cols,.cols--even,.pair,.roles,.split{grid-template-columns:1fr}
+    .spec .row{grid-template-columns:1fr; gap:6px}
+    .spec .mt{order:-1}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__in">
+    <div>
+      <p class="eyebrow"><i></i>Mobileye × Mentee Robotics<span>Physical AI</span></p>
+      <h1>同一套物理 AI，<br>装进<em>车</em>，也装进<em>身体</em>。</h1>
+      <p class="lede">2026 年 1 月 6 日，Mobileye 宣布以约 <b>9 亿美元</b>收购人形机器人公司 Mentee Robotics。二十年在车上练出来的感知、安全与量产能力，现在要接到两条腿上——总部在以色列做大脑，中国工程中心在上海做本体。</p>
+    </div>
+    <figure class="hero__fig">
+      <img src="assets/hero-mobileye-mentee.jpg" width="1000" height="470" alt="Mobileye 与 Mentee Robotics 双 logo 画面，右侧为 MenteeBot 人形机器人上半身">
+    </figure>
+  </div>
+</header>
+
+<ul class="stats wrap" style="padding-left:0;padding-right:0">
+  <li>
+    <span class="v">9<i>亿美元</i></span>
+    <span class="k">收购对价：6.12 亿现金 + 最多 2620 万股 A 类股</span>
+  </li>
+  <li>
+    <span class="v">245<i>亿美元</i></span>
+    <span class="k">未来八年汽车业务收入 pipeline</span>
+  </li>
+  <li>
+    <span class="v">40<i>DoF</i></span>
+    <span class="k">MenteeBot V3 全身自由度，手部 11 个</span>
+  </li>
+  <li>
+    <span class="v">2028<i>年</i></span>
+    <span class="k">系列量产与商业化目标年份</span>
+  </li>
+</ul>
+
+<div class="wrap">
+
+  <section>
+    <div class="head">
+      <span class="num">01</span>
+      <h2>Mobileye 是谁<span>／从一颗芯片开始的二十年</span></h2>
+    </div>
+    <div class="cols">
+      <div>
+        <p class="t">1999 年在耶路撒冷成立，做的是单一件事：<b>让摄像头加算法看懂路，然后安全地开过去</b>。2017 年 Intel 以 153 亿美元把它买下，2022 年在纳斯达克上市（MBLY），Intel 至今是最大股东。</p>
+        <p class="t">它真正难被替代的地方不在演示视频，在两件事：一是<b>前装量产</b>——EyeQ 芯片 2026 年第三季度单季出货 950 万颗，装在几千万辆车上；二是<b>可验证的安全</b>——RSS（责任敏感安全）这类形式化模型，让「这台机器为什么不会撞人」变成一个能被审计的答案。</p>
+        <p class="t">这两年它的技术栈从「按目标导航」走到了「理解情境、推断意图」。这个转向，恰好是人形机器人最缺的那一块。</p>
+      </div>
+      <div>
+        <dl class="kv">
+          <div><dt>成立</dt><dd>1999 年 · 以色列耶路撒冷</dd></div>
+          <div><dt>上市</dt><dd>2022 年 · 纳斯达克 MBLY</dd></div>
+          <div><dt>最大股东</dt><dd>Intel（2017 年以 153 亿美元收购）</dd></div>
+          <div><dt>2026 Q3 营收</dt><dd><b>4.92 亿美元</b></dd></div>
+          <div><dt>2026 Q3 出货</dt><dd>EyeQ 芯片 950 万颗</dd></div>
+          <div><dt>技术资产</dt><dd>ADAS 前装量产 · REM 众包地图 · RSS 安全模型</dd></div>
+          <div><dt>中国业务</dt><dd>中国车企出海车型的 ADAS 主力供应商之一</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">02</span>
+      <h2>为什么买一家机器人公司<span>／因为难的是同一道题</span></h2>
+    </div>
+    <p class="t" style="max-width:66ch; margin-bottom:clamp(22px,3.5vh,32px)">自动驾驶和人形机器人表面上两个行业，底层是一套东西：在一个为人设计的世界里，可靠地感知、推断意图、做出决策，并且证明它安全。Mobileye 的说法是——两边共享同一个物理 AI 栈。</p>
+    <div class="pair">
+      <div>
+        <h3>车<span>Autonomous Driving</span></h3>
+        <ul>
+          <li>多模态感知与实时环境建模</li>
+          <li>意图感知的规划与决策</li>
+          <li>严格的安全要求与形式化验证（RSS）</li>
+          <li>边缘算力上跑模型，算力与功耗都是硬约束</li>
+          <li>经济上可规模化的量产交付</li>
+        </ul>
+      </div>
+      <div>
+        <h3>人形机器人<span>Humanoid</span></h3>
+        <ul>
+          <li>同一套感知与场景理解，但要在三维空间里动手</li>
+          <li>同一套意图推断，对象变成人、物和共享空间</li>
+          <li>需要更高一级的可验证安全——人就在旁边</li>
+          <li>同样受限于端侧算力与实时性</li>
+          <li>同样要过「成本能不能撑住量产」这一关</li>
+        </ul>
+      </div>
+    </div>
+    <p class="t" style="margin-top:22px">收购之后 Mentee 作为独立单元在 Mobileye 内部运营。Amnon Shashua 在 CES 2026 上说这是「Mobileye 3.0」的开端——话说得轻，但意思明确：车是第一条产品线，不是终点。</p>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">03</span>
+      <h2>Mentee 是什么<span>／四年，四代，不靠遥操作</span></h2>
+    </div>
+    <div class="cols">
+      <div>
+        <p class="t">2022 年成立的以色列公司，2024 年 4 月首秀 MenteeBot。三个人撑起了它的技术骨架：<b>Amnon Shashua</b>（董事长、联合创始人，Mobileye 创始人兼 CEO）、<b>Lior Wolf</b>（CEO，前 Facebook AI 研究总监）、<b>Shai Shalev-Shwartz</b>（CTO，同时是 Mobileye CTO）。</p>
+        <p class="t">它的路线和主流有分歧：<b>不靠大规模真机采数，也不靠人远程接管</b>。核心是人教（mentoring）——人示范一遍，模型在仿真里把这一遍扩成百万次变体，再用 RL 把动作磨出来。仿真和真机之间的差距（Sim2Real gap）靠自研硬件压到最小。</p>
+        <p class="t">硬件是垂直整合的：自研执行器（高扭矩密度、小体积）、精密电机驱动、带触觉的机械手、热插拔电池。这四样都自己做，目的不是炫技，是让仿真里的参数和真机上的参数对得上。</p>
+      </div>
+      <div>
+        <div class="spec">
+          <div class="row">
+            <span class="nm">机身<i>V3.0</i></span>
+            <span class="mt">1.75 m / 70 kg</span>
+            <span class="ds">全尺寸人形，负载 25 公斤，移动速度 1.5 米/秒</span>
+          </div>
+          <div class="row">
+            <span class="nm">自由度<i>DoF</i></span>
+            <span class="mt">40 / 手 11</span>
+            <span class="ds">全身 40 个自由度，单手掌内 11 个，指尖夹持力 30N</span>
+          </div>
+          <div class="row">
+            <span class="nm">感知<i>Perception</i></span>
+            <span class="mt">360° 深度相机</span>
+            <span class="ds">配 NeRF 类实时三维建图与定位</span>
+          </div>
+          <div class="row">
+            <span class="nm">续航<i>Battery</i></span>
+            <span class="mt">3 h+ / 热插拔</span>
+            <span class="ds">换电不停机，支撑 24 小时连续作业</span>
+          </div>
+          <div class="row">
+            <span class="nm">任务层<i>Agentic AI</i></span>
+            <span class="mt">VLM + 策略</span>
+            <span class="ds">视觉语言模型拆任务，专用策略执行技能序列，最后自己验证是否完成</span>
+          </div>
+          <div class="row">
+            <span class="nm">当前进度<i>2026 Q3</i></span>
+            <span class="mt">V3.2 在跑</span>
+            <span class="ds">V4 进入设计收尾，production-ready 架构，由 AI 与硬件的双向反馈塑形</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="shot shot--wide">
+      <img src="assets/mentee-warehouse.jpg" width="1200" height="673" alt="MenteeBot 在真实仓库环境里搬蓝色料箱，画面叠着感知、导航与动作的执行日志，左上角是视觉识别的绿框插图">
+      <figcaption><span>真机作业：识别料箱 → 导航 → 抓取，全程无遥操作</span><span>图源：Mobileye 官方新闻稿</span></figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">04</span>
+      <h2>一个大脑，两副身体<span>／为什么本体放在中国</span></h2>
+    </div>
+    <div class="split">
+      <div>
+        <p class="t">Mentee 的组织切分很清楚：<b>以色列总部做大脑，中国工程中心做本体</b>。前者管世界模型、仿真管线、强化学习策略；后者管结构、执行器、电控、嵌入式、装配工艺和供应链。</p>
+        <p class="t">这个分工不是成本考虑，是能力分布。人形机器人的硬件迭代速度，取决于你今天能不能在两三天内拿到一批改过的零件——<b>国内供应链生态完整，零部件可选面宽，价格和交付周期都优于海外</b>。本体放在离供应链最近的地方，迭代循环才转得动。</p>
+        <p class="t">另一个前提是：这家公司<b>不自建工厂</b>。所以真正决定量产节奏的，不是产能，是工艺设计能力和供应商管理能力——把装配流程、工装、线平衡、质量验证点设计出来，交给合作产线去跑。</p>
+
+        <div class="duty">
+          <div class="duty__i">
+            <span class="lab">以色列</span>
+            <span class="val">大脑：世界模型、仿真优先训练管线、RL 策略、VLA、少样本泛化</span>
+          </div>
+          <div class="duty__i">
+            <span class="lab">上海</span>
+            <span class="val">本体：整机架构、关节执行器、电控与嵌入式、装配工艺、供应链与采购</span>
+          </div>
+          <div class="duty__i">
+            <span class="lab">协作方式</span>
+            <span class="val">中国工程中心有独立开发核心产品的自主权，团队直接对接总部研发负责人与科学家，决策链短；同时共享 Mobileye 的 AI 训练基础设施</span>
+          </div>
+          <div class="duty__i">
+            <span class="lab">团队</span>
+            <span class="val">全球百人量级；中国团队由具备国家级人形机器人创新中心背景的负责人带队（据内部了解）</span>
+          </div>
+        </div>
+
+        <p class="t" style="margin-top:24px">这条路线的赌注押在「本体迭代速度」上。谁能把改一版关节的时间从三个月压到两周，谁就先撞到下一个能力台阶。</p>
+      </div>
+
+      <figure class="shot shot--tall">
+        <img src="assets/menteebot-front.jpg" width="720" height="1151" alt="MenteeBot 人形机器人正面全身照，深灰机身配紫色关节外壳，背景为粉紫色渐变">
+        <figcaption><span>MenteeBot V3</span><span>图源：Mobileye 官方</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="num">05</span>
+      <h2>上海在招<span>／11 个方向，从关节到产线</span></h2>
+    </div>
+    <p class="t" style="max-width:66ch">中国工程中心正在从 0 到 1 搭下一代全尺寸人形的本体团队。下面是已公开发布的岗位方向，具体职级与薪酬带宽单独聊。</p>
+
+    <ul class="roles">
+      <li><b>机器人研发负责人 / 系统架构师</b><span>R&amp;D</span></li>
+      <li><b>资深执行器工程师（人形关节）</b><span>R&amp;D</span></li>
+      <li><b>电机控制器 PCB 设计</b><span>R&amp;D</span></li>
+      <li><b>嵌入式开发 · 电机控制固件</b><span>R&amp;D</span></li>
+      <li><b>执行器控制算法</b><span>R&amp;D</span></li>
+      <li><b>电源系统设计</b><span>R&amp;D</span></li>
+      <li><b>虚实迁移仿真（Sim2Real）</b><span>R&amp;D</span></li>
+      <li><b>机器人计算平台软件</b><span>R&amp;D</span></li>
+      <li><b>强化学习 · 全身控制</b><span>R&amp;D</span></li>
+      <li><b>测试与验证</b><span>Integration</span></li>
+      <li><b>供应链与采购经理</b><span>Operations</span></li>
+    </ul>
+
+    <div class="cta">
+      <a class="btn btn--fill" href="mailto:1045321663@qq.com?subject=%E5%BA%94%E8%81%98%20Mobileye%20%C3%97%20Mentee">发邮件聊聊</a>
+      <a class="btn" href="weixin://">微信 Ljhh-HH6666</a>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Mobileye × Mentee Robotics</b> · 本页由猎头 Lionel 受客户委托整理，非企业官方页面。数据引自 Mobileye 官方新闻稿、2026 Q3 财报电话会、Mentee 公开产品资料与行业报道，整理截至 2026-10-30。配图取自 Mobileye 官方，版权归其所有，仅用于人才沟通说明。</p>
+    <p style="text-align:right">猎头 Lionel，受客户委托寻访<br>微信 Ljhh-HH6666 ／ 1045321663@qq.com</p>
+  </footer>
+</div>
+
+</body>
+</html>
